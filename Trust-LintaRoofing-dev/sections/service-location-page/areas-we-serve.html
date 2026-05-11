@@ -27,68 +27,66 @@
     offset=0,
     width=12
   %}
-   {% dnd_row %}
-  {% dnd_module path="@hubspot/rich_text" %}
-    {% module_attribute "html" %}
-      <div class="lt-service-areas-grid__heading">
-        <h2>Areas We Serve Near {{ context.location_name or 'Myrtle Beach' }}</h2>
-        {% if not context.service_name %}
-          <p>From oceanfront properties along the Grand Strand to residential estates in Carolina Forest, we possess specialized expertise in addressing the unique roofing requirements of every community throughout the {{ context.location_name or 'Myrtle Beach' }} area.</p>
-        {% endif %}
-      </div>
-    {% end_module_attribute %}
-  {% end_dnd_module %}
-{% end_dnd_row %}
-
     {% dnd_row %}
-      {% set service_area_cards = context.service_area_cards %}
-      {% if service_area_cards is string %}
-        {% set service_area_cards = service_area_cards|fromjson %}
-      {% endif %}
-      {% if not service_area_cards %}
-        {% set service_area_cards = [] %}
-      {% endif %}
-      {% set cards_html = '' %}
-      {% for card in service_area_cards|slice(0, 4) %}
-        {% set card_image = (card.image_url or '') %}
-        {% if not card_image and card.image_filename %}
-          {% set card_image = get_asset_url("../../images/" ~ card.image_filename) %}
-        {% endif %}
-        {% set card_alt = (card.image_alt or '') %}
-        {% set card_title = (card.title or '') %}
-        {% if not card_alt and card_title %}
-          {% set card_alt = card_title ~ ' roofing' %}
-        {% endif %}
-        {% set card_body = (card.body or '') %}
-        {% set cards_html = cards_html
-          ~ '<article class="lt-service-areas-grid__card">'
-            ~ '<div class="lt-service-areas-grid__image">'
-              ~ '<img src="' ~ card_image ~ '" alt="' ~ card_alt ~ '" loading="lazy">'
-              ~ '<h3>' ~ card_title ~ '</h3>'
-            ~ '</div>'
-            ~ '<div class="lt-service-areas-grid__body"><p>' ~ card_body ~ '</p></div>'
-          ~ '</article>'
-        %}
-      {% endfor %}
-      {% dnd_module
-        path="@hubspot/rich_text",
-        html={{
-          '<div class="lt-service-areas-grid__grid">'
-            ~ cards_html
-          ~ '</div>'
-        }}
-      %}
+      {% dnd_module path="@hubspot/rich_text" %}
+        {% module_attribute "html" %}
+          <div class="lt-service-areas-grid__heading">
+            <h2>Areas We Serve Near {{ context.location_name or 'Myrtle Beach' }}</h2>
+            {% if not context.service_name %}
+              <p>From oceanfront properties along the Grand Strand to residential estates in Carolina Forest, we possess specialized expertise in addressing the unique roofing requirements of every community throughout the {{ context.location_name or 'Myrtle Beach' }} area.</p>
+            {% endif %}
+          </div>
+        {% end_module_attribute %}
       {% end_dnd_module %}
     {% end_dnd_row %}
 
     {% dnd_row %}
-  {% dnd_module
-    path="@hubspot/rich_text",
-    html={{
-      '<div class="lt-service-areas-grid__cta"><a class="lt-service-areas-grid__cta-button" href="' ~ (context.cta_url or 'https://lintaroofing.com/areas-we-service-linta-roofing') ~ '">' ~ (context.cta_text or 'See All Locations') ~ '</a></div>'
-    }}
-  %}
-  {% end_dnd_module %}
-{% end_dnd_row %}
+      {% dnd_module path="@hubspot/rich_text" %}
+        {% module_attribute "html" %}
+          {% set service_area_cards = context.service_area_cards %}
+          {% if service_area_cards is string %}
+            {% set service_area_cards = service_area_cards|fromjson %}
+          {% endif %}
+          {% if not service_area_cards %}
+            {% set service_area_cards = [] %}
+          {% endif %}
+          <div class="lt-service-areas-grid__grid">
+            {% for card in service_area_cards[:4] %}
+              {% set card_image = card.image_url or '' %}
+              {% if not card_image and card.image_filename %}
+                {% set card_image = get_asset_url("../../images/" ~ card.image_filename) %}
+              {% endif %}
+              {% set card_title = card.title or '' %}
+              {% set card_alt = card.image_alt or (card_title ~ ' roofing') %}
+              {% set card_slug = card.slug or card.hs_path or '' %}
+              {% if not card_slug and card_title %}
+                {% set card_slug = card_title|lower|replace(' ', '-') %}
+              {% endif %}
+              {% set card_url = 'https://lintaroofing.com/areas-beta/' ~ card_slug %}
+              {% set card_body = card.body or '' %}
+              <a class="lt-service-areas-grid__card" href="{{ card_url }}" style="text-decoration:none;color:inherit;">
+                <div class="lt-service-areas-grid__image">
+                  <img src="{{ card_image }}" alt="{{ card_alt }}" loading="lazy">
+                  <h3>{{ card_title }}</h3>
+                </div>
+                <div class="lt-service-areas-grid__body"><p>{{ card_body }}</p></div>
+              </a>
+            {% endfor %}
+          </div>
+        {% end_module_attribute %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+
+    {% dnd_row %}
+      {% dnd_module path="@hubspot/rich_text" %}
+        {% module_attribute "html" %}
+          <div class="lt-service-areas-grid__cta">
+            <a class="lt-service-areas-grid__cta-button" href="{{ context.cta_url or 'https://lintaroofing.com/areas-we-service-linta-roofing' }}">
+              {{ context.cta_text or 'See All Locations' }}
+            </a>
+          </div>
+        {% end_module_attribute %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
   {% end_dnd_column %}
 {% end_dnd_section %}
