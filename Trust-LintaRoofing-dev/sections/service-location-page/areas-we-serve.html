@@ -41,41 +41,40 @@
 {% end_dnd_row %}
 
     {% dnd_row %}
+      {% set service_area_cards = context.service_area_cards %}
+      {% if service_area_cards is string %}
+        {% set service_area_cards = service_area_cards|fromjson %}
+      {% endif %}
+      {% if not service_area_cards %}
+        {% set service_area_cards = [] %}
+      {% endif %}
+      {% set cards_html = '' %}
+      {% for card in service_area_cards|slice(0, 4) %}
+        {% set card_image = (card.image_url or '') %}
+        {% if not card_image and card.image_filename %}
+          {% set card_image = get_asset_url("../../images/" ~ card.image_filename) %}
+        {% endif %}
+        {% set card_alt = (card.image_alt or '') %}
+        {% set card_title = (card.title or '') %}
+        {% if not card_alt and card_title %}
+          {% set card_alt = card_title ~ ' roofing' %}
+        {% endif %}
+        {% set card_body = (card.body or '') %}
+        {% set cards_html = cards_html
+          ~ '<article class="lt-service-areas-grid__card">'
+            ~ '<div class="lt-service-areas-grid__image">'
+              ~ '<img src="' ~ card_image ~ '" alt="' ~ card_alt ~ '" loading="lazy">'
+              ~ '<h3>' ~ card_title ~ '</h3>'
+            ~ '</div>'
+            ~ '<div class="lt-service-areas-grid__body"><p>' ~ card_body ~ '</p></div>'
+          ~ '</article>'
+        %}
+      {% endfor %}
       {% dnd_module
         path="@hubspot/rich_text",
         html={{
           '<div class="lt-service-areas-grid__grid">'
-            ~ '<article class="lt-service-areas-grid__card">'
-              ~ '<div class="lt-service-areas-grid__image">'
-                ~ '<img src="' ~ get_asset_url("../../images/market-common.jpg") ~ '" alt="Market Common roofing" loading="lazy">'
-                ~ '<h3>Market Common</h3>'
-              ~ '</div>'
-              ~ '<div class="lt-service-areas-grid__body"><p>This vibrant, mixed-use community features a blend of modern townhomes and retail spaces that require specialized roofing expertise. We provide HOA-coordinated services and commercial-grade solutions designed to handle the unique architectural standards and coastal weather challenges of the area.</p></div>'
-            ~ '</article>'
-
-            ~ '<article class="lt-service-areas-grid__card">'
-              ~ '<div class="lt-service-areas-grid__image">'
-                ~ '<img src="' ~ get_asset_url("../../images/grande-dunes.jpg") ~ '" alt="Grande Dunes roofing" loading="lazy">'
-                ~ '<h3>Grande Dunes</h3>'
-              ~ '</div>'
-              ~ '<div class="lt-service-areas-grid__body"><p>Known for its luxury oceanfront estates and golf course properties, Grande Dunes requires premium roofing materials and meticulous craftsmanship. Our team specializes in high-end systems that offer maximum wind resistance and protection against salt air corrosion for custom luxury homes.</p></div>'
-            ~ '</article>'
-
-            ~ '<article class="lt-service-areas-grid__card">'
-              ~ '<div class="lt-service-areas-grid__image">'
-                ~ '<img src="' ~ get_asset_url("../../images/carolina-forest.jpg") ~ '" alt="Carolina Forest roofing" loading="lazy">'
-                ~ '<h3>Carolina Forest</h3>'
-              ~ '</div>'
-              ~ '<div class="lt-service-areas-grid__body"><p>As a sprawling master-planned development with over 50 subdivisions, Carolina Forest homes often face issues with aging builder-grade roofs and high humidity. We are HOA-approved specialists who handle the entire architectural review process to ensure your roof replacement meets community standards.</p></div>'
-            ~ '</article>'
-
-            ~ '<article class="lt-service-areas-grid__card">'
-              ~ '<div class="lt-service-areas-grid__image">'
-                ~ '<img src="' ~ get_asset_url("../../images/the-farm.jpg") ~ '" alt="The Farm at Carolina Forest roofing" loading="lazy">'
-                ~ '<h3>The Farm at Carolina Forest</h3>'
-              ~ '</div>'
-              ~ '<div class="lt-service-areas-grid__body"><p>This family-oriented community features diverse home styles, from custom single-family residences to townhouses, that require careful maintenance. We understand the specific architectural guidelines of The Farm and provide efficient, respectful roofing services that protect your investment and enhance curb appeal.</p></div>'
-            ~ '</article>'
+            ~ cards_html
           ~ '</div>'
         }}
       %}
