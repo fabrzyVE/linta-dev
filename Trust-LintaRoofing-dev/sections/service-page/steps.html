@@ -1,0 +1,65 @@
+<!--
+  templateType: section
+  label: Your roof repair in 3 simple steps
+  isAvailableForNewContent: true
+  description: "Two-column section with a heading + checkmark step list + two CTAs on the left, and an image on the right."
+-->
+{% dnd_section
+  class="st-simple-steps",
+  background_color={{ context.background_color or "#ffffff" }},
+  padding={
+    "default": {
+      "top": 80,
+      "right": 20,
+      "bottom": 80,
+      "left": 20
+    },
+    "mobile": {
+      "top": 60,
+      "right": 20,
+      "bottom": 60,
+      "left": 20
+    }
+  },
+  vertical_alignment="MIDDLE"
+%}
+  {% dnd_column
+    offset=0,
+    width=12
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="@hubspot/rich_text",
+        html={{
+          '<div class="st-simple-steps__grid">'
+            ~ '<div class="st-simple-steps__content">'
+              ~ '<h2>Your ' ~ (context.service_name or 'Roof Repair') ~ ' in 3 Simple Steps</h2>'
+
+              ~ '<ul class="st-simple-steps__list">'
+                ~ '<li><span class="st-simple-steps__icon" aria-hidden="true">'
+                  ~ '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>'
+                ~ '</span><span>Schedule Inspection</span></li>'
+                ~ '<li><span class="st-simple-steps__icon" aria-hidden="true">'
+                  ~ '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>'
+                ~ '</span><span>Get Expert Recommendation</span></li>'
+                ~ '<li><span class="st-simple-steps__icon" aria-hidden="true">'
+                  ~ '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>'
+                ~ '</span><span>Repair &amp; Peace of Mind</span></li>'
+              ~ '</ul>'
+
+              ~ '<div class="st-simple-steps__actions">'
+                ~ '<a class="st-simple-steps__btn st-simple-steps__btn--primary" href="' ~ (context.primary_cta_url or 'https://lintaroofing.com/instant-estimate/') ~ '">' ~ (context.primary_cta_text or 'Get an Instant Estimate') ~ '</a>'
+                ~ '<a class="st-simple-steps__btn st-simple-steps__btn--secondary" href="' ~ (context.secondary_cta_url or 'https://lintaroofing.com/roofing-101') ~ '">' ~ (context.secondary_cta_text or 'See Our Roof Replacement Guide') ~ '</a>'
+              ~ '</div>'
+            ~ '</div>'
+
+            ~ '<div class="st-simple-steps__image">'
+              ~ '<img src="' ~ get_asset_url("../../images/roof-maintenance.png") ~ '" alt="Linta Roofing technician inspecting a roof" loading="lazy">'
+            ~ '</div>'
+          ~ '</div>'
+        }}
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}

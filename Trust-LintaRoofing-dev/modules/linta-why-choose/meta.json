@@ -1,0 +1,31 @@
+{
+  "label": "Linta Why Choose",
+  "host_template_types": ["PAGE"],
+  "is_available_for_new_content": true,
+  "fields": [
+    {
+      "name": "title",
+      "label": "Section title",
+      "type": "text",
+      "default": "Here's Why Homeowners Choose Linta Roofing"
+    },
+    {
+      "name": "intro",
+      "label": "Intro paragraph",
+      "type": "textarea",
+      "default": "We are a family owned and operated business built on 3 generations of contractors, with over 40 years helping homeowners in the Grand Strand. Our focus is on transparency, education, and guidance. We believe an educated homeowner makes the best decisions for their family."
+    },
+    {
+      "name": "cta_text",
+      "label": "CTA button text",
+      "type": "text",
+      "default": "Schedule A Free Consultation"
+    },
+    {
+      "name": "cta_link",
+      "label": "CTA button link",
+      "type": "link",
+      "default": { "url": "#contact" }
+    }
+  ]
+}

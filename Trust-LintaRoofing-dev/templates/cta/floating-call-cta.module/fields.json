@@ -1,0 +1,19 @@
+[ {
+  "id" : "fa507839-97aa-0fa6-0c1a-67a3ea8aa055",
+  "name" : "phone_number",
+  "label" : "Phone Number",
+  "required" : false,
+  "locked" : false,
+  "allow_new_line" : false,
+  "type" : "text",
+  "display_width" : null
+}, {
+  "id" : "6216b5e7-2488-c28d-cf65-567e03785f02",
+  "name" : "aria_label",
+  "label" : "Aria Label",
+  "required" : false,
+  "locked" : false,
+  "allow_new_line" : false,
+  "type" : "text",
+  "display_width" : null
+} ]

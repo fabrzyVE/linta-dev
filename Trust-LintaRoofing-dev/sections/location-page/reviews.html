@@ -1,0 +1,167 @@
+<!--
+  templateType: section
+  label: Reviews
+  isAvailableForNewContent: true
+  description: "Customer review carousel with 4 reviews, navigation arrows, and dots."
+-->
+{% dnd_section
+  class="lt-reviews",
+  background_color="#f5f6f8",
+  padding={
+    "default": {
+      "top": 80,
+      "right": 20,
+      "bottom": 80,
+      "left": 20
+    },
+    "mobile": {
+      "top": 60,
+      "right": 20,
+      "bottom": 60,
+      "left": 20
+    }
+  },
+  vertical_alignment="MIDDLE"
+%}
+  {% dnd_column
+    offset=0,
+    width=12
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="@hubspot/rich_text",
+        html={{
+          '<div class="lt-reviews__eyebrow"><span>Our Reviews</span></div>'
+        }}
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+
+    {% dnd_row %}
+      {% dnd_module
+        path="@hubspot/rich_text",
+        html={{
+          '<div class="lt-reviews__wrap" id="lt-reviews-wrap">'
+            ~ '<div class="lt-reviews__carousel">'
+              ~ '<button type="button" class="lt-reviews__arrow lt-reviews__arrow--prev" aria-label="Previous review" data-reviews-prev>'
+                ~ '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>'
+              ~ '</button>'
+
+              ~ '<div class="lt-reviews__track">'
+                ~ '<div class="lt-reviews__slide is-active" data-reviews-slide>'
+                  ~ '<div class="lt-reviews__quote">'
+                    ~ '<blockquote>&ldquo;Very professional and knowledgeable. Guided me step by step through the entire process. It&apos;s hard to find excellent customer service in todays world but Daniel and Linta Roofing go above and beyond for their customers.&rdquo;</blockquote>'
+                    ~ '<cite>- Jackie Edwards | Horry County Resident</cite>'
+                  ~ '</div>'
+                  ~ '<div class="lt-reviews__image"><img src="' ~ get_asset_url("../../images/review-1.png") ~ '" alt="Roofing project completed for Jackie Edwards" loading="lazy"></div>'
+                ~ '</div>'
+
+                ~ '<div class="lt-reviews__slide" data-reviews-slide>'
+                  ~ '<div class="lt-reviews__quote">'
+                    ~ '<blockquote>&ldquo;I was so impressed with their professionalism, timeliness, and high quality workmanship. My roofing project was a stress-free experience because they were honest and transparent from beginning to end!&rdquo;</blockquote>'
+                    ~ '<cite>- Alan Ambrose | Carolina Forest</cite>'
+                  ~ '</div>'
+                  ~ '<div class="lt-reviews__image"><img src="' ~ get_asset_url("../../images/review-2.png") ~ '" alt="Roofing project completed for Marcus Lee" loading="lazy"></div>'
+                ~ '</div>'
+
+                ~ '<div class="lt-reviews__slide" data-reviews-slide>'
+                  ~ '<div class="lt-reviews__quote">'
+                    ~ '<blockquote>&ldquo;Linta Roofing did an amazing job from start to finish. Very pleased with everything!&rdquo;</blockquote>'
+                    ~ '<cite>- Chris Crowl &amp; Tom Rivera | Market Common</cite>'
+                  ~ '</div>'
+                  ~ '<div class="lt-reviews__image"><img src="' ~ get_asset_url("../../images/review-3.png") ~ '" alt="Roofing project completed for Susan and Tom Rivera" loading="lazy"></div>'
+                ~ '</div>'
+
+                ~ '<div class="lt-reviews__slide" data-reviews-slide>'
+                  ~ '<div class="lt-reviews__quote">'
+                    ~ '<blockquote>&ldquo;I cant say enough good about Linta Roofing. They did an amazing job on our metal roof in a timely manner and competitive price. I highly recommend them.&rdquo;</blockquote>'
+                    ~ '<cite>- Michael Turnage | Grande Dunes</cite>'
+                  ~ '</div>'
+                  ~ '<div class="lt-reviews__image"><img src="' ~ get_asset_url("../../images/review-4.png") ~ '" alt="Roofing project completed for David Holmes" loading="lazy"></div>'
+                ~ '</div>'
+              ~ '</div>'
+
+              ~ '<button type="button" class="lt-reviews__arrow lt-reviews__arrow--next" aria-label="Next review" data-reviews-next>'
+                ~ '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>'
+              ~ '</button>'
+            ~ '</div>'
+
+            ~ '<div class="lt-reviews__dots">'
+              ~ '<button type="button" class="lt-reviews__dot is-active" aria-label="Go to review 1" data-reviews-dot="0"></button>'
+              ~ '<button type="button" class="lt-reviews__dot" aria-label="Go to review 2" data-reviews-dot="1"></button>'
+              ~ '<button type="button" class="lt-reviews__dot" aria-label="Go to review 3" data-reviews-dot="2"></button>'
+              ~ '<button type="button" class="lt-reviews__dot" aria-label="Go to review 4" data-reviews-dot="3"></button>'
+            ~ '</div>'
+          ~ '</div>'
+        }}
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+
+    {% dnd_row %}
+      {% dnd_module
+        path="@hubspot/rich_text",
+        html={{
+          '<div class="lt-reviews__cta">'
+            ~ '<a class="lt-reviews__cta-button lt-reviews__cta-button--primary" href="' ~ (context.cta_url or 'https://lintaroofing.com/instant-estimate/') ~ '">' ~ (context.cta_text or 'Get Instant Estimate') ~ '</a>'
+            ~ '<a class="lt-reviews__cta-button lt-reviews__cta-button--secondary" href="' ~ (context.cta_secondary_url or 'https://lintaroofing.com/schedule-inspection') ~ '">' ~ (context.cta_secondary_text or 'Schedule Inspection Online') ~ '</a>'
+          ~ '</div>'
+        }}
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}
+
+<script>
+  (function () {
+    function init() {
+      var wrap = document.getElementById('lt-reviews-wrap');
+      if (!wrap) return;
+
+      var slides = wrap.querySelectorAll('[data-reviews-slide]');
+      var prevBtn = wrap.querySelector('[data-reviews-prev]');
+      var nextBtn = wrap.querySelector('[data-reviews-next]');
+      var dots = wrap.querySelectorAll('[data-reviews-dot]');
+      var current = 0;
+      var total = slides.length;
+      if (!total) return;
+
+      function update(index) {
+        if (index < 0) index = total - 1;
+        if (index >= total) index = 0;
+        current = index;
+        for (var i = 0; i < slides.length; i++) {
+          if (i === current) {
+            slides[i].classList.add('is-active');
+          } else {
+            slides[i].classList.remove('is-active');
+          }
+        }
+        for (var j = 0; j < dots.length; j++) {
+          if (j === current) {
+            dots[j].classList.add('is-active');
+            dots[j].setAttribute('aria-current', 'true');
+          } else {
+            dots[j].classList.remove('is-active');
+            dots[j].setAttribute('aria-current', 'false');
+          }
+        }
+      }
+
+      if (prevBtn) prevBtn.addEventListener('click', function () { update(current - 1); });
+      if (nextBtn) nextBtn.addEventListener('click', function () { update(current + 1); });
+      for (var k = 0; k < dots.length; k++) {
+        (function (idx) {
+          dots[idx].addEventListener('click', function () { update(idx); });
+        })(k);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  })();
+</script>

@@ -1,0 +1,13 @@
+{
+  "label": "Linta Certifications",
+  "host_template_types": ["PAGE"],
+  "is_available_for_new_content": true,
+  "fields": [
+    {
+      "name": "section_title",
+      "label": "Section title",
+      "type": "text",
+      "default": "Certifications & Acknowledgements"
+    }
+  ]
+}

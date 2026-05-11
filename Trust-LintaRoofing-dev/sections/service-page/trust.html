@@ -1,0 +1,68 @@
+<!--
+  templateType: section
+  label: You need a roofing company you can trust
+  isAvailableForNewContent: true
+  description: "Two-column section with content + checkmark list on the left, video embed on the right."
+-->
+{% dnd_section
+  class="st-trust",
+  background_color={{ context.background_color or "#ffffff" }},
+  padding={
+    "default": {
+      "top": 80,
+      "right": 20,
+      "bottom": 80,
+      "left": 20
+    },
+    "mobile": {
+      "top": 60,
+      "right": 20,
+      "bottom": 60,
+      "left": 20
+    }
+  },
+  vertical_alignment="MIDDLE"
+%}
+  {% dnd_column
+    offset=0,
+    width=12
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="@hubspot/rich_text",
+        html={{
+          '<div class="st-trust__grid">'
+            ~ '<div class="st-trust__content">'
+              ~ '<h2>You Need A Roofing Company That You Can Trust</h2>'
+              ~ '<p>You shouldn&apos;t have to worry about a roofer taking advantage of you. When working with us, you can count on an experience that is uncommon and unparalleled in the roofing industry.</p>'
+
+              ~ '<ul class="st-trust__list">'
+                ~ '<li><span class="st-trust__icon" aria-hidden="true">'
+                  ~ '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>'
+                ~ '</span><span>Family owned and operated since 1948</span></li>'
+                ~ '<li><span class="st-trust__icon" aria-hidden="true">'
+                  ~ '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>'
+                ~ '</span><span>Fully licensed and insured</span></li>'
+                ~ '<li><span class="st-trust__icon" aria-hidden="true">'
+                  ~ '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>'
+                ~ '</span><span>GAF Master Elite Contractor</span></li>'
+                ~ '<li><span class="st-trust__icon" aria-hidden="true">'
+                  ~ '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>'
+                ~ '</span><span>Workmanship warranties up to 25 years</span></li>'
+              ~ '</ul>'
+
+              ~ '<a class="st-trust__btn" href="' ~ (context.cta_url or 'https://lintaroofing.com/contact/') ~ '">' ~ (context.cta_text or 'Contact Us') ~ '</a>'
+            ~ '</div>'
+
+            ~ '<div class="st-trust__video">'
+              ~ '<div class="st-trust__video-wrap">'
+                ~ '<iframe src="https://www.youtube.com/embed/' ~ (context.video_id or 'hFErpPwoSX8') ~ '?rel=0&modestbranding=1" title="Why Homeowners Trust Linta Roofing" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>'
+              ~ '</div>'
+            ~ '</div>'
+          ~ '</div>'
+        }}
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}

@@ -1,0 +1,269 @@
+<!--
+  templateType: page
+  isAvailableForNewContent: true
+  label: HubDB Location / Service-Location Page (multi-level)
+-->
+{% extends "./layouts/base.html" %}
+
+{% require_css %}
+  {% if dynamic_page_route_level == 2 %}
+    <link rel="stylesheet" href="{{ get_asset_url('../styles/service-location.css') }}">
+  {% else %}
+    <link rel="stylesheet" href="{{ get_asset_url('../styles/location.css') }}">
+  {% endif %}
+{% end_require_css %}
+
+{% require_js position="footer" %}
+  <script src="https://elfsightcdn.com/platform.js" defer></script>
+  {% if dynamic_page_route_level != 2 %}
+    <script src="https://showcase.companycam.com/bundle.js" defer></script>
+  {% endif %}
+{% end_require_js %}
+
+{% block body %}
+  {% if dynamic_page_hubdb_row %}
+    {% if dynamic_page_hubdb_row.meta_title %}
+      <script>
+        document.title = {{ dynamic_page_hubdb_row.meta_title|tojson }};
+      </script>
+    {% endif %}
+
+    {% if dynamic_page_route_level == 2 %}
+      {# /areas/<area>/<service>-in-<area> — service-location level #}
+      {% set current_location_path = dynamic_page_hubdb_row.location_name|lower|replace(' ', '-') %}
+      {% dnd_area "dnd_area_service_location"
+        label="Service-Location section",
+        class="body-container body-container--home body-container--service-location"
+      %}
+        {% include_dnd_partial path="../sections/service-location-page/hero.html"
+          context={
+            "location_name": dynamic_page_hubdb_row.location_name,
+            "service_name": dynamic_page_hubdb_row.service_name,
+            "hero_heading": dynamic_page_hubdb_row.hero_heading,
+          }
+        %}
+        {% include_dnd_partial path="../sections/service-location-page/who-we-are.html"
+          context={
+            "location_name": dynamic_page_hubdb_row.location_name,
+          }
+        %}
+        {% include_dnd_partial path="../sections/service-location-page/our-roofing-services.html"
+          context={
+            "location_name": dynamic_page_hubdb_row.location_name,
+            "service_name": dynamic_page_hubdb_row.service_name,
+            "location_path": current_location_path,
+          }
+        %}
+        {% include_dnd_partial path="../sections/service-location-page/why-choose.html"
+          context={
+            "location_name": dynamic_page_hubdb_row.location_name,
+          }
+        %}
+        {% include_dnd_partial path="../sections/service-location-page/how-do-i.html"
+          context={
+            "location_name": dynamic_page_hubdb_row.location_name,
+            "service_name": dynamic_page_hubdb_row.service_name,
+          }
+        %}
+        {% include_dnd_partial path="../sections/service-location-page/all-locations.html"
+          context={
+            "location_name": dynamic_page_hubdb_row.location_name,
+            "service_name": dynamic_page_hubdb_row.service_name,
+            "google_map_embed": dynamic_page_hubdb_row.google_map_embed,
+          }
+        %}
+        {% include_dnd_partial path="../sections/service-location-page/areas-we-serve.html"
+          context={
+            "location_name": dynamic_page_hubdb_row.location_name,
+            "service_name": dynamic_page_hubdb_row.service_name,
+          }
+        %}
+        {% include_dnd_partial path="../sections/location-page/reviews.html" %}
+        {% include_dnd_partial path="../sections/service-location-page/faq.html"
+          context={
+            "location_name": dynamic_page_hubdb_row.location_name,
+            "service_name": dynamic_page_hubdb_row.service_name,
+          }
+        %}
+        {% include_dnd_partial path="../sections/location-page/estimate-cta.html"
+          context={
+            "location_name": dynamic_page_hubdb_row.location_name,
+          }
+        %}
+        {% include_dnd_partial path="../sections/location-page/bottom-strip.html" %}
+      {% end_dnd_area %}
+    {% else %}
+      {# /areas/<area> — location level (route_level 1) #}
+      {% dnd_area "dnd_area"
+        label="Location section",
+        class="body-container body-container--location"
+      %}
+        {% include_dnd_partial path="../sections/location-page/hero-banner.html"
+          context={
+            "hero_heading": dynamic_page_hubdb_row.hero_heading,
+            "hero_intro": dynamic_page_hubdb_row.hero_intro,
+          }
+        %}
+        {% include_dnd_partial path="../sections/location-page/who-we-are.html"
+          context={
+            "location_name": dynamic_page_hubdb_row.location_name,
+          }
+        %}
+        {% include_dnd_partial path="../sections/location-page/our-roofing-services.html"
+          context={
+            "location_name": dynamic_page_hubdb_row.location_name,
+            "location_path": dynamic_page_hubdb_row.hs_path,
+          }
+        %}
+        {% include_dnd_partial path="../sections/location-page/why-choose-us.html"
+          context={
+            "location_name": dynamic_page_hubdb_row.location_name,
+          }
+        %}
+        {% include_dnd_partial path="../sections/location-page/how-do-i.html"
+          context={
+            "location_name": dynamic_page_hubdb_row.location_name,
+          }
+        %}
+        {% include_dnd_partial path="../sections/location-page/our-work.html"
+          context={
+            "location_name": dynamic_page_hubdb_row.location_name,
+          }
+        %}
+        {% include_dnd_partial path="../sections/location-page/areas-we-serve.html"
+          context={
+            "location_name": dynamic_page_hubdb_row.location_name,
+          }
+        %}
+        {% include_dnd_partial path="../sections/location-page/service-areas.html"
+          context={
+            "location_name": dynamic_page_hubdb_row.location_name,
+            "google_map_embed": dynamic_page_hubdb_row.google_map_embed,
+          }
+        %}
+        {% include_dnd_partial path="../sections/location-page/reviews.html"
+          context={
+            "location_name": dynamic_page_hubdb_row.location_name,
+          }
+        %}
+        {% include_dnd_partial path="../sections/location-page/faq.html"
+          context={
+            "location_name": dynamic_page_hubdb_row.location_name,
+          }
+        %}
+        {% include_dnd_partial path="../sections/location-page/estimate-cta.html"
+          context={
+            "location_name": dynamic_page_hubdb_row.location_name,
+          }
+        %}
+        {% include_dnd_partial path="../sections/location-page/bottom-strip.html" %}
+      {% end_dnd_area %}
+    {% endif %}
+
+    <script>
+    (function () {
+      function initReviews() {
+        var wrap = document.getElementById('lt-reviews-wrap');
+        if (!wrap) return;
+        var slides = wrap.querySelectorAll('[data-reviews-slide]');
+        var prevBtn = wrap.querySelector('[data-reviews-prev]');
+        var nextBtn = wrap.querySelector('[data-reviews-next]');
+        var dots = wrap.querySelectorAll('[data-reviews-dot]');
+        var current = 0;
+        var total = slides.length;
+        if (!total) return;
+        function update(index) {
+          if (index < 0) index = total - 1;
+          if (index >= total) index = 0;
+          current = index;
+          for (var i = 0; i < slides.length; i++) {
+            if (i === current) slides[i].classList.add('is-active');
+            else slides[i].classList.remove('is-active');
+          }
+          for (var j = 0; j < dots.length; j++) {
+            if (j === current) {
+              dots[j].classList.add('is-active');
+              dots[j].setAttribute('aria-current', 'true');
+            } else {
+              dots[j].classList.remove('is-active');
+              dots[j].setAttribute('aria-current', 'false');
+            }
+          }
+        }
+        if (prevBtn) prevBtn.addEventListener('click', function () { update(current - 1); });
+        if (nextBtn) nextBtn.addEventListener('click', function () { update(current + 1); });
+        for (var k = 0; k < dots.length; k++) {
+          (function (idx) {
+            dots[idx].addEventListener('click', function () { update(idx); });
+          })(k);
+        }
+      }
+
+      function initOurWork() {
+        var wrap = document.getElementById('lt-our-work-wrap');
+        if (!wrap) return;
+        var slides = wrap.querySelectorAll('[data-our-work-slide]');
+        var prevBtn = wrap.querySelector('[data-our-work-prev]');
+        var nextBtn = wrap.querySelector('[data-our-work-next]');
+        var thumbs = wrap.querySelectorAll('[data-our-work-thumb]');
+        var current = 0;
+        var total = slides.length;
+        if (!total) return;
+        function update(index) {
+          if (index < 0) index = total - 1;
+          if (index >= total) index = 0;
+          current = index;
+          for (var i = 0; i < slides.length; i++) {
+            if (i === current) slides[i].classList.add('is-active');
+            else slides[i].classList.remove('is-active');
+          }
+          for (var j = 0; j < thumbs.length; j++) {
+            if (j === current) {
+              thumbs[j].classList.add('is-active');
+              thumbs[j].setAttribute('aria-current', 'true');
+            } else {
+              thumbs[j].classList.remove('is-active');
+              thumbs[j].setAttribute('aria-current', 'false');
+            }
+          }
+        }
+        if (prevBtn) prevBtn.addEventListener('click', function () { update(current - 1); });
+        if (nextBtn) nextBtn.addEventListener('click', function () { update(current + 1); });
+        for (var k = 0; k < thumbs.length; k++) {
+          (function (idx) {
+            thumbs[idx].addEventListener('click', function () { update(idx); });
+          })(k);
+        }
+      }
+
+      function initFaq() {
+        var list = document.getElementById('lt-faq-list');
+        if (!list) return;
+        var items = list.querySelectorAll('[data-faq-item]');
+        for (var i = 0; i < items.length; i++) {
+          (function (item) {
+            var toggle = item.querySelector('[data-faq-toggle]');
+            if (!toggle) return;
+            toggle.addEventListener('click', function () {
+              var isOpen = item.classList.toggle('is-open');
+              toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            });
+          })(items[i]);
+        }
+      }
+
+      function initAll() {
+        initReviews();
+        initOurWork();
+        initFaq();
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initAll);
+      } else {
+        initAll();
+      }
+    })();
+    </script>
+  {% endif %}
+{% endblock body %}

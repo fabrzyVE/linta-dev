@@ -1,0 +1,111 @@
+<!--
+  templateType: section
+  label: FAQ
+  isAvailableForNewContent: true
+  description: "Frequently asked questions accordion. Accepts context.faqs (list of {question, answer} dicts) or falls back to a default set."
+-->
+
+{# Build the heading and subheading using set blocks for cleaner HubL logic #}
+{% set _location = context.location_name or 'Myrtle Beach' %}
+{% set _service = context.service_name %}
+
+{% if context.heading %}
+  {% set _heading = context.heading %}
+{% elif _service and context.location_name %}
+  {% set _heading = _location ~ ' ' ~ _service ~ ' FAQs' %}
+{% elif _service %}
+  {% set _heading = _service ~ ' FAQs' %}
+{% else %}
+  {% set _heading = _location ~ ' Roofing FAQs' %}
+{% endif %}
+
+{% if context.subheading %}
+  {% set _subheading = context.subheading %}
+{% elif _service and context.location_name %}
+  {% set _subheading = 'Common questions about ' ~ _service|lower ~ ' from our ' ~ _location ~ ' roofing contractors' %}
+{% elif _service %}
+  {% set _subheading = 'Common questions about ' ~ _service|lower ~ ' from our roofing contractors' %}
+{% elif context.location_name %}
+  {% set _subheading = 'Common questions our ' ~ _location ~ ' roofing contractors receive' %}
+{% else %}
+  {% set _subheading = 'Common questions our roofing contractors receive' %}
+{% endif %}
+
+{% set default_faqs = [
+  {
+    "question": "How long does a roof typically last in " ~ _location ~ "?",
+    "answer": "Most asphalt shingle roofs in the " ~ _location ~ " area last between 20 and 30 years, depending on materials, installation quality, and exposure to coastal weather. Metal roofs can last 40 to 70 years. Salt air, UV exposure, and storm events can shorten that lifespan, which is why regular inspections are important."
+  },
+  {
+    "question": "What are the signs that my roof needs to be replaced?",
+    "answer": "Common signs include curling, cracked, or missing shingles, granules collecting in your gutters, daylight visible through the attic, persistent leaks, sagging areas, and a roof that is more than 20 years old. If you spot any of these, schedule an inspection right away."
+  },
+  {
+    "question": "Will homeowners insurance pay for my roof replacement?",
+    "answer": "Insurance typically covers replacement when the damage is caused by a covered event such as a hurricane, hail, wind, or fallen tree. Wear and tear or age-related deterioration is usually not covered. Our team helps you document damage, work with adjusters, and navigate the claims process."
+  },
+  {
+    "question": "Does Linta Roofing offer emergency services?",
+    "answer": "Yes. We offer 24/7 emergency tarping and repair services after storms or sudden leaks. Call us as soon as you notice damage so we can secure your home and prevent further interior issues while you wait for a full repair."
+  },
+  {
+    "question": "What types of warranties does Linta Roofing provide?",
+    "answer": "We offer manufacturer warranties on materials (often 25 to 50 years depending on the product) plus our own workmanship warranty on installation. As a GAF Master Elite Contractor, we can also provide enhanced GAF warranty options that cover both materials and labor for extended periods."
+  }
+] %}
+
+{% set faqs = context.faqs or default_faqs %}
+
+{% dnd_section
+  class="lt-faq",
+  background_color="#ffffff",
+  padding={
+    "default": {
+      "top": 80,
+      "right": 20,
+      "bottom": 80,
+      "left": 20
+    },
+    "mobile": {
+      "top": 60,
+      "right": 20,
+      "bottom": 60,
+      "left": 20
+    }
+  },
+  vertical_alignment="MIDDLE"
+%}
+  {% dnd_column
+    offset=0,
+    width=12
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="@hubspot/rich_text",
+        html={{
+          '<div class="lt-faq__heading">'
+            ~ '<h2>' ~ _heading ~ '</h2>'
+            ~ '<p>' ~ _subheading ~ '</p>'
+          ~ '</div>'
+        }}
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+
+    {% dnd_row %}
+      {% dnd_module
+        path="@hubspot/rich_text",
+        html={{
+          '<div class="lt-faq__list" id="lt-faq-list">'
+          ~ '<div class="lt-faq__item" data-faq-item><button type="button" class="lt-faq__question" aria-expanded="false" data-faq-toggle><span class="lt-faq__question-text">' ~ faqs[0].question ~ '</span><span class="lt-faq__icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span></button><div class="lt-faq__answer" data-faq-answer><div class="lt-faq__answer-inner"><p>' ~ faqs[0].answer ~ '</p></div></div></div>'
+          ~ '<div class="lt-faq__item" data-faq-item><button type="button" class="lt-faq__question" aria-expanded="false" data-faq-toggle><span class="lt-faq__question-text">' ~ faqs[1].question ~ '</span><span class="lt-faq__icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span></button><div class="lt-faq__answer" data-faq-answer><div class="lt-faq__answer-inner"><p>' ~ faqs[1].answer ~ '</p></div></div></div>'
+          ~ '<div class="lt-faq__item" data-faq-item><button type="button" class="lt-faq__question" aria-expanded="false" data-faq-toggle><span class="lt-faq__question-text">' ~ faqs[2].question ~ '</span><span class="lt-faq__icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span></button><div class="lt-faq__answer" data-faq-answer><div class="lt-faq__answer-inner"><p>' ~ faqs[2].answer ~ '</p></div></div></div>'
+          ~ '<div class="lt-faq__item" data-faq-item><button type="button" class="lt-faq__question" aria-expanded="false" data-faq-toggle><span class="lt-faq__question-text">' ~ faqs[3].question ~ '</span><span class="lt-faq__icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span></button><div class="lt-faq__answer" data-faq-answer><div class="lt-faq__answer-inner"><p>' ~ faqs[3].answer ~ '</p></div></div></div>'
+          ~ '<div class="lt-faq__item" data-faq-item><button type="button" class="lt-faq__question" aria-expanded="false" data-faq-toggle><span class="lt-faq__question-text">' ~ faqs[4].question ~ '</span><span class="lt-faq__icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span></button><div class="lt-faq__answer" data-faq-answer><div class="lt-faq__answer-inner"><p>' ~ faqs[4].answer ~ '</p></div></div></div>'
+          ~ '</div>'
+        }}
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}

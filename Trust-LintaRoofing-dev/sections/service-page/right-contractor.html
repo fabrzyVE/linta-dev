@@ -1,0 +1,76 @@
+<!--
+  templateType: section
+  label: Right contractor
+  isAvailableForNewContent: true
+  description: "Two-column section with qualifying / disqualifying lists on the left, image on the right."
+-->
+{% dnd_section
+  class="st-right-contractor",
+  background_color={{ context.background_color or "#f5f6f8" }},
+  padding={
+    "default": {
+      "top": 80,
+      "right": 20,
+      "bottom": 80,
+      "left": 20
+    },
+    "mobile": {
+      "top": 60,
+      "right": 20,
+      "bottom": 60,
+      "left": 20
+    }
+  },
+  vertical_alignment="MIDDLE"
+%}
+  {% dnd_column
+    offset=0,
+    width=12
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="@hubspot/rich_text",
+        html={{
+          '<div class="st-right-contractor__grid">'
+            ~ '<div class="st-right-contractor__content">'
+              ~ '<h2>Is Linta Roofing the Right Contractor for the Job?</h2>'
+
+              ~ '<p class="st-right-contractor__lead">We might be the right fit if you need...</p>'
+              ~ '<ul class="st-right-contractor__list st-right-contractor__list--yes">'
+                ~ '<li><span class="st-right-contractor__icon st-right-contractor__icon--yes" aria-hidden="true">'
+                  ~ '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>'
+                ~ '</span><span>You want clear communication and expert guidance</span></li>'
+                ~ '<li><span class="st-right-contractor__icon st-right-contractor__icon--yes" aria-hidden="true">'
+                  ~ '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>'
+                ~ '</span><span>You prefer repairs that last over quick fixes</span></li>'
+                ~ '<li><span class="st-right-contractor__icon st-right-contractor__icon--yes" aria-hidden="true">'
+                  ~ '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>'
+                ~ '</span><span>You value transparency and professionalism</span></li>'
+              ~ '</ul>'
+
+              ~ '<p class="st-right-contractor__lead">We might not be the right fit if you need...</p>'
+              ~ '<ul class="st-right-contractor__list st-right-contractor__list--no">'
+                ~ '<li><span class="st-right-contractor__icon st-right-contractor__icon--no" aria-hidden="true">'
+                  ~ '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>'
+                ~ '</span><span>You&apos;re looking for a temporary patch job</span></li>'
+                ~ '<li><span class="st-right-contractor__icon st-right-contractor__icon--no" aria-hidden="true">'
+                  ~ '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>'
+                ~ '</span><span>You want the cheapest possible materials</span></li>'
+                ~ '<li><span class="st-right-contractor__icon st-right-contractor__icon--no" aria-hidden="true">'
+                  ~ '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>'
+                ~ '</span><span>You prefer cutting corners to save money</span></li>'
+              ~ '</ul>'
+
+              ~ '<a class="st-right-contractor__btn" href="' ~ (context.cta_url or 'https://lintaroofing.com/instant-estimate/') ~ '">' ~ (context.cta_text or 'Get an Instant Estimate') ~ '</a>'
+            ~ '</div>'
+
+            ~ '<div class="st-right-contractor__image">'
+              ~ '<img src="' ~ get_asset_url("../../images/roof-replacement.png") ~ '" alt="Quality roof replacement project" loading="lazy">'
+            ~ '</div>'
+          ~ '</div>'
+        }}
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}

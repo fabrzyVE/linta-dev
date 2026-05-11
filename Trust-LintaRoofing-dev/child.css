@@ -1,0 +1,24 @@
+/* @import url('http://example.com/example_style.css'); */
+
+/***********************************************/
+/* CSS @imports must be at the top of the file */
+/* Add them above this section                 */
+/***********************************************/
+
+/*****************************************/
+/* Start your style declarations here    */
+/*****************************************/
+
+
+{## HUBSPOT VIDEO #}
+.video--popover.all--aspectratio.fancybox__content {
+  width:900px;
+  max-width:100%;
+  padding:0;
+}
+.container {
+    max-width: 1336px;
+    margin: 0 auto;
+    padding: 0 20px;
+    width: 100%;
+}

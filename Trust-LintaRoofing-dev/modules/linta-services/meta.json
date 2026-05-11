@@ -1,0 +1,31 @@
+{
+  "label": "Linta Services (Pricing)",
+  "host_template_types": ["PAGE"],
+  "is_available_for_new_content": true,
+  "fields": [
+    {
+      "name": "tag",
+      "label": "Section tag",
+      "type": "text",
+      "default": "ASPHALT SHINGLE ROOFS"
+    },
+    {
+      "name": "title",
+      "label": "Section title",
+      "type": "text",
+      "default": "Never Overpay For Your Roof. Guaranteed."
+    },
+    {
+      "name": "subtitle",
+      "label": "Subtitle",
+      "type": "textarea",
+      "default": "If you find the same offer for less, after choosing Linta, we will return your deposit +$100. So you can be confident you are getting the best roof at the best price."
+    },
+    {
+      "name": "cta_anchor",
+      "label": "CTA anchor (e.g. #contact)",
+      "type": "text",
+      "default": "#contact"
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+<!--
+  templateType: "none"
+  isAvailableForNewContent: false
+-->
+{# Module: Linta Services - Design reference: index.html #}
+<section class="services" id="services">
+  <div class="container">
+    <div class="section-header services-pricing-header">
+      <span class="services-pricing-tag">{{ module.tag }}</span>
+      <h2 class="section-title">{{ module.title }}</h2>
+      <p class="section-subtitle">{{ module.subtitle }}</p>
+    </div>
+    <div class="services-grid pricing-cards-grid">
+      <div class="pricing-card fade-up">
+        <div class="pricing-card-head">
+          <h4>Essential</h4>
+          <p class="pricing-range">$9,150 - $12,000</p>
+          <p class="pricing-assumption">Assuming a 3,000 square foot roof</p>
+        </div>
+        <ul class="pricing-card-features">
+          <li><i class="fas fa-check"></i> Limited lifetime material warranty</li>
+          <li><i class="fas fa-check"></i> 130mph wind rating</li>
+          <li><i class="fas fa-check"></i> GAF Timberline HDZ shingles</li>
+        </ul>
+        <a href="{{ module.cta_anchor|default('#contact') }}" class="btn btn-yellow pricing-card-btn">Get Your Price</a>
+      </div>
+      <div class="pricing-card fade-up">
+        <div class="pricing-card-head">
+          <h4>Signature</h4>
+          <p class="pricing-range">$12,000 - $15,000</p>
+          <p class="pricing-assumption">Assuming a 3,000 square foot roof</p>
+        </div>
+        <ul class="pricing-card-features">
+          <li><i class="fas fa-check"></i> Limited lifetime material warranty</li>
+          <li><i class="fas fa-check"></i> 130mph wind rating</li>
+          <li><i class="fas fa-check"></i> GAF Timberline HDZ shingles</li>
+        </ul>
+        <a href="{{ module.cta_anchor|default('#contact') }}" class="btn btn-yellow pricing-card-btn">Get Your Price</a>
+      </div>
+      <div class="pricing-card fade-up">
+        <div class="pricing-card-head">
+          <h4>Premier</h4>
+          <p class="pricing-range">$15,000 - $18,000</p>
+          <p class="pricing-assumption">Assuming a 3,000 square foot roof</p>
+        </div>
+        <ul class="pricing-card-features">
+          <li><i class="fas fa-check"></i> Limited lifetime material warranty</li>
+          <li><i class="fas fa-check"></i> 130mph wind rating</li>
+          <li><i class="fas fa-check"></i> GAF Timberline UHDZ shingles</li>
+        </ul>
+        <a href="{{ module.cta_anchor|default('#contact') }}" class="btn btn-yellow pricing-card-btn">Get Your Price</a>
+      </div>
+    </div>
+  </div>
+</section>

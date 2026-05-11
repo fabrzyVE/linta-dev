@@ -1,0 +1,125 @@
+<!--
+  templateType: section
+  label: Service areas locator
+  isAvailableForNewContent: true
+  description: "Find roof repair near you — locations grouped by county with CTA and trust strip."
+-->
+{% set service_label = context.service_name or dynamic_page_hubdb_row.service_name or "Roofing Services" %}
+{% set service_slug = context.service_path or dynamic_page_hubdb_row.hs_path %}
+{% set current_path = request.path|default("", true) %}
+{% set service_location_base_path = context.service_location_base_path or "/service-location" %}
+{% if not context.service_location_base_path and "-beta" in current_path %}
+  {% set service_location_base_path = "/service-location-beta" %}
+{% endif %}
+
+{% set areas_html %}
+  <div class="st-service-areas__groups">
+    <div class="st-service-areas__group">
+      <h3 class="st-service-areas__group-title">Horry County, SC</h3>
+      <div class="st-service-areas__grid">
+        <a class="st-service-areas__pill" href="{{ service_location_base_path }}/{{ service_slug }}-myrtle-beach"><span class="st-service-areas__pin" aria-hidden="true"></span>Myrtle Beach</a>
+        <a class="st-service-areas__pill" href="{{ service_location_base_path }}/{{ service_slug }}-north-myrtle-beach"><span class="st-service-areas__pin" aria-hidden="true"></span>North Myrtle Beach</a>
+        <a class="st-service-areas__pill" href="{{ service_location_base_path }}/{{ service_slug }}-carolina-forest"><span class="st-service-areas__pin" aria-hidden="true"></span>Carolina Forest</a>
+        <a class="st-service-areas__pill" href="{{ service_location_base_path }}/{{ service_slug }}-conway"><span class="st-service-areas__pin" aria-hidden="true"></span>Conway</a>
+        <a class="st-service-areas__pill" href="{{ service_location_base_path }}/{{ service_slug }}-little-river"><span class="st-service-areas__pin" aria-hidden="true"></span>Little River</a>
+        <a class="st-service-areas__pill" href="{{ service_location_base_path }}/{{ service_slug }}-surfside-beach"><span class="st-service-areas__pin" aria-hidden="true"></span>Surfside Beach</a>
+      </div>
+    </div>
+
+    <div class="st-service-areas__group">
+      <h3 class="st-service-areas__group-title st-service-areas__group-title--accent">Georgetown County, SC</h3>
+      <div class="st-service-areas__grid">
+        <a class="st-service-areas__pill" href="{{ service_location_base_path }}/{{ service_slug }}-murrells-inlet"><span class="st-service-areas__pin" aria-hidden="true"></span>Murrells Inlet</a>
+        <a class="st-service-areas__pill" href="{{ service_location_base_path }}/{{ service_slug }}-georgetown"><span class="st-service-areas__pin" aria-hidden="true"></span>Georgetown</a>
+        <a class="st-service-areas__pill" href="{{ service_location_base_path }}/{{ service_slug }}-georgetown-county"><span class="st-service-areas__pin" aria-hidden="true"></span>Georgetown County</a>
+      </div>
+    </div>
+
+    <div class="st-service-areas__group">
+      <h3 class="st-service-areas__group-title st-service-areas__group-title--accent">Other SC Areas</h3>
+      <div class="st-service-areas__grid">
+        <a class="st-service-areas__pill" href="{{ service_location_base_path }}/{{ service_slug }}-marion-county"><span class="st-service-areas__pin" aria-hidden="true"></span>Marion County</a>
+      </div>
+    </div>
+
+    <div class="st-service-areas__group">
+      <h3 class="st-service-areas__group-title st-service-areas__group-title--accent">Brunswick County, NC</h3>
+      <div class="st-service-areas__grid">
+        <a class="st-service-areas__pill" href="{{ service_location_base_path }}/{{ service_slug }}-brunswick-county"><span class="st-service-areas__pin" aria-hidden="true"></span>Brunswick County</a>
+        <a class="st-service-areas__pill" href="{{ service_location_base_path }}/{{ service_slug }}-ocean-isle-beach"><span class="st-service-areas__pin" aria-hidden="true"></span>Ocean Isle Beach</a>
+        <a class="st-service-areas__pill" href="{{ service_location_base_path }}/{{ service_slug }}-holden-beach"><span class="st-service-areas__pin" aria-hidden="true"></span>Holden Beach</a>
+        <a class="st-service-areas__pill" href="{{ service_location_base_path }}/{{ service_slug }}-sunset-beach"><span class="st-service-areas__pin" aria-hidden="true"></span>Sunset Beach</a>
+        <a class="st-service-areas__pill" href="{{ service_location_base_path }}/{{ service_slug }}-oak-island"><span class="st-service-areas__pin" aria-hidden="true"></span>Oak Island</a>
+        <a class="st-service-areas__pill" href="{{ service_location_base_path }}/{{ service_slug }}-caswell-beach"><span class="st-service-areas__pin" aria-hidden="true"></span>Caswell Beach</a>
+        <a class="st-service-areas__pill" href="{{ service_location_base_path }}/{{ service_slug }}-long-beach"><span class="st-service-areas__pin" aria-hidden="true"></span>Long Beach</a>
+      </div>
+    </div>
+
+    <div class="st-service-areas__group">
+      <h3 class="st-service-areas__group-title">Columbus County, NC</h3>
+      <div class="st-service-areas__grid">
+        <a class="st-service-areas__pill" href="{{ service_location_base_path }}/{{ service_slug }}-columbus-county"><span class="st-service-areas__pin" aria-hidden="true"></span>Columbus County</a>
+      </div>
+    </div>
+  </div>
+{% endset %}
+
+{% dnd_section
+  class="st-service-areas",
+  background_color={{ context.background_color or "#ffffff" }},
+  padding={
+    "default": {
+      "top": 80,
+      "right": 20,
+      "bottom": 80,
+      "left": 20
+    },
+    "mobile": {
+      "top": 56,
+      "right": 20,
+      "bottom": 56,
+      "left": 20
+    }
+  },
+  vertical_alignment="MIDDLE"
+%}
+  {% dnd_column
+    offset=0,
+    width=12
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="@hubspot/rich_text",
+        html={{
+          context.heading
+          or '<div class="st-service-areas__heading"><h2>Find ' ~ service_label ~ ' Near You</h2><p>Select your location to get accurate pricing, availability, and service details</p></div>'
+        }}
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+
+    {% dnd_row %}
+      {% dnd_module
+        path="@hubspot/rich_text",
+        html={{
+          context.areas
+          or areas_html
+        }}
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+
+    {% dnd_row %}
+      {% dnd_module
+        path="@hubspot/rich_text",
+        html={{
+          context.cta
+          or '<div class="st-service-areas__cta">'
+            ~ '<a class="st-service-areas__cta-button" href="https://lintaroofing.com/services/">View Services in Your Area</a>'
+          ~ '</div>'
+        }}
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}

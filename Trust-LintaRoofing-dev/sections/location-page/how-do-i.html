@@ -1,0 +1,73 @@
+<!--
+  templateType: section
+  label: Our roofing process
+  isAvailableForNewContent: true
+  description: "Three-step process section with image cards and a CTA button at the bottom."
+-->
+{% dnd_section
+  class="lt-roofing-process",
+  background_color="#ffffff",
+  padding={
+    "default": {
+      "top": 80,
+      "right": 20,
+      "bottom": 80,
+      "left": 20
+    },
+    "mobile": {
+      "top": 60,
+      "right": 20,
+      "bottom": 60,
+      "left": 20
+    }
+  },
+  vertical_alignment="MIDDLE"
+%}
+  {% dnd_column
+    offset=0,
+    width=12
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="@hubspot/rich_text",
+        html={{
+          '<div class="lt-roofing-process__heading"><h2>How Do I Replace My Roof in ' ~ (context.location_name or 'Myrtle Beach') ~ '?</h2><p>Follow the steps below to see how you can get a new roof from Linta Roofing!</p></div>'
+        }}
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+
+    {% dnd_row %}
+      {% dnd_module
+        path="@hubspot/rich_text",
+        html={{
+          '<div class="lt-roofing-process__grid">'
+            ~ '<article class="lt-roofing-process__card">'
+              ~ '<div class="lt-roofing-process__image"><img src="' ~ get_asset_url("../../images/roof-inspection.png") ~ '" alt="Roof inspection" loading="lazy"></div>'
+              ~ '<div class="lt-roofing-process__body"><h3>Roof Inspection</h3><p>Start by scheduling a roof inspection with one of our Project Managers. You can give us a call or click below to get in contact with us! After you schedule, a Project Manager will give you a call to further discuss the damage on your roof.</p></div>'
+            ~ '</article>'
+            ~ '<article class="lt-roofing-process__card">'
+              ~ '<div class="lt-roofing-process__image"><img src="' ~ get_asset_url("../../images/men-talking.png") ~ '" alt="Meet project manager for estimate" loading="lazy"></div>'
+              ~ '<div class="lt-roofing-process__body"><h3>Meet Project Manager For Estimate</h3><p>A Project Manager will come to your home to conduct an on-site inspection. Once the Project Manager assesses the damage, they will provide you with a comprehensive estimate.</p></div>'
+            ~ '</article>'
+            ~ '<article class="lt-roofing-process__card">'
+              ~ '<div class="lt-roofing-process__image"><img src="' ~ get_asset_url("../../images/proposal.png") ~ '" alt="Sign a proposal and gain peace of mind" loading="lazy"></div>'
+              ~ '<div class="lt-roofing-process__body"><h3>Sign A Proposal And Gain Peace Of Mind</h3><p>If you decide that you&apos;d like Linta Roofing to complete your roofing project, you can sign a proposal and choose a shingle color. The project should begin between 1-3 weeks after the proposal is signed!</p></div>'
+            ~ '</article>'
+          ~ '</div>'
+        }}
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+
+    {% dnd_row %}
+      {% dnd_module
+        path="@hubspot/rich_text",
+        html={{
+          '<div class="lt-roofing-process__cta"><a class="lt-roofing-process__cta-button" href="https://lintaroofing.com/instant-estimate/">Get an Instant Estimate</a></div>'
+        }}
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}

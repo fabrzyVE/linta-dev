@@ -1,0 +1,850 @@
+<!--
+  templateType: page
+  isAvailableForNewContent: true
+  label: Resource/Offer Landing Page
+  screenshotPath: ../images/template-screenshots/Trust-Theme-ResourceDownload-V1.jpeg
+-->
+{% module
+  "controls"
+  path="../globals/Controls",
+  label="Settings & Controls",
+  no_wrapper=True,
+  export_to_template_context= True,
+  header_design= "solid",
+  hide_navigation= true,
+  disable_sticky_header= false,
+  disable_hello_bar_on_this_page= false
+%}
+
+{% module
+  "breadcrumb_controls"
+  path="../globals/Breadcrumbs",
+  label="Breadcrumb Controls",
+  no_wrapper=True,
+  export_to_template_context=True
+%}
+
+{% extends "./layouts/base.html" %}
+
+{% set body_classes_array = [] %}
+{% do body_classes_array.append('header--{{ widget_data.controls.header_design }}') %}
+{% if widget_data.controls.header_design == "transparent" %}
+  {% do body_classes_array.append('header--notfixed header--isanchored') %}
+{% endif %}
+
+{% if widget_data.controls.hide_navigation %}
+  {% do body_classes_array.append('no--navigation header--static') %}
+{% elif widget_data.controls.disable_sticky_header %}
+  {% do body_classes_array.append('header--static') %}
+{% endif %}
+
+{% set body_classes = body_classes_array|join(' ') %}
+
+{% block body %}
+  {% dnd_area "dnd_area"
+    label="Main section",
+    class="body-container body-container--flex"
+  %}
+
+    {# Hero 1 #}
+    {% dnd_section %}
+      {% dnd_column %}
+        {% dnd_row %}
+          {% dnd_module
+            path= "../modules/Hero/Hero",
+            styles= {
+              "spacing" : {
+                "top_padding_desktop" : "venti",
+                "top_padding_desktop_custom" : {
+                  "top_padding_desktop_custom" : 26,
+                  "top_padding_desktop_custom_measurement_unit" : "vw"
+                },
+                "top_padding_laptop" : "inherit",
+                "top_padding_laptop_custom" : {
+                  "top_padding_laptop_custom" : 26,
+                  "top_padding_laptop_custom_measurement_unit" : "vw"
+                },
+                "top_padding_tablet" : "tall",
+                "top_padding_tablet_custom" : {
+                  "top_padding_tablet_custom" : 26,
+                  "top_padding_tablet_custom_measurement_unit" : "vw"
+                },
+                "top_padding_mobile" : "inherit",
+                "top_padding_mobile_custom" : {
+                  "top_padding_mobile_custom" : 26,
+                  "top_padding_mobile_custom_measurement_unit" : "vw"
+                },
+                "bottom_padding_desktop" : "venti",
+                "bottom_padding_desktop_custom" : {
+                  "bottom_padding_desktop_custom" : 26,
+                  "bottom_padding_desktop_custom_measurement_unit" : "vw"
+                },
+                "bottom_padding_laptop" : "inherit",
+                "bottom_padding_laptop_custom" : {
+                  "bottom_padding_laptop_custom" : 26,
+                  "bottom_padding_laptop_custom_measurement_unit" : "vw"
+                },
+                "bottom_padding_tablet" : "tall",
+                "bottom_padding_tablet_custom" : {
+                  "bottom_padding_tablet_custom" : 26,
+                  "bottom_padding_tablet_custom_measurement_unit" : "vw"
+                },
+                "bottom_padding_mobile" : "inherit",
+                "bottom_padding_mobile_custom" : {
+                  "bottom_padding_mobile_custom" : 26,
+                  "bottom_padding_mobile_custom_measurement_unit" : "vw"
+                }
+              },
+              "text_color_override" : {
+                "override_color" : "white",
+                "override_on_all_screen_sizes" : true,
+                "override_on_desktop" : false,
+                "override_on_laptop" : false,
+                "override_on_tablet" : false,
+                "override_on_mobile" : false
+              },
+              "layout_controls": {
+                "keyword_header" : "header",
+                "column_widths" : "six-twelfths",
+                "column_widths_tablet" : "six-twelfths",
+                "content_alignment_mobile" : "palm-text--left"
+              }
+            },
+            section_controls= {
+              "lazy_load_images" : true
+            },
+            background= [
+              {
+                "background_type" : "image",
+                "device_visibility" : {
+                  "hide_on_desktop" : false,
+                  "hide_on_laptop" : false,
+                  "hide_on_tablet" : false,
+                  "hide_on_mobile" : false
+                },
+                "background_opacity" : 100,
+                "background_color" : {
+                  "background_color" : "secondary",
+                  "background_custom_color" : {
+                    "color" : "#ffffff",
+                    "opacity" : 100
+                  }
+                },
+                "background_gradient" : {
+                  "background_gradient_start_color_position" : 0,
+                  "background_linear_gradient_direction" : "90",
+                  "background_gradient_end_color_position" : 100,
+                  "background_gradient_custom_start_color" : {
+                    "color" : "#084975",
+                    "opacity" : 100
+                  },
+                  "background_gradient_end_color_opacity" : 100,
+                  "background_gradient_type" : "linear",
+                  "background_gradient_end_color" : "white",
+                  "background_gradient_start_color" : "white",
+                  "background_gradient_custom_end_color" : {
+                    "color" : "#4993C5",
+                    "opacity" : 100
+                  },
+                  "background_gradient_start_color_opacity" : 100
+                },
+                "background_image" : {
+                  "background_image" : {
+                    "size_type" : "exact",
+                    "src" : get_asset_url('../images/placeholder/6-variety-of-books-on-shelf.jpg'),
+                    "alt" : "placeholder-background-image",
+                    "width" : 1900,
+                    "height" : 680,
+                    "loading" : "disabled"
+                  },
+                  "background_image_size" : "background-size--cover",
+                  "background_image_repeat" : "background-repeat--none",
+                  "background_image_horizontal_alignment" : "50%",
+                  "background_image_vertical_alignment" : "50%",
+                  "background_image_parallax_fixed_when_scrolling" : false
+                },
+                "background_video" : {
+                  "background_fixed_background_image" : false,
+                  "background_fallback_background_image" : {
+                    "src" : get_asset_url('../images/placeholder/placeholder-video-poster.jpg'),
+                    "alt" : "Image ALT Tag",
+                    "width" : 960,
+                    "height" : 540
+                  },
+                  "background_url_of_video_file_mp4" : {
+                    "content_id" : null,
+                    "href" : "https://f.hubspotusercontent40.net/hubfs/298890/Assets/videos/placeholder-video.mp4",
+                    "type" : "EXTERNAL"
+                  }
+                },
+                "background_offset" : {
+                  "background_left_offset_percentage" : 0,
+                  "background_bottom_offset_percentage" : 0,
+                  "background_top_offset_percentage" : 0,
+                  "background_right_offset_percentage" : 0
+                },
+                "swoop_controls" : {
+                  "swoop_style": "angle",
+                  "swoop_direction": "default",
+                  "swoop_orientation" : "bottom",
+                  "swoop_color" : "white",
+                  "swoop_custom_color" : {
+                    "color" : "#ffffff",
+                    "opacity" : 100
+                  }
+                }
+              },
+              {
+                "background_type" : "color",
+                "device_visibility" : {
+                  "hide_on_desktop" : false,
+                  "hide_on_laptop" : false,
+                  "hide_on_tablet" : false,
+                  "hide_on_mobile" : false
+                },
+                "background_opacity" : 90,
+                "background_color" : {
+                  "background_color" : "secondary",
+                  "background_custom_color" : {
+                    "color" : "#ffffff",
+                    "opacity" : 100
+                  }
+                },
+                "background_gradient" : {
+                  "background_gradient_start_color_position" : 0,
+                  "background_linear_gradient_direction" : "90",
+                  "background_gradient_end_color_position" : 100,
+                  "background_gradient_custom_start_color" : {
+                    "color" : "#084975",
+                    "opacity" : 100
+                  },
+                  "background_gradient_end_color_opacity" : 100,
+                  "background_gradient_type" : "linear",
+                  "background_gradient_end_color" : "white",
+                  "background_gradient_start_color" : "white",
+                  "background_gradient_custom_end_color" : {
+                    "color" : "#4993C5",
+                    "opacity" : 100
+                  },
+                  "background_gradient_start_color_opacity" : 100
+                },
+                "background_image" : {
+                  "background_image" : {
+                    "size_type" : "exact",
+                    "src" : get_asset_url('../images/placeholder/placeholder-background-image.jpg'),
+                    "alt" : "placeholder-background-image",
+                    "width" : 1900,
+                    "height" : 680,
+                    "loading" : "disabled"
+                  },
+                  "background_image_size" : "background-size--cover",
+                  "background_image_repeat" : "background-repeat--none",
+                  "background_image_horizontal_alignment" : "50%",
+                  "background_image_vertical_alignment" : "50%",
+                  "background_image_parallax_fixed_when_scrolling" : false
+                },
+                "background_video" : {
+                  "background_fixed_background_image" : false,
+                  "background_fallback_background_image" : {
+                    "src" : get_asset_url('../images/placeholder/placeholder-video-poster.jpg'),
+                    "alt" : "Image ALT Tag",
+                    "width" : 960,
+                    "height" : 540
+                  },
+                  "background_url_of_video_file_mp4" : {
+                    "content_id" : null,
+                    "href" : "https://f.hubspotusercontent40.net/hubfs/298890/Assets/videos/placeholder-video.mp4",
+                    "type" : "EXTERNAL"
+                  }
+                },
+                "background_offset" : {
+                  "background_left_offset_percentage" : 0,
+                  "background_bottom_offset_percentage" : 0,
+                  "background_top_offset_percentage" : 0,
+                  "background_right_offset_percentage" : 0
+                },
+                "swoop_controls" : {
+                  "swoop_style": "angle",
+                  "swoop_direction": "default",
+                  "swoop_orientation" : "bottom",
+                  "swoop_color" : "white",
+                  "swoop_custom_color" : {
+                    "color" : "#ffffff",
+                    "opacity" : 100
+                  }
+                }
+              },
+              {
+                "background_type" : "swoop",
+                "device_visibility" : {
+                  "hide_on_desktop" : false,
+                  "hide_on_laptop" : false,
+                  "hide_on_tablet" : false,
+                  "hide_on_mobile" : false
+                },
+                "background_opacity" : 100,
+                "background_color" : {
+                  "background_color" : "white",
+                  "background_custom_color" : {
+                    "color" : "#ffffff",
+                    "opacity" : 100
+                  }
+                },
+                "background_gradient" : {
+                  "background_gradient_start_color_position" : 0,
+                  "background_linear_gradient_direction" : "90",
+                  "background_gradient_end_color_position" : 100,
+                  "background_gradient_custom_start_color" : {
+                    "color" : "#084975",
+                    "opacity" : 100
+                  },
+                  "background_gradient_end_color_opacity" : 100,
+                  "background_gradient_type" : "linear",
+                  "background_gradient_end_color" : "white",
+                  "background_gradient_start_color" : "white",
+                  "background_gradient_custom_end_color" : {
+                    "color" : "#4993C5",
+                    "opacity" : 100
+                  },
+                  "background_gradient_start_color_opacity" : 100
+                },
+                "background_image" : {
+                  "background_image" : {
+                    "size_type" : "exact",
+                    "src" : get_asset_url('../images/placeholder/placeholder-background-image.jpg'),
+                    "alt" : "placeholder-background-image",
+                    "width" : 1900,
+                    "height" : 680,
+                    "loading" : "disabled"
+                  },
+                  "background_image_size" : "background-size--cover",
+                  "background_image_repeat" : "background-repeat--none",
+                  "background_image_horizontal_alignment" : "50%",
+                  "background_image_vertical_alignment" : "50%",
+                  "background_image_parallax_fixed_when_scrolling" : false
+                },
+                "background_video" : {
+                  "background_fixed_background_image" : false,
+                  "background_fallback_background_image" : {
+                    "src" : get_asset_url('../images/placeholder/placeholder-video-poster.jpg'),
+                    "alt" : "Image ALT Tag",
+                    "width" : 960,
+                    "height" : 540
+                  },
+                  "background_url_of_video_file_mp4" : {
+                    "content_id" : null,
+                    "href" : "https://f.hubspotusercontent40.net/hubfs/298890/Assets/videos/placeholder-video.mp4",
+                    "type" : "EXTERNAL"
+                  }
+                },
+                "background_offset" : {
+                  "background_left_offset_percentage" : 0,
+                  "background_bottom_offset_percentage" : 0,
+                  "background_top_offset_percentage" : 0,
+                  "background_right_offset_percentage" : 0
+                },
+                "swoop_controls" : {
+                  "swoop_style": "angle",
+                  "swoop_direction": "default",
+                  "swoop_orientation" : "bottom",
+                  "swoop_color" : "white",
+                  "swoop_custom_color" : {
+                    "color" : "#ffffff",
+                    "opacity" : 100
+                  }
+                }
+              }
+            ],
+            preheader= "Resource/Offer Landing Page",
+            header= "Headline Describing What Will Be Solved When They Convert"
+            content= "<p>This subtext should reinforce the headline and how this resource will help them in their journey. How will the offer make life better?</p>",
+            cta= [
+              {
+                "cta_type" : "link",
+                "cta_button_color" : "primary",
+                "cta_ghost_transparent_button" : false,
+                "cta_button_text" : "Download Now",
+                "cta_hyperlink" : {
+                  "content_id" : null,
+                  "href" : "https://marketplace.impactplus.com/",
+                  "type" : "EXTERNAL"
+                },
+                "cta_open_in_new_tab" : false,
+                "cta" : "",
+                "cta_section_anchor_id" : "section-id"
+              }
+            ],
+            media_type= "video",
+            media_device_visibility= {
+              "hide_on_desktop" : false,
+              "hide_on_laptop" : false,
+              "hide_on_tablet" : false,
+              "hide_on_mobile" : false
+            }
+            image= {
+              "image" : {
+              "src" : get_asset_url('../images/placeholder/placeholder-image.jpg'),
+              "alt" : "Image ALT Tag",
+              "width" : 599,
+              "height" : 599
+              }
+            },
+            video= {
+              "video_type" : "modal",
+              "video_thumbnail_type" : "thumbnail",
+              "video_thumbnail_type_mobile" : "thumbnail",
+              "video_thumbnail_image" : {
+                "src" : get_asset_url('../images/placeholder/12-multiple-they-ask-you-answer-books.jpg'),
+                "alt" : "Image ALT Tag",
+                "width" : 599,
+                "height" : 599
+              },
+              "video_url_of_iframe_embeddable_video_file" : {
+                "content_id" : null,
+                "href" : "https://f.hubspotusercontent40.net/hubfs/298890/Assets/videos/placeholder-video.mp4",
+                "type" : "EXTERNAL"
+              },
+              "vidyard_video_uuid" : "xVw4ML4tXDyrXkA8MAQLqQ",
+              "vidyard_video_image_alt_tag" : ""
+            }
+          %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+      {% end_dnd_column %}
+    {% end_dnd_section %}
+
+    {# Left-Right Float 2 #}
+    {% dnd_section %}
+      {% dnd_column %}
+        {% dnd_row %}
+          {% dnd_module
+            path= "../modules/Left-Right Float/Left-Right Float",
+            styles= {
+              "spacing": {
+                "top_padding_desktop": "venti",
+                "top_padding_desktop_custom": {
+                  "top_padding_desktop_custom": 26,
+                  "top_padding_desktop_custom_measurement_unit": "vw"
+                },
+                "top_padding_laptop": "inherit",
+                "top_padding_laptop_custom": {
+                  "top_padding_laptop_custom": 26,
+                  "top_padding_laptop_custom_measurement_unit": "vw"
+                },
+                "top_padding_tablet": "tall",
+                "top_padding_tablet_custom": {
+                  "top_padding_tablet_custom": 26,
+                  "top_padding_tablet_custom_measurement_unit": "vw"
+                },
+                "top_padding_mobile": "inherit",
+                "top_padding_mobile_custom": {
+                  "top_padding_mobile_custom": 26,
+                  "top_padding_mobile_custom_measurement_unit": "vw"
+                },
+                "bottom_padding_desktop": "venti",
+                "bottom_padding_desktop_custom": {
+                  "bottom_padding_desktop_custom": 26,
+                  "bottom_padding_desktop_custom_measurement_unit": "vw"
+                },
+                "bottom_padding_laptop": "inherit",
+                "bottom_padding_laptop_custom": {
+                  "bottom_padding_laptop_custom": 26,
+                  "bottom_padding_laptop_custom_measurement_unit": "vw"
+                },
+                "bottom_padding_tablet": "tall",
+                "bottom_padding_tablet_custom": {
+                  "bottom_padding_tablet_custom": 26,
+                  "bottom_padding_tablet_custom_measurement_unit": "vw"
+                },
+                "bottom_padding_mobile": "inherit",
+                "bottom_padding_mobile_custom": {
+                  "bottom_padding_mobile_custom": 26,
+                  "bottom_padding_mobile_custom_measurement_unit": "vw"
+                }
+              },
+              "text_color_override": {
+                "override_color": "white",
+                "override_on_all_screen_sizes": false,
+                "override_on_desktop": false,
+                "override_on_laptop": false,
+                "override_on_tablet": false,
+                "override_on_mobile": false
+              },
+              "layout_controls": {
+                "content_position": "right",
+                "column_widths": "six-twelfths",
+                "column_widths_tablet": "ten-twelfths",
+                "content_position_mobile": "top",
+                "content_alignment_mobile": "left",
+                "disable_minimum_height": false
+              }
+            },
+            section_controls= {
+              "lazy_load_images": true
+            },
+            background= [
+              {
+                "background_type" : "color",
+                "device_visibility" : {
+                  "hide_on_desktop" : false,
+                  "hide_on_laptop" : false,
+                  "hide_on_tablet" : false,
+                  "hide_on_mobile" : false
+                },
+                "background_opacity" : 100,
+                "background_color" : {
+                  "background_color" : "white",
+                  "background_custom_color" : {
+                    "color" : "#ffffff",
+                    "opacity" : 100
+                  }
+                },
+                "background_gradient" : {
+                  "background_gradient_start_color_position" : 0,
+                  "background_linear_gradient_direction" : "90",
+                  "background_gradient_end_color_position" : 100,
+                  "background_gradient_custom_start_color" : {
+                    "color" : "#084975",
+                    "opacity" : 100
+                  },
+                  "background_gradient_end_color_opacity" : 100,
+                  "background_gradient_type" : "linear",
+                  "background_gradient_start_color" : "primary",
+                  "background_gradient_end_color" : "secondary",
+                  "background_gradient_custom_end_color" : {
+                    "color" : "#4993C5",
+                    "opacity" : 100
+                  },
+                  "background_gradient_start_color_opacity" : 100
+                },
+                "background_image" : {
+                  "background_image" : {
+                    "size_type" : "exact",
+                    "src" : get_asset_url('../images/placeholder/placeholder-background-image.jpg'),
+                    "alt" : "Image ALT Tag",
+                    "width" : 1600,
+                    "height" : 774,
+                    "loading" : "disabled"
+                  },
+                  "background_image_size" : "background-size--cover",
+                  "background_image_repeat" : "background-repeat--none",
+                  "background_image_horizontal_alignment" : "50%",
+                  "background_image_vertical_alignment" : "50%",
+                  "background_image_parallax_fixed_when_scrolling" : false
+                },
+                "background_video" : {
+                  "background_fixed_background_image" : false,
+                  "background_fallback_background_image" : {
+                    "src" : get_asset_url('../images/placeholder/placeholder-video-poster.jpg'),
+                    "alt" : "Image ALT Tag",
+                    "width" : 960,
+                    "height" : 540
+                  },
+                  "background_url_of_video_file_mp4" : {
+                    "content_id" : null,
+                    "href" : "https://f.hubspotusercontent40.net/hubfs/298890/Assets/videos/placeholder-video.mp4",
+                    "type" : "EXTERNAL"
+                  }
+                },
+                "background_offset" : {
+                  "background_left_offset_percentage" : 0,
+                  "background_bottom_offset_percentage" : 0,
+                  "background_top_offset_percentage" : 0,
+                  "background_right_offset_percentage" : 0
+                }
+              }
+            ],
+            preheader= 'Preheader',
+            header= 'More Information About the Offer ',
+            content= '<p>Use this section to really explain why this resource is so important ot them. It\'s a great place to layer in secondary keywords to help boost the likelihood of this page ranking for multiple terms.</p><p>We can go up to three paragraphs here and we\'ll want to make sure we have a strong image that supports the offer, and helps illustrate the value they\'ll get.</p><p>If we go to three paragraphs, we\'ll really want to make sure we paint a picture of why this is an extremely valuable tool on their journey.</p>',
+            bullets= {
+              "disable_divider": true,
+              "bullets_list": [
+              ]
+            },
+            conversion_type= "cta",
+            cta= [
+
+            ],
+            form= {
+              "form_header": "",
+              "form": {
+                "form_id": "",
+                "response_type": "inline",
+                "message": "Thanks for submitting the form.",
+                "gotowebinar_webinar_key": null,
+                "form_type": "HUBSPOT"
+              },
+              "form_button_color": "primary",
+              "form_ghost_transparent_button": false,
+              "send_form_notifications_to_specified_email_addresses_instead_of_the_form_defaults": false,
+              "send_a_follow_up_email": false
+            },
+            media_type= "image",
+            image_fit= "fit",
+            fill_height= 95,
+            media_device_visibility= {
+              "hide_on_desktop": false,
+              "hide_on_laptop": false,
+              "hide_on_tablet": false,
+              "hide_on_mobile": false
+            },
+            image= {
+              "image": {
+                "src": get_asset_url('../images/placeholder/17-lap-top-website-example.png'),
+                "alt": "Image ALT Tag",
+                "width": 559,
+                "height": 559,
+                "size_type": "exact"
+              }
+            },
+            video= {
+              "video_type": "modal",
+              "hide_video_play_icon": false,
+              "video_thumbnail_type": "thumbnail",
+              "video_thumbnail_type_mobile": "thumbnail",
+              "video_thumbnail_image": {
+                "size_type": "exact",
+                "src": get_asset_url('../images/placeholder/placeholder-image.jpg'),
+                "alt": "Image ALT Tag",
+                "width": 559,
+                "height": 559
+              },
+              "video_embed_code_rt" : "<div class=\"hs-embed-wrapper\" data-service=\"youtube\" data-responsive=\"true\" style=\"position: relative; overflow: hidden; width: 100%; height: auto; padding: 0px; max-width: 560px; min-width: 256px; display: block; margin: auto;\"><div class=\"hs-embed-content-wrapper\"><div style=\"position: relative; overflow: hidden; max-width: 100%; padding-bottom: 56.25%; margin: 0px;\"><iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/NpEaa2P7qZI?&amp;rel=0&amp;theme=light&amp;showinfo=0&amp;modestbranding=1&amp;hd=1&amp;autohide=1&amp;color=white\" frameborder=\"0\" allowfullscreen=\"\" style=\"position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; border: none;\"></iframe></div></div></div>",
+              "video_hubspot_play_button_color": {
+                "color": "#F86624",
+                "opacity": 100
+              },
+              "video_url_of_iframe_embeddable_video_file": {
+                "content_id": null,
+                "href": "https://f.hubspotusercontent40.net/hubfs/298890/Assets/videos/placeholder-video.mp4",
+                "type": "EXTERNAL"
+              },
+              "vidyard_video_uuid": "xVw4ML4tXDyrXkA8MAQLqQ",
+              "video_image_alt_tag": "",
+              "video_label_text": "Optional video label"
+            }
+          %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+      {% end_dnd_column %}
+    {% end_dnd_section %}
+
+    {# Left-RightForm 1 #}
+    {% dnd_section %}
+      {% dnd_column %}
+        {% dnd_row %}
+          {% dnd_module
+            path= "../modules/Left-Right Form/Left-Right Form",
+            styles= {
+              "spacing": {
+                "top_padding_desktop": "venti",
+                "top_padding_desktop_custom": {
+                  "top_padding_desktop_custom": 26,
+                  "top_padding_desktop_custom_measurement_unit": "vw"
+                },
+                "top_padding_laptop": "inherit",
+                "top_padding_laptop_custom": {
+                  "top_padding_laptop_custom": 26,
+                  "top_padding_laptop_custom_measurement_unit": "vw"
+                },
+                "top_padding_tablet": "tall",
+                "top_padding_tablet_custom": {
+                  "top_padding_tablet_custom": 26,
+                  "top_padding_tablet_custom_measurement_unit": "vw"
+                },
+                "top_padding_mobile": "inherit",
+                "top_padding_mobile_custom": {
+                  "top_padding_mobile_custom": 26,
+                  "top_padding_mobile_custom_measurement_unit": "vw"
+                },
+                "bottom_padding_desktop": "venti",
+                "bottom_padding_desktop_custom": {
+                  "bottom_padding_desktop_custom": 26,
+                  "bottom_padding_desktop_custom_measurement_unit": "vw"
+                },
+                "bottom_padding_laptop": "inherit",
+                "bottom_padding_laptop_custom": {
+                  "bottom_padding_laptop_custom": 26,
+                  "bottom_padding_laptop_custom_measurement_unit": "vw"
+                },
+                "bottom_padding_tablet": "tall",
+                "bottom_padding_tablet_custom": {
+                  "bottom_padding_tablet_custom": 26,
+                  "bottom_padding_tablet_custom_measurement_unit": "vw"
+                },
+                "bottom_padding_mobile": "inherit",
+                "bottom_padding_mobile_custom": {
+                  "bottom_padding_mobile_custom": 26,
+                  "bottom_padding_mobile_custom_measurement_unit": "vw"
+                }
+              },
+              "text_color_override": {
+                "override_color": "white",
+                "override_on_all_screen_sizes": false,
+                "override_on_desktop": false,
+                "override_on_laptop": false,
+                "override_on_tablet": false,
+                "override_on_mobile": false
+              },
+              "layout_controls": {
+                "column_widths": "six-twelfths",
+                "content_position": "left",
+                "content_position_mobile": "top",
+                "content_vertical_alignment": "valign--middle",
+                "content_alignment_mobile": "left",
+                "form_title_alignment": "center",
+                "form_title_alignment_mobile": "center",
+                "form_button_alignment": "center",
+                "form_button_alignment_mobile": "center"
+              }
+            },
+            section_controls= {
+              "lazy_load_images": true
+            },
+            background= [
+              {
+                "background_type": "color",
+                "device_visibility": {
+                  "hide_on_desktop": false,
+                  "hide_on_laptop": false,
+                  "hide_on_tablet": false,
+                  "hide_on_mobile": false
+                },
+                "background_opacity": 100,
+                "background_color": {
+                  "background_color": "white",
+                  "background_custom_color": {
+                    "color": "#ffffff",
+                    "opacity": 100
+                  }
+                },
+                "background_gradient": {
+                  "background_gradient_start_color_position": 0,
+                  "background_linear_gradient_direction": "90",
+                  "background_gradient_end_color_position": 100,
+                  "background_gradient_custom_start_color": {
+                    "color": "#084975",
+                    "opacity": 100
+                  },
+                  "background_gradient_end_color_opacity": 100,
+                  "background_gradient_type": "linear",
+                  "background_gradient_end_color": "white",
+                  "background_gradient_start_color": "white",
+                  "background_gradient_custom_end_color": {
+                    "color": "#4993C5",
+                    "opacity": 100
+                  },
+                  "background_gradient_start_color_opacity": 100
+                },
+                "background_image": {
+                  "background_image": {
+                    "size_type": "exact",
+                    "src": get_asset_url('../images/placeholder/placeholder-background-image.jpg'),
+                    "alt": "Image ALT Tag",
+                    "width": 1600,
+                    "height": 774,
+                    "loading": "disabled"
+                  },
+                  "background_image_size": "background-size--cover",
+                  "background_image_repeat": "background-repeat--none",
+                  "background_image_horizontal_alignment": "50%",
+                  "background_image_vertical_alignment": "50%",
+                  "background_image_parallax_fixed_when_scrolling": false
+                },
+                "background_video": {
+                  "background_fixed_background_image": false,
+                  "background_fallback_background_image": {
+                    "src": get_asset_url('../images/placeholder/placeholder-video-poster.jpg'),
+                    "alt": "Image ALT Tag",
+                    "width": 960,
+                    "height": 540
+                  },
+                  "background_url_of_video_file_mp4": {
+                    "content_id": null,
+                    "href": "https://f.hubspotusercontent40.net/hubfs/298890/Assets/videos/placeholder-video.mp4",
+                    "type": "EXTERNAL"
+                  }
+                },
+                "background_offset": {
+                  "background_left_offset_percentage": 0,
+                  "background_bottom_offset_percentage": 0,
+                  "background_top_offset_percentage": 0,
+                  "background_right_offset_percentage": 0
+                }
+              }
+            ],
+            preheader= "Preheader",
+            header= "Headline About the Offer or Resource They’ll Be Receiving",
+            content= "<p>This is perfect for your if...</p>\n<ul>\n<li>Bullet describing why they need it</li>\n<li>Another reason they should download or convert</li>\n<li>This final bullet is a big more aspirational, yet still shows them why they should convert</li>\n</ul>\n<p>Hammer the point home so they fill out the form.</p>",
+            enable_video= "none",
+            video= {
+              "video_type": "modal",
+              "video_embed_code_rt" : "<div class=\"hs-embed-wrapper\" data-service=\"youtube\" data-responsive=\"true\" style=\"position: relative; overflow: hidden; width: 100%; height: auto; padding: 0px; max-width: 560px; min-width: 256px; display: block; margin: auto;\"><div class=\"hs-embed-content-wrapper\"><div style=\"position: relative; overflow: hidden; max-width: 100%; padding-bottom: 56.25%; margin: 0px;\"><iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/NpEaa2P7qZI?&amp;rel=0&amp;theme=light&amp;showinfo=0&amp;modestbranding=1&amp;hd=1&amp;autohide=1&amp;color=white\" frameborder=\"0\" allowfullscreen=\"\" style=\"position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; border: none;\"></iframe></div></div></div>",
+              "video_thumbnail_image": {
+                "size_type": "auto",
+                "src": get_asset_url('../images/placeholder/placeholder-video-poster.jpg'),
+                "alt": "Image ALT Tag",
+                "width": 960,
+                "height": 540,
+                "max_width": 960,
+                "max_height": 540
+              },
+              "video_hubspot_play_button_color": {
+                "color": "#F86624",
+                "opacity": 100
+              },
+              "video_url_of_iframe_embeddable_video_file": {
+                "type": "EXTERNAL",
+                "href": "https://f.hubspotusercontent40.net/hubfs/298890/Assets/videos/placeholder-video.mp4",
+                "content_id": null
+              },
+              "vidyard_video_uuid": "xVw4ML4tXDyrXkA8MAQLqQ",
+              "video_label_text": "Optional video label"
+            },
+            content_below_video= "",
+            form= {
+              "form_header": "",
+              "form": {
+                "form_id": "",
+                "response_type": "inline",
+                "message": "Thanks for submitting the form.",
+                "gotowebinar_webinar_key": null,
+                "form_type": "HUBSPOT"
+              },
+              "form_button_color": "primary",
+              "form_ghost_transparent_button": false,
+              "send_form_notifications_to_specified_email_addresses_instead_of_the_form_defaults": false,
+              "send_a_follow_up_email": false
+            },
+            show_share_links= false,
+            share_links= {
+              "share_type": "current",
+              "url_of_page_to_share": {
+                "type": "EXTERNAL",
+                "href": "https://marketplace.impactplus.com/",
+                "content_id": null
+              }
+            },
+            bullets= {
+              "disable_divider": false,
+              "bullets_list": [
+              ],
+            }
+          %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+      {% end_dnd_column %}
+    {% end_dnd_section %}
+
+    {# FAQs #}
+    {% include_dnd_partial
+      path='../sections/faqs.html'
+      context={
+        'header': 'Frequently Asked Questions',
+        'content': '<p>Use this section to answer your most frequently asked questions related to the resource. The copy for each should be only long enough to give a sufficient answer, with internal links to related blog posts for more information.</p>'
+      }
+    %}
+
+  {% end_dnd_area %}
+{% endblock body %}

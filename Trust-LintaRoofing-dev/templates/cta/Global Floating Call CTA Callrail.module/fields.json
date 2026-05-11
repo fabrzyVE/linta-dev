@@ -1,0 +1,21 @@
+[ {
+  "id" : "b8f8d87b-7390-febc-306e-a298f7df603c",
+  "name" : "phone_number",
+  "label" : "Phone Number",
+  "required" : false,
+  "locked" : true,
+  "allow_new_line" : false,
+  "type" : "text",
+  "display_width" : null,
+  "default" : "8432588086"
+}, {
+  "id" : "f1673c38-b218-dad1-b462-de728bfae802",
+  "name" : "aria_label",
+  "label" : "Aria Label",
+  "required" : false,
+  "locked" : true,
+  "allow_new_line" : false,
+  "type" : "text",
+  "display_width" : null,
+  "default" : "8432588086"
+} ]

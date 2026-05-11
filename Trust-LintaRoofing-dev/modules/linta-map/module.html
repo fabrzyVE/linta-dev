@@ -1,0 +1,23 @@
+<!--
+  templateType: "none"
+  isAvailableForNewContent: false
+-->
+{# Module: Linta Map - Design reference: index.html #}
+<section class="map-section" id="map">
+  <div class="container map-grid">
+    <div class="map-content">
+      <h2 class="map-section-title">
+        {{ module.title_line1 }}<br />
+        {{ module.title_line2 }}<br />
+        for Over <span class="map-title-accent">40 Years</span>
+      </h2>
+    </div>
+    <div class="map-visual">
+      {% if module.map_image.src %}
+        <img src="{{ module.map_image.src }}" alt="{{ module.map_image.alt or 'Service areas' }}" class="map-image" />
+      {% else %}
+        <img src="https://via.placeholder.com/600x450/1b1b2f/ffcc00?text=Map+Image+Placeholder" alt="Service areas map" class="map-image" />
+      {% endif %}
+    </div>
+  </div>
+</section>

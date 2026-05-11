@@ -1,0 +1,138 @@
+<!--
+  templateType: section
+  label: Our roofing services
+  isAvailableForNewContent: true
+  description: "Service cards in a 2-column grid with images, titles, descriptions, and Explore Now links."
+-->
+{% set location_label = context.location_name or "Myrtle Beach" %}
+{% set location_slug = context.location_path or location_label|lower|replace(" ", "-") %}
+{% set current_path = request.path|default("", true) %}
+{% set service_location_base_path = context.service_location_base_path or "/service-location" %}
+{% if not context.service_location_base_path and "-beta" in current_path %}
+  {% set service_location_base_path = "/service-location-beta" %}
+{% endif %}
+{% set metal_roofing_image_url = context.metal_roofing_image_url or "https://43829123.fs1.hubspotusercontent-na1.net/hubfs/43829123/assets/images/Lintametalroofing.webp" %}
+{% set insurance_claim_image_url = context.insurance_claim_image_url or "https://43829123.fs1.hubspotusercontent-na1.net/hubfs/43829123/assets/images/insuranceclaim.webp" %}
+{% set image_box_style = "background:#fff !important;line-height:0 !important;" %}
+{% set image_style = "display:block !important;height:100% !important;max-width:none !important;object-fit:cover !important;vertical-align:top !important;width:100% !important;" %}
+
+{% set services_html %}
+  <div class="lt-roofing-services__grid">
+    <div class="lt-roofing-services__card">
+      <div class="lt-roofing-services__image" style="{{ image_box_style }}"><img src="{{ get_asset_url("../../images/roof-replacement.png") }}" alt="Roof replacement in {{ location_label }}" loading="lazy" style="{{ image_style }}"></div>
+      <div class="lt-roofing-services__body">
+        <h3>Roof Replacement</h3>
+        <p>A roof replacement involves removing the old roofing materials and inspecting the underlying structure for any damage. After repairs, new roofing materials are installed to ensure the home is well-protected from weather and environmental elements.</p>
+        <a class="lt-roofing-services__link" href="{{ service_location_base_path }}/roof-replacement-{{ location_slug }}">Explore Now <span aria-hidden="true">›</span></a>
+      </div>
+    </div>
+
+    <div class="lt-roofing-services__card">
+      <div class="lt-roofing-services__image" style="{{ image_box_style }}"><img src="{{ get_asset_url("../../images/roof-repair.png") }}" alt="Roof repair in {{ location_label }}" loading="lazy" style="{{ image_style }}"></div>
+      <div class="lt-roofing-services__body">
+        <h3>Roof Repair</h3>
+        <p>Roof repairs address specific issues like leaks, damaged shingles, or flashing problems, targeting localized areas of the roof. These fixes extend the roof&apos;s life and help maintain its structural integrity without the need for a full replacement.</p>
+        <a class="lt-roofing-services__link" href="{{ service_location_base_path }}/roof-repair-{{ location_slug }}">Explore Now <span aria-hidden="true">›</span></a>
+      </div>
+    </div>
+
+    <div class="lt-roofing-services__card">
+      <div class="lt-roofing-services__image" style="{{ image_box_style }}"><img src="{{ get_asset_url("../../images/roof-inspection.png") }}" alt="Roof inspection in {{ location_label }}" loading="lazy" style="{{ image_style }}"></div>
+      <div class="lt-roofing-services__body">
+        <h3>Roof Inspection</h3>
+        <p>A professional roof inspection identifies leaks, storm damage, ventilation issues, and aging materials before small problems become expensive repairs.</p>
+        <a class="lt-roofing-services__link" href="{{ service_location_base_path }}/roof-inspection-{{ location_slug }}">Explore Now <span aria-hidden="true">›</span></a>
+      </div>
+    </div>
+
+    <div class="lt-roofing-services__card">
+      <div class="lt-roofing-services__image" style="{{ image_box_style }}"><img src="{{ get_asset_url("../../images/storm-damage.png") }}" alt="Storm damage roofing help in {{ location_label }}" loading="lazy" style="{{ image_style }}"></div>
+      <div class="lt-roofing-services__body">
+        <h3>Storm Damage</h3>
+        <p>Storm damage service helps homeowners assess wind, hail, and hurricane damage, document roof issues, and move quickly before leaks worsen.</p>
+        <a class="lt-roofing-services__link" href="{{ service_location_base_path }}/storm-damage-repair-{{ location_slug }}">Explore Now <span aria-hidden="true">›</span></a>
+      </div>
+    </div>
+
+    <div class="lt-roofing-services__card">
+      <div class="lt-roofing-services__image" style="{{ image_box_style }}"><img src="{{ metal_roofing_image_url }}" alt="Metal roofing in {{ location_label }}" loading="lazy" style="{{ image_style }}"></div>
+      <div class="lt-roofing-services__body">
+        <h3>Metal Roofing</h3>
+        <p>Metal roofing provides long-lasting coastal protection with strong wind performance, efficient heat reflection, and a clean finished look.</p>
+        <a class="lt-roofing-services__link" href="{{ service_location_base_path }}/metal-roofing-{{ location_slug }}">Explore Now <span aria-hidden="true">›</span></a>
+      </div>
+    </div>
+
+    <div class="lt-roofing-services__card">
+      <div class="lt-roofing-services__image" style="{{ image_box_style }}"><img src="{{ insurance_claim_image_url }}" alt="Roof insurance claim assistance in {{ location_label }}" loading="lazy" style="{{ image_style }}"></div>
+      <div class="lt-roofing-services__body">
+        <h3>Insurance Claim Assistance</h3>
+        <p>Insurance claim assistance helps document storm damage, coordinate with adjusters, and make sure the repair or replacement scope matches the loss.</p>
+        <a class="lt-roofing-services__link" href="{{ service_location_base_path }}/roof-insurance-claim-{{ location_slug }}">Explore Now <span aria-hidden="true">›</span></a>
+      </div>
+    </div>
+  </div>
+{% endset %}
+
+{% dnd_section
+  class="lt-roofing-services",
+  background_color="#ffffff",
+  padding={
+    "default": {
+      "top": 80,
+      "right": 20,
+      "bottom": 80,
+      "left": 20
+    },
+    "mobile": {
+      "top": 60,
+      "right": 20,
+      "bottom": 60,
+      "left": 20
+    }
+  },
+  vertical_alignment="MIDDLE"
+%}
+  {% dnd_column
+    offset=0,
+    width=12
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="@hubspot/rich_text",
+        html={{
+          context.heading
+          or '<div class="lt-roofing-services__heading">'
+            ~ '<h2>Our Roofing Services in ' ~ location_label ~ '</h2>'
+            ~ '<p>Our extensive service options include insurance claim assistance and tailored solutions for both residential and commercial buildings. Click through below to learn more about what we offer!</p>'
+          ~ '</div>'
+        }}
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+
+    {% dnd_row %}
+      {% dnd_module
+        path="@hubspot/rich_text",
+        html={{
+          context.services
+          or services_html
+        }}
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+
+    {% dnd_row %}
+      {% dnd_module
+        path="@hubspot/rich_text",
+        html={{
+          context.cta
+          or '<div class="lt-roofing-services__cta">'
+            ~ '<a class="lt-roofing-services__cta-button" href="' ~ (context.cta_url or 'https://lintaroofing.com/roofing-101') ~ '">' ~ (context.cta_text or 'Roof Replacement Guide') ~ '</a>'
+          ~ '</div>'
+        }}
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}

@@ -1,0 +1,2498 @@
+/* =====================================================================
+   Service page — section styles
+   ===================================================================== */
+
+/* =========================================================================
+   Service theme tokens
+   ========================================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --st-yellow: #FFD500;
+  --st-yellow-hover: #e6c000;
+  --st-navy: #0F1A2A;
+  --st-navy-soft: #1a2638;
+  --st-black: #000;
+  --st-text: #1f2937;
+  --st-muted: #6b7280;
+  --st-border: #e5e7eb;
+  --st-card-bg: #fff;
+  --st-bg-soft: #f7f8fa;
+  --st-success: #10b981;
+  --st-danger: #ef4444;
+}
+
+/* Header clearance — beats production.css / child.css overrides */
+html body .body-wrapper .body-container--service .lt-service-hero {
+  padding-top: 15rem !important;
+}
+
+@media (max-width: 1024px) {
+  html body .body-wrapper .body-container--service .lt-service-hero {
+    padding-top: 9rem !important;
+  }
+}
+
+@media (max-width: 767px) {
+  html body .body-wrapper .body-container--service .lt-service-hero {
+    padding-top: 7rem !important;
+  }
+}
+
+/* =========================================================================
+   Force Inter font on all body container variants
+   ========================================================================= */
+.body-container--location,
+.body-container--location *,
+.body-container--location *::before,
+.body-container--location *::after,
+.body-container--service,
+.body-container--service *,
+.body-container--service *::before,
+.body-container--service *::after,
+.body-container--service-location,
+.body-container--service-location *,
+.body-container--service-location *::before,
+.body-container--service-location *::after,
+.body-container--home,
+.body-container--home *,
+.body-container--home *::before,
+.body-container--home *::after {
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif !important;
+}
+
+/* =========================================================================
+   Defensive override — kill any 100vw full-bleed trick on every section
+   This forces every section back to 100% width (no scrollbar offset)
+   ========================================================================= */
+.lt-service-hero,
+.st-service-areas,
+.st-why-choose,
+.st-who-we-are,
+.st-signs,
+.st-right-contractor,
+.st-trust,
+.st-why-myrtle,
+.st-cost,
+.st-benefits,
+.st-steps,
+.st-final-cta,
+.st-simple-steps,
+.lt-faq,
+.lt-faq-section,
+.lt-reviews,
+.lt-our-work,
+.lt-estimate-cta,
+.lt-bottom-strip,
+.body-container--location > .row-fluid-wrapper,
+.body-container--location > .dnd-section,
+.body-container--service > .row-fluid-wrapper,
+.body-container--service > .dnd-section,
+.body-container--service-location > .row-fluid-wrapper,
+.body-container--service-location > .dnd-section,
+.body-container--home > .row-fluid-wrapper,
+.body-container--home > .dnd-section {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  left: auto !important;
+  right: auto !important;
+}
+
+/* =========================================================================
+   GLOBAL HubSpot wrapper override — kills negative margins on .row-fluid,
+   .span12, .dnd-column, etc. that cause content to overflow past viewport
+   ========================================================================= */
+.body-container--location .row-fluid,
+.body-container--location .row-fluid-wrapper,
+.body-container--location .span12,
+.body-container--location .widget-span,
+.body-container--location .dnd-column,
+.body-container--location .dnd-row,
+.body-container--service .row-fluid,
+.body-container--service .row-fluid-wrapper,
+.body-container--service .span12,
+.body-container--service .widget-span,
+.body-container--service .dnd-column,
+.body-container--service .dnd-row,
+.body-container--service-location .row-fluid,
+.body-container--service-location .row-fluid-wrapper,
+.body-container--service-location .span12,
+.body-container--service-location .widget-span,
+.body-container--service-location .dnd-column,
+.body-container--service-location .dnd-row,
+.body-container--home .row-fluid,
+.body-container--home .row-fluid-wrapper,
+.body-container--home .span12,
+.body-container--home .widget-span,
+.body-container--home .dnd-column,
+.body-container--home .dnd-row {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  float: none !important;
+}
+
+/* Also constrain images so they can't push the layout wider */
+.body-container--location img,
+.body-container--service img,
+.body-container--service-location img,
+.body-container--home img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* =========================================================================
+   Section gutters — apply to inner content wrappers only
+   This way full-bleed sections (hero, final-cta, bottom strip) keep their
+   edge-to-edge backgrounds, but the CONTENT inside still has breathing room
+   ========================================================================= */
+.lt-service-hero .dnd-column,
+.st-service-areas > .row-fluid,
+.st-why-choose > .row-fluid,
+.st-who-we-are > .row-fluid,
+.st-signs > .row-fluid,
+.st-right-contractor > .row-fluid,
+.st-trust > .row-fluid,
+.st-why-myrtle > .row-fluid,
+.st-cost > .row-fluid,
+.st-benefits > .row-fluid,
+.st-steps > .row-fluid,
+.st-final-cta > .row-fluid,
+.st-simple-steps > .row-fluid,
+.lt-faq > .row-fluid,
+.lt-faq-section > .row-fluid,
+.lt-reviews > .row-fluid,
+.lt-our-work > .row-fluid,
+.lt-estimate-cta .lt-estimate-cta__inner,
+.lt-bottom-strip .lt-bottom-strip__content {
+  padding-left: 1.5rem !important;
+  padding-right: 1.5rem !important;
+  box-sizing: border-box !important;
+}
+
+@media (max-width: 767px) {
+  .lt-service-hero .dnd-column,
+  .st-service-areas > .row-fluid,
+  .st-why-choose > .row-fluid,
+  .st-who-we-are > .row-fluid,
+  .st-signs > .row-fluid,
+  .st-right-contractor > .row-fluid,
+  .st-trust > .row-fluid,
+  .st-why-myrtle > .row-fluid,
+  .st-cost > .row-fluid,
+  .st-benefits > .row-fluid,
+  .st-steps > .row-fluid,
+  .st-final-cta > .row-fluid,
+  .st-simple-steps > .row-fluid,
+  .lt-faq > .row-fluid,
+  .lt-faq-section > .row-fluid,
+  .lt-reviews > .row-fluid,
+  .lt-our-work > .row-fluid,
+  .lt-estimate-cta .lt-estimate-cta__inner,
+  .lt-bottom-strip .lt-bottom-strip__content {
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
+  }
+}
+
+/* Tighten headings to match the Figma look */
+.body-container--service h1,
+.body-container--service h2,
+.body-container--service h3,
+.body-container--service h4,
+.body-container--service h5,
+.body-container--service h6 {
+  letter-spacing: -0.02em !important;
+}
+
+/* =========================================================================
+   Kill all spacing on parent wrappers — eliminates white gutters
+   ========================================================================= */
+body,
+.body-wrapper,
+.body-container,
+.body-container-wrapper,
+.body-container--service,
+.body-container--service-location,
+.body-container--home,
+.body-container--location,
+main#main-content,
+main {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+html,
+body,
+.body-wrapper,
+.body-container,
+.body-container-wrapper,
+main {
+  overflow-x: hidden !important;
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
+/* =========================================================================
+   Full-bleed sections — use 100% with no negative margin to avoid the
+   scrollbar offset that causes mobile right-shift
+   ========================================================================= */
+.lt-service-hero,
+.st-service-areas,
+.st-why-choose,
+.st-who-we-are,
+.st-signs,
+.st-right-contractor,
+.st-trust,
+.st-why-myrtle,
+.st-cost,
+.st-benefits,
+.st-steps,
+.st-final-cta,
+.st-simple-steps,
+.lt-faq,
+.lt-faq-section,
+.lt-reviews,
+.lt-our-work,
+.lt-estimate-cta,
+.lt-bottom-strip {
+  width: 100%;
+  max-width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  left: auto;
+  right: auto;
+  position: relative;
+}
+
+/* Eliminate margins between adjacent sections so they butt flush */
+.body-container--service > .row-fluid-wrapper,
+.body-container--service > .dnd-section,
+.body-container--service-location > .row-fluid-wrapper,
+.body-container--service-location > .dnd-section,
+.body-container--home > .row-fluid-wrapper,
+.body-container--home > .dnd-section {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* ---------------------------------------------------------------------
+   Service hero banner
+   --------------------------------------------------------------------- */
+.lt-service-hero {
+  position: relative;
+  overflow: hidden;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 60px));
+  padding-bottom: 160px;
+}
+
+.lt-service-hero:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(31, 41, 55, 0.78);
+  z-index: 0;
+}
+
+.lt-service-hero:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: #f4b400;
+  z-index: 2;
+}
+
+.lt-service-hero .row-fluid,
+.lt-service-hero .row-fluid-wrapper,
+.lt-service-hero .span12,
+.lt-service-hero .widget-span,
+.lt-service-hero .dnd-column,
+.lt-service-hero .dnd-row {
+  position: relative;
+  z-index: 1;
+}
+
+.lt-service-hero,
+.lt-service-hero h1,
+.lt-service-hero p,
+.lt-service-hero span {
+  color: #fff !important;
+}
+
+.lt-service-hero .lt-service-hero__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.lt-service-hero .lt-service-hero__content {
+  max-width: 32rem;
+}
+
+.lt-service-hero .lt-service-hero__content h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.1;
+  margin: 0 0 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.lt-service-hero .lt-service-hero__lead {
+  font-size: 1rem;
+  line-height: 1.55;
+  margin: 0 0 1rem;
+  font-weight: 500;
+}
+
+.lt-service-hero .lt-service-hero__body {
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  margin: 0 0 2rem;
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.lt-service-hero .lt-service-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1rem;
+  margin-bottom: 2rem;
+}
+
+.lt-service-hero .lt-service-hero__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.9375rem;
+  padding: 0.875rem 1.5rem;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.lt-service-hero .lt-service-hero__btn--primary {
+  background: #ffd900;
+  color: #111 !important;
+  border: 1px solid #ffd900;
+}
+.lt-service-hero .lt-service-hero__btn--primary:hover {
+  background: #f4b400;
+  border-color: #f4b400;
+  color: #111 !important;
+  transform: translateY(-1px);
+}
+
+.lt-service-hero .lt-service-hero__btn--secondary {
+  background: transparent;
+  color: #fff !important;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+.lt-service-hero .lt-service-hero__btn--secondary:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.85);
+  color: #fff !important;
+  transform: translateY(-1px);
+}
+
+.lt-service-hero .lt-service-hero__google-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: #fff;
+  padding: 0.5rem 0.85rem;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+}
+
+.lt-service-hero .lt-service-hero__google-badge-logo svg {
+  display: block;
+  width: 28px;
+  height: 28px;
+}
+
+.lt-service-hero .lt-service-hero__google-badge-stars {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.lt-service-hero .lt-service-hero__google-badge-rating {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.lt-service-hero .lt-service-hero__google-badge-rating strong {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #4285f4 !important;
+}
+
+.lt-service-hero .lt-service-hero__google-badge-stars-icons {
+  color: #fbbc04 !important;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+}
+
+.lt-service-hero .lt-service-hero__google-badge-stars small {
+  font-size: 0.7rem;
+  color: #4285f4 !important;
+  font-weight: 600;
+  margin-top: 1px;
+}
+
+.lt-service-hero .lt-service-hero__trust {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 0.75rem 2rem;
+  justify-content: start;
+}
+
+.lt-service-hero .lt-service-hero__trust-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.lt-service-hero .lt-service-hero__trust-icon {
+  width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  background: #f4b400;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.lt-service-hero .lt-service-hero__trust-icon:before {
+  content: "✓";
+  font-size: 11px;
+  line-height: 1;
+  color: #111 !important;
+  font-weight: 700;
+}
+
+.lt-service-hero .lt-service-hero__image {
+  width: 100%;
+}
+
+.lt-service-hero .lt-service-hero__image img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  display: block;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 1024px) {
+  .lt-service-hero .lt-service-hero__grid {
+    gap: 2.5rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .lt-service-hero .lt-service-hero__grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .lt-service-hero .lt-service-hero__content {
+    max-width: none;
+  }
+  .lt-service-hero .lt-service-hero__content h1 {
+    font-size: 1.75rem;
+  }
+  .lt-service-hero .lt-service-hero__actions {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  .lt-service-hero .lt-service-hero__btn {
+    width: 260px;        /* fixed width — both buttons match */
+    max-width: 100%;     /* safety net for very narrow screens */
+    padding: 0.875rem 1rem;
+  }
+  .lt-service-hero .lt-service-hero__google-badge {
+    display: flex;
+    width: 295px;        /* match button width */
+    max-width: 100%;     /* safety net for very narrow screens */
+    margin-left: 0;
+    margin-right: auto;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+  .lt-service-hero .lt-service-hero__trust {
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
+    justify-content: start;
+    text-align: left;
+  }
+
+  /* Hide the right-side image on mobile */
+  .lt-service-hero .lt-service-hero__image {
+    display: none;
+  }
+}
+/* =========================================================================
+   Service areas (find roof repair near you)
+   ========================================================================= */
+.st-service-areas {
+  position: relative;
+  padding-bottom: 80px !important;
+}
+
+.st-service-areas:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--st-yellow, #ffd900);
+  z-index: 5;
+}
+
+.st-service-areas .row-fluid,
+.st-service-areas .row-fluid-wrapper,
+.st-service-areas .span12,
+.st-service-areas .widget-span,
+.st-service-areas .dnd-column,
+.st-service-areas .dnd-row {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  float: none !important;
+}
+
+.st-service-areas .st-service-areas__heading {
+  text-align: center;
+  max-width: 56rem;
+  margin: 0 auto 3rem;
+}
+
+.st-service-areas .st-service-areas__heading h2 {
+  font-size: clamp(1.75rem, 2.5vw, 2.5rem);
+  line-height: 1.15;
+  margin: 0 0 0.75rem;
+  font-weight: 800;
+  color: var(--st-text);
+}
+
+.st-service-areas .st-service-areas__heading p {
+  margin: 0;
+  color: var(--st-muted);
+  font-size: 0.95rem;
+}
+
+.st-service-areas .st-service-areas__groups {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.st-service-areas .st-service-areas__group-title {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--st-text);
+  margin: 0 0 0.85rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 1px solid var(--st-border);
+  letter-spacing: 0.01em;
+}
+
+.st-service-areas .st-service-areas__group-title--accent {
+  border-bottom-color: var(--st-yellow);
+  border-bottom-width: 2px;
+}
+
+.st-service-areas .st-service-areas__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.st-service-areas .st-service-areas__pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 0.85rem;
+  border: 1px solid var(--st-border);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--st-text);
+  font-weight: 700;
+  font-size: 0.82rem;
+  text-decoration: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.st-service-areas .st-service-areas__pill:hover {
+  border-color: var(--st-yellow);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  color: var(--st-text);
+}
+
+.st-service-areas .st-service-areas__pin {
+  width: 14px;
+  height: 14px;
+  flex: 0 0 14px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z'/><circle cx='12' cy='10' r='3'/></svg>");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.st-service-areas .st-service-areas__cta {
+  margin-top: 3rem;
+  text-align: center;
+}
+
+.st-service-areas .st-service-areas__cta-button {
+  display: inline-block;
+  background: var(--st-yellow);
+  color: var(--st-black);
+  font-weight: 800;
+  font-size: 1rem;
+  padding: 1rem 2rem;
+  border-radius: 999px;
+  text-decoration: none;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  transition: background 0.2s;
+}
+
+.st-service-areas .st-service-areas__cta-button:hover {
+  background: var(--st-yellow-hover);
+  color: var(--st-black);
+}
+
+.st-service-areas .st-service-areas__cta-note {
+  margin: 0.85rem 0 0;
+  font-size: 0.9rem;
+  color: var(--st-text);
+}
+
+.st-service-areas .st-service-areas__cta-note a {
+  color: var(--st-text);
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.st-service-areas .st-service-areas__trust {
+  list-style: none;
+  margin: 3rem 0 0;
+  padding: 1.75rem 0 0;
+  border-top: 1px solid var(--st-border);
+  border-bottom: 4px solid var(--st-yellow);
+  padding-bottom: 1.75rem;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+  text-align: center;
+}
+
+.st-service-areas .st-service-areas__trust li {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--st-text);
+  font-weight: 600;
+}
+
+.st-service-areas .st-service-areas__trust-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  border: 1.5px solid var(--st-yellow);
+  color: var(--st-yellow);
+  font-size: 0.7rem;
+  font-weight: 800;
+  flex: 0 0 16px;
+}
+
+@media (max-width: 1024px) {
+  .st-service-areas .st-service-areas__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .st-service-areas .st-service-areas__trust {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .st-service-areas .st-service-areas__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* =========================================================================
+   Why homeowners choose us — 3 card grid with circle icons
+   ========================================================================= */
+.st-why-choose {
+  position: relative;
+}
+
+.st-why-choose .row-fluid,
+.st-why-choose .row-fluid-wrapper,
+.st-why-choose .span12,
+.st-why-choose .widget-span,
+.st-why-choose .dnd-column,
+.st-why-choose .dnd-row {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  float: none !important;
+}
+
+.st-why-choose .st-why-choose__heading {
+  text-align: center;
+  margin: 0 auto 3rem;
+  max-width: 56rem;
+}
+
+.st-why-choose .st-why-choose__heading h2 {
+  font-size: clamp(1.5rem, 2.25vw, 2rem);
+  line-height: 1.2;
+  margin: 0;
+  font-weight: 800;
+  color: var(--st-text);
+}
+
+.st-why-choose .st-why-choose__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.st-why-choose .st-why-choose__card {
+  text-align: center;
+  padding: 2.5rem 1.75rem;
+  background: #fafafa;
+  border: 1px solid var(--st-border, #e5e7eb);
+  border-radius: 12px;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.st-why-choose .st-why-choose__card:hover {
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
+  transform: translateY(-2px);
+}
+
+.st-why-choose .st-why-choose__icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  background: var(--st-yellow, #ffd900);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.st-why-choose .st-why-choose__icon svg {
+  width: 26px;
+  height: 26px;
+  stroke: var(--st-black, #111);
+}
+
+.st-why-choose .st-why-choose__card h3 {
+  font-size: 1.0625rem;
+  font-weight: 700;
+  margin: 0 0 0.85rem;
+  color: var(--st-text);
+}
+
+.st-why-choose .st-why-choose__card p {
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: var(--st-muted, #6b7280);
+  margin: 0;
+}
+
+@media (max-width: 1024px) {
+  .st-why-choose .st-why-choose__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .st-why-choose .st-why-choose__grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+}
+
+/* =========================================================================
+   Who we are / Making roof repairs simple
+   ========================================================================= */
+.st-who-we-are {
+  position: relative;
+}
+
+.st-who-we-are .row-fluid,
+.st-who-we-are .row-fluid-wrapper,
+.st-who-we-are .span12,
+.st-who-we-are .widget-span,
+.st-who-we-are .dnd-column,
+.st-who-we-are .dnd-row {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  float: none !important;
+}
+
+.st-who-we-are .st-who-we-are__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.st-who-we-are .st-who-we-are__content {
+  max-width: 32rem;
+}
+
+.st-who-we-are .st-who-we-are__content h2 {
+  font-size: clamp(1.75rem, 2.6vw, 2.25rem);
+  line-height: 1.2;
+  font-weight: 800;
+  color: var(--st-text, #111);
+  margin: 0 0 1.25rem;
+}
+
+.st-who-we-are .st-who-we-are__content p {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--st-muted, #4b5563);
+  margin: 0 0 1rem;
+}
+
+.st-who-we-are .st-who-we-are__content p:last-of-type {
+  margin-bottom: 1.5rem;
+}
+
+.st-who-we-are .st-who-we-are__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--st-yellow, #ffd900);
+  color: var(--st-black, #111);
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 0.85rem 1.75rem;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.st-who-we-are .st-who-we-are__btn:hover {
+  background: var(--st-yellow-hover, #f4b400);
+  color: var(--st-black, #111);
+  transform: translateY(-1px);
+}
+
+.st-who-we-are .st-who-we-are__image {
+  width: 100%;
+}
+
+.st-who-we-are .st-who-we-are__image img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  display: block;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+@media (max-width: 767px) {
+  .st-who-we-are .st-who-we-are__grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .st-who-we-are .st-who-we-are__content {
+    max-width: none;
+  }
+  .st-who-we-are .st-who-we-are__content h2 {
+    font-size: 1.5rem;
+  }
+}
+
+/* =========================================================================
+   Signs you need roof repair — 5 cards 3+2 with square icons
+   ========================================================================= */
+.st-signs {
+  position: relative;
+}
+
+.st-signs .row-fluid,
+.st-signs .row-fluid-wrapper,
+.st-signs .span12,
+.st-signs .widget-span,
+.st-signs .dnd-column,
+.st-signs .dnd-row {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  float: none !important;
+}
+
+.st-signs .st-signs__heading {
+  text-align: center;
+  max-width: 56rem;
+  margin: 0 auto 2.5rem;
+}
+
+.st-signs .st-signs__heading h2 {
+  font-size: clamp(1.75rem, 2.5vw, 2.5rem);
+  line-height: 1.15;
+  font-weight: 800;
+  color: var(--st-text);
+  margin: 0 0 0.75rem;
+}
+
+.st-signs .st-signs__heading p {
+  margin: 0;
+  color: var(--st-muted);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.st-signs .st-signs__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.st-signs .st-signs__card {
+  background: #fff;
+  border: 1px solid var(--st-border);
+  border-radius: 10px;
+  padding: 1.5rem 1.5rem 1.75rem;
+}
+
+.st-signs .st-signs__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  background: var(--st-yellow);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4rem;
+}
+
+.st-signs .st-signs__icon svg {
+  width: 22px;
+  height: 22px;
+  stroke: var(--st-black);
+}
+
+.st-signs .st-signs__card h3 {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--st-text);
+  margin: 0 0 0.6rem;
+}
+
+.st-signs .st-signs__card p {
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: var(--st-muted);
+  margin: 0;
+}
+
+@media (max-width: 1024px) {
+  .st-signs .st-signs__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .st-signs .st-signs__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================================================================
+   Right contractor — qualifying/disqualifying lists + image
+   ========================================================================= */
+.st-right-contractor {
+  position: relative;
+}
+
+.st-right-contractor .row-fluid,
+.st-right-contractor .row-fluid-wrapper,
+.st-right-contractor .span12,
+.st-right-contractor .widget-span,
+.st-right-contractor .dnd-column,
+.st-right-contractor .dnd-row {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  float: none !important;
+}
+
+.st-right-contractor .st-right-contractor__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.st-right-contractor .st-right-contractor__content {
+  max-width: 32rem;
+}
+
+.st-right-contractor .st-right-contractor__content h2 {
+  font-size: clamp(1.75rem, 2.5vw, 2.25rem);
+  line-height: 1.2;
+  font-weight: 800;
+  color: var(--st-text, #111);
+  margin: 0 0 1.5rem;
+}
+
+.st-right-contractor .st-right-contractor__lead {
+  font-size: 0.875rem;
+  color: var(--st-muted, #6b7280);
+  margin: 0 0 1.25rem;
+}
+
+.st-right-contractor .st-right-contractor__list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.st-right-contractor .st-right-contractor__list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--st-text, #111);
+}
+
+.st-right-contractor .st-right-contractor__icon {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.1rem;
+}
+
+.st-right-contractor .st-right-contractor__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.st-right-contractor .st-right-contractor__icon--yes {
+  color: #1e3a8a;
+}
+
+.st-right-contractor .st-right-contractor__icon--no {
+  color: #1e3a8a;
+}
+
+.st-right-contractor .st-right-contractor__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--st-yellow, #ffd900);
+  color: var(--st-black, #111);
+  font-weight: 700;
+  font-size: 0.875rem;
+  padding: 0.85rem 1.75rem;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.st-right-contractor .st-right-contractor__btn:hover {
+  background: var(--st-yellow-hover, #f4b400);
+  color: var(--st-black, #111);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(244, 180, 0, 0.3);
+}
+
+.st-right-contractor .st-right-contractor__image {
+  width: 100%;
+}
+
+.st-right-contractor .st-right-contractor__image img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+@media (max-width: 767px) {
+  .st-right-contractor .st-right-contractor__grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .st-right-contractor .st-right-contractor__content {
+    max-width: none;
+  }
+  .st-right-contractor .st-right-contractor__content h2 {
+    font-size: 1.5rem;
+  }
+  .st-right-contractor .st-right-contractor__image img {
+    aspect-ratio: 16 / 10;
+  }
+}
+
+/* =========================================================================
+   You need a roofing company you can trust
+   ========================================================================= */
+.st-trust {
+  position: relative;
+}
+
+.st-trust .row-fluid,
+.st-trust .row-fluid-wrapper,
+.st-trust .span12,
+.st-trust .widget-span,
+.st-trust .dnd-column,
+.st-trust .dnd-row {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  float: none !important;
+}
+
+.st-trust .st-trust__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.st-trust .st-trust__content {
+  max-width: 32rem;
+}
+
+.st-trust .st-trust__content h2 {
+  font-size: clamp(1.75rem, 2.6vw, 2.25rem);
+  line-height: 1.2;
+  font-weight: 800;
+  color: var(--st-text, #111);
+  margin: 0 0 1.25rem;
+}
+
+.st-trust .st-trust__content p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--st-muted, #4b5563);
+  margin: 0 0 2rem;
+}
+
+.st-trust .st-trust__list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.st-trust .st-trust__list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--st-text, #111);
+}
+
+.st-trust .st-trust__icon {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.1rem;
+  color: #1e3a8a;
+}
+
+.st-trust .st-trust__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.st-trust .st-trust__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--st-yellow, #ffd900);
+  color: var(--st-black, #111);
+  font-weight: 700;
+  font-size: 0.875rem;
+  padding: 0.85rem 1.75rem;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.st-trust .st-trust__btn:hover {
+  background: var(--st-yellow-hover, #f4b400);
+  color: var(--st-black, #111);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(244, 180, 0, 0.3);
+}
+
+.st-trust .st-trust__video {
+  width: 100%;
+}
+
+.st-trust .st-trust__video-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+  background: #000;
+}
+
+.st-trust .st-trust__video-wrap iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+@media (max-width: 767px) {
+  .st-trust .st-trust__grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .st-trust .st-trust__content {
+    max-width: none;
+  }
+  .st-trust .st-trust__content h2 {
+    font-size: 1.5rem;
+  }
+}
+
+/* =========================================================================
+   Why Myrtle Beach homeowners choose us — 5 cards 3+2 with circle icons
+   ========================================================================= */
+.st-why-myrtle {
+  position: relative;
+}
+
+.st-why-myrtle .row-fluid,
+.st-why-myrtle .row-fluid-wrapper,
+.st-why-myrtle .span12,
+.st-why-myrtle .widget-span,
+.st-why-myrtle .dnd-column,
+.st-why-myrtle .dnd-row {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  float: none !important;
+}
+
+.st-why-myrtle .st-why-myrtle__heading {
+  text-align: center;
+  margin: 0 auto 2.75rem;
+}
+
+.st-why-myrtle .st-why-myrtle__heading h2 {
+  font-size: clamp(1.75rem, 2.5vw, 2.5rem);
+  line-height: 1.15;
+  font-weight: 800;
+  color: var(--st-text);
+  margin: 0;
+}
+
+.st-why-myrtle .st-why-myrtle__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.st-why-myrtle .st-why-myrtle__card {
+  background: #fff;
+  border: 1px solid var(--st-border);
+  border-radius: 10px;
+  padding: 1.5rem 1.5rem 1.75rem;
+}
+
+.st-why-myrtle .st-why-myrtle__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  background: var(--st-yellow);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.st-why-myrtle .st-why-myrtle__icon svg {
+  width: 20px;
+  height: 20px;
+  stroke: var(--st-black);
+}
+
+.st-why-myrtle .st-why-myrtle__card h3 {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--st-text);
+  margin: 0 0 0.5rem;
+}
+
+.st-why-myrtle .st-why-myrtle__card p {
+  font-size: 0.85rem;
+  line-height: 1.65;
+  color: var(--st-muted);
+  margin: 0;
+}
+
+@media (max-width: 1024px) {
+  .st-why-myrtle .st-why-myrtle__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .st-why-myrtle .st-why-myrtle__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================================================================
+   Cost — 3 image cards + CTA
+   ========================================================================= */
+.st-cost {
+  position: relative;
+}
+
+.st-cost .row-fluid,
+.st-cost .row-fluid-wrapper,
+.st-cost .span12,
+.st-cost .widget-span,
+.st-cost .dnd-column,
+.st-cost .dnd-row {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  float: none !important;
+}
+
+.st-cost .st-cost__heading {
+  text-align: center;
+  max-width: 56rem;
+  margin: 0 auto 2.5rem;
+}
+
+.st-cost .st-cost__heading h2 {
+  font-size: clamp(1.75rem, 2.6vw, 2.5rem);
+  line-height: 1.15;
+  font-weight: 800;
+  color: var(--st-text);
+  margin: 0 0 0.75rem;
+}
+
+.st-cost .st-cost__heading p {
+  margin: 0;
+  color: var(--st-muted);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.st-cost .st-cost__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.st-cost .st-cost__card {
+  background: #fff;
+  border: 1px solid var(--st-border);
+  border-radius: 10px;
+  overflow: hidden;
+  text-align: center;
+  padding-bottom: 1.5rem;
+}
+
+.st-cost .st-cost__image {
+  height: 180px;
+  overflow: hidden;
+  background: #eee;
+}
+
+.st-cost .st-cost__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.st-cost .st-cost__card h3 {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--st-text);
+  margin: 1.1rem 0 0.4rem;
+}
+
+.st-cost .st-cost__price {
+  margin: 0;
+  color: var(--st-black); 
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.st-cost .st-cost__cta {
+  text-align: center;
+  margin-top: 2.5rem;
+}
+
+.st-cost .st-cost__btn {
+  display: inline-block;
+  background: var(--st-yellow);
+  color: var(--st-black);
+  font-weight: 800;
+  font-size: 0.95rem;
+  padding: 0.85rem 1.6rem;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.st-cost .st-cost__btn:hover {
+  background: var(--st-yellow-hover);
+  color: var(--st-black);
+}
+
+@media (max-width: 1024px) {
+  .st-cost .st-cost__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .st-cost .st-cost__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================================================================
+   Benefits — 4 cards with circle icons
+   ========================================================================= */
+.st-benefits {
+  position: relative;
+}
+
+.st-benefits .row-fluid,
+.st-benefits .row-fluid-wrapper,
+.st-benefits .span12,
+.st-benefits .widget-span,
+.st-benefits .dnd-column,
+.st-benefits .dnd-row {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  float: none !important;
+}
+
+.st-benefits .st-benefits__heading {
+  text-align: center;
+  margin: 0 auto 2.5rem;
+}
+
+.st-benefits .st-benefits__heading h2 {
+  font-size: clamp(1.75rem, 2.5vw, 2.5rem);
+  line-height: 1.15;
+  font-weight: 800;
+  color: var(--st-text);
+  margin: 0;
+}
+
+.st-benefits .st-benefits__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.25rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.st-benefits .st-benefits__card {
+  background: #fff;
+  border: 1px solid var(--st-border);
+  border-radius: 10px;
+  padding: 1.5rem 1.25rem;
+  text-align: center;
+}
+
+.st-benefits .st-benefits__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  background: var(--st-yellow);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.st-benefits .st-benefits__icon svg {
+  width: 22px;
+  height: 22px;
+  stroke: var(--st-black);
+}
+
+.st-benefits .st-benefits__card h3 {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--st-text);
+  margin: 0 0 0.45rem;
+}
+
+.st-benefits .st-benefits__card p {
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: var(--st-muted);
+  margin: 0;
+}
+
+@media (max-width: 1024px) {
+  .st-benefits .st-benefits__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .st-benefits .st-benefits__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================================================================
+   FAQ section heading wrapper (accordion module brings its own styles)
+   ========================================================================= */
+.lt-faq-section {
+  position: relative;
+}
+
+.lt-faq-section .row-fluid,
+.lt-faq-section .row-fluid-wrapper,
+.lt-faq-section .span12,
+.lt-faq-section .widget-span,
+.lt-faq-section .dnd-column,
+.lt-faq-section .dnd-row {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  float: none !important;
+}
+
+.lt-faq-section .lt-faq-section__heading {
+  text-align: center;
+  max-width: 56rem;
+  margin: 0 auto 2rem;
+}
+
+.lt-faq-section .lt-faq-section__heading h2 {
+  margin: 0;
+  font-size: clamp(1.75rem, 2.6vw, 2.5rem);
+  line-height: 1.15;
+  font-weight: 800;
+  color: var(--st-text);
+}
+
+.lt-faq-section .lt-faq-section__heading p {
+  margin: 0.75rem 0 0;
+  color: var(--st-muted);
+  font-size: 0.95rem;
+}
+
+/* =========================================================================
+   3 simple steps — numbered process with images
+   ========================================================================= */
+.st-steps {
+  position: relative;
+}
+
+.st-steps .row-fluid,
+.st-steps .row-fluid-wrapper,
+.st-steps .span12,
+.st-steps .widget-span,
+.st-steps .dnd-column,
+.st-steps .dnd-row {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  float: none !important;
+}
+
+.st-steps .st-steps__heading {
+  text-align: center;
+  margin: 0 auto 2.5rem;
+}
+
+.st-steps .st-steps__heading h2 {
+  font-size: clamp(1.75rem, 2.6vw, 2.5rem);
+  line-height: 1.15;
+  font-weight: 800;
+  color: var(--st-text);
+  margin: 0;
+}
+
+.st-steps .st-steps__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.st-steps .st-steps__card {
+  text-align: center;
+  position: relative;
+}
+
+.st-steps .st-steps__image {
+  border-radius: 10px;
+  overflow: hidden;
+  height: 200px;
+  margin-bottom: 1.5rem;
+}
+
+.st-steps .st-steps__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.st-steps .st-steps__number {
+  position: absolute;
+  top: 178px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  background: var(--st-yellow);
+  color: var(--st-black);
+  font-weight: 800;
+  font-size: 1.1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.st-steps .st-steps__card h3 {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--st-text);
+  margin: 0.5rem 0 0.45rem;
+}
+
+.st-steps .st-steps__card p {
+  font-size: 0.85rem;
+  color: var(--st-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+@media (max-width: 767px) {
+  .st-steps .st-steps__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================================================================
+   Final CTA — dark navy with title, body, button, trust badges
+   ========================================================================= */
+.st-final-cta {
+  position: relative;
+}
+
+.st-final-cta .row-fluid,
+.st-final-cta .row-fluid-wrapper,
+.st-final-cta .span12,
+.st-final-cta .widget-span,
+.st-final-cta .dnd-column,
+.st-final-cta .dnd-row {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  float: none !important;
+}
+
+.st-final-cta,
+.st-final-cta p,
+.st-final-cta h1,
+.st-final-cta h2,
+.st-final-cta li {
+  color: #fff;
+}
+
+.st-final-cta .st-final-cta__content {
+  text-align: center;
+  max-width: 56rem;
+  margin: 0 auto 2rem;
+}
+
+.st-final-cta .st-final-cta__content h2 {
+  font-size: clamp(1.75rem, 2.6vw, 2.5rem);
+  line-height: 1.15;
+  font-weight: 800;
+  margin: 0 0 0.85rem;
+}
+
+.st-final-cta .st-final-cta__content p {
+  margin: 0 auto 1.75rem;
+  max-width: 36rem;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.65;
+  font-size: 0.95rem;
+}
+
+.st-final-cta .st-final-cta__btn {
+  display: inline-block;
+  background: var(--st-yellow);
+  color: var(--st-black);
+  font-weight: 800;
+  font-size: 1rem;
+  padding: 0.95rem 1.75rem;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.st-final-cta .st-final-cta__btn:hover {
+  background: var(--st-yellow-hover);
+  color: var(--st-black);
+}
+
+.st-final-cta .st-final-cta__trust {
+  list-style: none;
+  margin: 0 auto;
+  padding: 1.75rem 0 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  max-width: 900px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+  text-align: center;
+}
+
+.st-final-cta .st-final-cta__trust li {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.92);
+  font-weight: 600;
+}
+
+.st-final-cta .st-final-cta__trust-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  border: 1.5px solid var(--st-yellow);
+  color: var(--st-yellow);
+  font-size: 0.7rem;
+  font-weight: 800;
+  flex: 0 0 16px;
+}
+
+@media (max-width: 767px) {
+  .st-final-cta .st-final-cta__trust {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ---------------------------------------------------------------------
+   FAQ accordion
+   --------------------------------------------------------------------- */
+.lt-faq {
+  position: relative;
+  background: #ffffff;
+}
+
+/* Force text colors */
+.lt-faq,
+.lt-faq .lt-faq__heading,
+.lt-faq .lt-faq__heading h2,
+.lt-faq .lt-faq__heading p,
+.lt-faq .lt-faq__question,
+.lt-faq .lt-faq__question-text,
+.lt-faq .lt-faq__answer p {
+  color: #111 !important;
+}
+.lt-faq .lt-faq__heading p {
+  color: #4b5563 !important;
+}
+.lt-faq .lt-faq__answer p {
+  color: #4b5563 !important;
+}
+
+/* Force HubSpot's wrapper containers to be full-width */
+.lt-faq .row-fluid,
+.lt-faq .row-fluid-wrapper,
+.lt-faq .span12,
+.lt-faq .widget-span,
+.lt-faq .dnd-column,
+.lt-faq .dnd-row {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  float: none !important;
+}
+
+/* Heading + subtitle */
+.lt-faq .lt-faq__heading {
+  max-width: 720px;
+  margin: 0 auto 3rem;
+  text-align: center;
+}
+.lt-faq .lt-faq__heading h2 {
+  font-size: clamp(2rem, 3vw, 3rem);
+  line-height: 1.15;
+  margin: 0 0 1rem;
+  text-align: center;
+  font-weight: 700;
+}
+.lt-faq .lt-faq__heading p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0;
+  text-align: center;
+}
+
+/* List of FAQ items */
+.lt-faq .lt-faq__list {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.lt-faq .lt-faq__item {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.lt-faq .lt-faq__item:hover {
+  border-color: #d1d5db;
+}
+
+.lt-faq .lt-faq__item.is-open {
+  border-color: #d1d5db;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+/* Question button */
+.lt-faq .lt-faq__question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  background: transparent;
+  border: 0;
+  padding: 1.25rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.lt-faq .lt-faq__question:hover,
+.lt-faq .lt-faq__question:focus {
+  background: rgba(0, 0, 0, 0.02);
+  outline: none;
+}
+
+.lt-faq .lt-faq__question-text {
+  flex-grow: 1;
+  line-height: 1.4;
+}
+
+.lt-faq .lt-faq__icon {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #6b7280;
+  transition: transform 0.25s ease;
+}
+
+.lt-faq .lt-faq__item.is-open .lt-faq__icon {
+  transform: rotate(45deg);
+}
+
+/* Answer area — uses grid-template-rows trick for smooth animation */
+.lt-faq .lt-faq__answer {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s ease;
+}
+
+.lt-faq .lt-faq__item.is-open .lt-faq__answer {
+  grid-template-rows: 1fr;
+}
+
+.lt-faq .lt-faq__answer-inner {
+  overflow: hidden;
+}
+
+.lt-faq .lt-faq__answer-inner p {
+  margin: 0;
+  padding: 0 1.5rem 1.5rem;
+  font-size: 0.9375rem;
+  line-height: 1.65;
+}
+
+@media (max-width: 767px) {
+  .lt-faq .lt-faq__list {
+    gap: 0.75rem;
+  }
+  .lt-faq .lt-faq__question {
+    padding: 1rem 1.25rem;
+    font-size: 0.9375rem;
+  }
+  .lt-faq .lt-faq__answer-inner p {
+    padding: 0 1.25rem 1.25rem;
+  }
+}
+
+/* ---------------------------------------------------------------------
+   Reviews carousel
+   --------------------------------------------------------------------- */
+.lt-reviews {
+  position: relative;
+  background: #f5f6f8;
+}
+
+/* Force text colors */
+.lt-reviews,
+.lt-reviews .lt-reviews__quote blockquote,
+.lt-reviews .lt-reviews__quote cite {
+  color: #111 !important;
+}
+
+/* Force HubSpot's wrapper containers to be full-width */
+.lt-reviews .row-fluid,
+.lt-reviews .row-fluid-wrapper,
+.lt-reviews .span12,
+.lt-reviews .widget-span,
+.lt-reviews .dnd-column,
+.lt-reviews .dnd-row {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  float: none !important;
+}
+
+/* Eyebrow label "Our Reviews" */
+.lt-reviews .lt-reviews__eyebrow {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.lt-reviews .lt-reviews__eyebrow span {
+  display: inline-block;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #1e3a8a;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #1e3a8a;
+}
+
+/* Carousel container */
+.lt-reviews .lt-reviews__carousel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Arrows */
+.lt-reviews .lt-reviews__arrow {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 0;
+  color: #6b7280;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.lt-reviews .lt-reviews__arrow:hover,
+.lt-reviews .lt-reviews__arrow:focus {
+  background: rgba(30, 58, 138, 0.08);
+  color: #1e3a8a;
+  outline: none;
+}
+
+/* Track holds the slides */
+.lt-reviews .lt-reviews__track {
+  position: relative;
+  flex-grow: 1;
+  min-height: 360px;
+}
+
+/* Each slide takes the same space; only the active one is visible */
+.lt-reviews .lt-reviews__slide {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.lt-reviews .lt-reviews__slide.is-active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  position: relative; /* lets the track size to the active slide on mobile */
+}
+
+/* Quote block (left side) */
+.lt-reviews .lt-reviews__quote blockquote {
+  font-size: clamp(1.125rem, 1.6vw, 1.5rem);
+  font-weight: 700;
+  line-height: 1.4;
+  margin: 0 0 1.25rem;
+  quotes: none;
+}
+
+.lt-reviews .lt-reviews__quote cite {
+  display: block;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  font-style: normal;
+  color: #6b7280 !important;
+}
+
+/* Image (right side) */
+.lt-reviews .lt-reviews__image {
+  width: 100%;
+}
+
+.lt-reviews .lt-reviews__image img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  display: block;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* Dots */
+.lt-reviews .lt-reviews__dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 2.5rem;
+}
+
+.lt-reviews .lt-reviews__dot {
+  width: 32px;
+  height: 3px;
+  background: #d1d5db;
+  border: 0;
+  border-radius: 2px;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s ease, width 0.2s ease;
+}
+
+.lt-reviews .lt-reviews__dot:hover {
+  background: #9ca3af;
+}
+
+.lt-reviews .lt-reviews__dot.is-active {
+  background: #1e3a8a;
+}
+
+/* CTA buttons wrapper */
+.lt-reviews .lt-reviews__cta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1.25rem;
+  margin-top: 3rem;
+}
+
+/* Shared button base */
+.lt-reviews .lt-reviews__cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 1.125rem 2.5rem;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Primary (yellow) — Get Instant Estimate */
+.lt-reviews .lt-reviews__cta-button--primary {
+  background: #ffd900 !important;
+  color: #111 !important;
+}
+
+.lt-reviews .lt-reviews__cta-button--primary:hover,
+.lt-reviews .lt-reviews__cta-button--primary:focus {
+  background: #f4b400 !important;
+  color: #111 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(244, 180, 0, 0.35);
+}
+
+/* Secondary (navy) — Schedule Inspection Online */
+.lt-reviews .lt-reviews__cta-button--secondary {
+  background: #1e3a8a !important;
+  color: #fff !important;
+}
+
+.lt-reviews .lt-reviews__cta-button--secondary:hover,
+.lt-reviews .lt-reviews__cta-button--secondary:focus {
+  background: #172e6d !important;
+  color: #fff !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(30, 58, 138, 0.35);
+}
+
+@media (max-width: 767px) {
+  .lt-reviews .lt-reviews__carousel {
+    gap: 0.25rem;
+  }
+  .lt-reviews .lt-reviews__track {
+    min-height: 0;
+  }
+  .lt-reviews .lt-reviews__slide {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .lt-reviews .lt-reviews__arrow {
+    width: 36px;
+    height: 36px;
+  }
+  .lt-reviews .lt-reviews__arrow svg {
+    width: 24px;
+    height: 24px;
+  }
+  .lt-reviews .lt-reviews__quote blockquote {
+    font-size: 1.0625rem;
+  }
+
+  /* Stack CTAs on mobile, matched fixed width */
+  .lt-reviews .lt-reviews__cta {
+    flex-direction: column;
+    align-items: center;   /* keep them centered in the column */
+    gap: 0.75rem;
+  }
+  .lt-reviews .lt-reviews__cta-button {
+    width: 260px;          /* fixed width — both buttons match */
+    max-width: 100%;       /* safety net for very narrow screens */
+    padding: 1rem 1.25rem;
+  }
+}
+    
+    
+/* =========================================================================
+   Your roof repair in 3 simple steps
+   ========================================================================= */
+.st-simple-steps {
+  position: relative;
+}
+.st-simple-steps .row-fluid,
+.st-simple-steps .row-fluid-wrapper,
+.st-simple-steps .span12,
+.st-simple-steps .widget-span,
+.st-simple-steps .dnd-column,
+.st-simple-steps .dnd-row {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  float: none !important;
+}
+/* Two-column grid: content on left, image on right */
+.st-simple-steps .st-simple-steps__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.st-simple-steps .st-simple-steps__content {
+  max-width: 32rem;
+}
+.st-simple-steps .st-simple-steps__content h2 {
+  font-size: clamp(1.75rem, 2.6vw, 2.25rem);
+  line-height: 1.2;
+  font-weight: 800;
+  color: var(--st-text, #111);
+  margin: 0 0 2rem;
+}
+/* Step list with checkmarks */
+.st-simple-steps .st-simple-steps__list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.st-simple-steps .st-simple-steps__list li {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--st-text, #111);
+}
+.st-simple-steps .st-simple-steps__icon {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--st-muted, #6b7280);
+}
+.st-simple-steps .st-simple-steps__icon svg {
+  width: 100%;
+  height: 100%;
+}
+/* Action row: yellow primary + outline secondary */
+.st-simple-steps .st-simple-steps__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+.st-simple-steps .st-simple-steps__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.875rem;
+  padding: 0.85rem 1.5rem;
+  border-radius: 999px;
+  text-decoration: none;
+  box-sizing: border-box;
+  min-width: 260px;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+.st-simple-steps .st-simple-steps__btn--primary {
+  background: var(--st-yellow, #ffd900);
+  color: var(--st-black, #111);
+  border: 1px solid var(--st-yellow, #ffd900);
+}
+.st-simple-steps .st-simple-steps__btn--primary:hover {
+  background: var(--st-yellow-hover, #f4b400);
+  border-color: var(--st-yellow-hover, #f4b400);
+  color: var(--st-black, #111);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(244, 180, 0, 0.3);
+}
+.st-simple-steps .st-simple-steps__btn--secondary {
+  background: transparent;
+  color: #1e3a8a;
+  border: 1px solid #1e3a8a;
+}
+.st-simple-steps .st-simple-steps__btn--secondary:hover {
+  background: #1e3a8a;
+  color: #fff;
+  transform: translateY(-1px);
+}
+/* Image column */
+.st-simple-steps .st-simple-steps__image {
+  width: 100%;
+}
+.st-simple-steps .st-simple-steps__image img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+@media (max-width: 767px) {
+  .st-simple-steps .st-simple-steps__grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .st-simple-steps .st-simple-steps__content {
+    max-width: none;
+  }
+  .st-simple-steps .st-simple-steps__content h2 {
+    font-size: 1.5rem;
+  }
+  .st-simple-steps .st-simple-steps__actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+  .st-simple-steps .st-simple-steps__btn {
+    width: 100%;
+    min-width: 0;
+    max-width: 320px;
+    padding: 0.95rem 1.25rem;
+    align-self: center;
+  }
+  .st-simple-steps .st-simple-steps__image img {
+    aspect-ratio: 16 / 10;
+  }
+}
+/* CompanyCam showcase wrapper (replaces the static image) */
+.lt-service-hero .lt-service-hero__showcase {
+  width: 100%;
+  min-height: 420px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.lt-service-hero .lt-service-hero__showcase #companycam-showcase-root {
+  display: block;
+  width: 100%;
+  min-height: 420px;
+}
+
+.lt-service-hero .lt-service-hero__showcase iframe {
+  width: 100% !important;
+  border: 0;
+  display: block;
+}
+
+@media (max-width: 767px) {
+  .lt-service-hero .lt-service-hero__showcase,
+  .lt-service-hero .lt-service-hero__showcase #companycam-showcase-root {
+    min-height: 340px;
+  }
+}
+
+/* ==========================================================================
+   Hero — Elfsight Google review badge
+   Wrapper styles only. Elfsight controls the badge's internal look.
+   ========================================================================== */
+
+.lt-hero-banner__google-badge-wrap {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  margin: 0;
+  margin-right: auto;
+  align-self: center;
+  text-align: left;
+}
+
+/* Override Elfsight's auto-centering on every layer of its widget */
+.lt-hero-banner__google-badge-wrap .es-embed-root,
+.lt-hero-banner__google-badge-wrap .es-main-container,
+.lt-hero-banner__google-badge-wrap .es-layout-sidebar-container,
+.lt-hero-banner__google-badge-wrap .es-layout-sidebar-inner,
+.lt-hero-banner__google-badge-wrap .es-badge-container {
+  margin-left: 0 !important;
+  margin-right: auto !important;
+  justify-content: flex-start !important;
+  text-align: left !important;
+}
+
+/* The actual visible white badge — pin it to the left edge */
+.lt-hero-banner__google-badge-wrap .es-card-badge-container {
+  margin-left: 0 !important;
+  margin-right: auto !important;
+  cursor: pointer;
+}

@@ -1,0 +1,8 @@
+{
+  "global" : false,
+  "content_types" : [ "QUOTE_TEMPLATE", "QUOTE", "LANDING_PAGE", "CASE_STUDY", "SITE_PAGE", "QUOTE_BLUEPRINT", "BLOG_LISTING", "WEB_INTERACTIVE", "BLOG_POST" ],
+  "host_template_types" : [ "PAGE", "BLOG_LISTING", "BLOG_POST" ],
+  "module_id" : 212578183586,
+  "label" : "Floating Call CTA Callrail",
+  "is_available_for_new_content" : true
+}

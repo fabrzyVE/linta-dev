@@ -1,0 +1,62 @@
+<!--
+  templateType: "none"
+  isAvailableForNewContent: false
+-->
+{# Module: Linta Why Choose - Design reference: index.html #}
+<section class="why-choose" id="why-choose">
+  <div class="container">
+    <div class="why-choose-card">
+      <div class="why-choose-header">
+        <h2 class="why-choose-title">{{ module.title }}</h2>
+        <p class="why-choose-intro">{{ module.intro }}</p>
+      </div>
+      <div class="why-compare">
+        <div class="why-compare-card why-compare-card--standard">
+          <h3 class="why-compare-card-title">Industry Standard</h3>
+          <ul class="why-compare-list">
+            <li class="why-compare-item why-compare-item--standard">
+              <i class="fas fa-circle-exclamation"></i>
+              <span>Hard selling focused on closing the job</span>
+            </li>
+            <li class="why-compare-item why-compare-item--standard">
+              <i class="fas fa-circle-exclamation"></i>
+              <span>Basic estimates focused on surface materials and square footage</span>
+            </li>
+            <li class="why-compare-item why-compare-item--standard">
+              <i class="fas fa-circle-exclamation"></i>
+              <span>Minimal jobsite oversight and limited communication once work begins</span>
+            </li>
+            <li class="why-compare-item why-compare-item--standard">
+              <i class="fas fa-circle-exclamation"></i>
+              <span>Manufacturer warranties marketed as "lifetime," with limited contractor accountability</span>
+            </li>
+          </ul>
+        </div>
+        <div class="why-compare-card why-compare-card--linta">
+          <h3 class="why-compare-card-title">Linta Roofing Difference</h3>
+          <ul class="why-compare-list">
+            <li class="why-compare-item why-compare-item--linta">
+              <i class="fas fa-check"></i>
+              <span><strong>Education-first guidance</strong> that helps homeowners understand options, compare estimates confidently, and make informed long-term decisions.</span>
+            </li>
+            <li class="why-compare-item why-compare-item--linta">
+              <i class="fas fa-check"></i>
+              <span><strong>Full-scope evaluations</strong> that account for decking conditions, flashing, ventilation, code requirements, and how unexpected issues are handled before work begins.</span>
+            </li>
+            <li class="why-compare-item why-compare-item--linta">
+              <i class="fas fa-check"></i>
+              <span><strong>Dedicated project management</strong> with a superintendent assigned to every project—overseeing the job from start to finish, providing video progress updates, and serving as a single point of contact for questions.</span>
+            </li>
+            <li class="why-compare-item why-compare-item--linta">
+              <i class="fas fa-check"></i>
+              <span><strong>A true in-house workmanship warranty</strong> backed by a family-owned company operating since 1948, ensuring real support long after installation.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="cta-center">
+        <a href="{{ module.cta_link.url|default('#contact') }}" class="btn btn-yellow btn-why-cta">{{ module.cta_text }} <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </div>
+</section>

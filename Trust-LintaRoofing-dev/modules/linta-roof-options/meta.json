@@ -1,0 +1,37 @@
+{
+  "label": "Linta Roof Options",
+  "host_template_types": ["PAGE"],
+  "is_available_for_new_content": true,
+  "fields": [
+    {
+      "name": "tag",
+      "label": "Section tag",
+      "type": "text",
+      "default": "OTHER ROOF REPLACEMENT OPTIONS"
+    },
+    {
+      "name": "title",
+      "label": "Section title",
+      "type": "text",
+      "default": "We Also Install Metal, Tile, and Flat Roof Systems"
+    },
+    {
+      "name": "subtitle",
+      "label": "Subtitle",
+      "type": "textarea",
+      "default": "Not every home is built for shingles. We install premium metal, tile, and flat roofing systems using top-tier manufacturers and installation standards built for durability, performance, and long-term value."
+    },
+    {
+      "name": "cta_text",
+      "label": "CTA button text",
+      "type": "text",
+      "default": "I'm Ready To Talk About My Roof"
+    },
+    {
+      "name": "cta_link",
+      "label": "CTA link",
+      "type": "link",
+      "default": { "url": "#contact" }
+    }
+  ]
+}

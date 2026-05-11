@@ -1,0 +1,112 @@
+<!--
+  templateType: section
+  label: Our work
+  isAvailableForNewContent: true
+  description: "Project gallery with large featured image and 6 thumbnail navigation cards."
+-->
+{% dnd_section
+  class="lt-our-work",
+  background_color="#ffffff",
+  padding={
+    "default": {
+      "top": 80,
+      "right": 20,
+      "bottom": 80,
+      "left": 20
+    },
+    "mobile": {
+      "top": 60,
+      "right": 20,
+      "bottom": 60,
+      "left": 20
+    }
+  },
+  vertical_alignment="MIDDLE"
+%}
+  {% dnd_column
+    offset=0,
+    width=12
+  %}
+    {% dnd_row %}
+  {% dnd_module
+    path="@hubspot/rich_text",
+    html={{
+      '<div class="lt-our-work__heading"><h2>Our ' ~ (context.service_name or 'Roof Replacements') ~ ' in ' ~ (context.location_name or 'Myrtle Beach') ~ '</h2><p>Curious to see what a Linta Roof looks like? Check out some of the roofing systems we&apos;ve installed in the Grand Strand area.</p></div>'
+    }}
+  %}
+  {% end_dnd_module %}
+{% end_dnd_row %}
+
+    {% dnd_row %}
+      {% dnd_module
+        path="@hubspot/rich_text",
+        html={{
+          '<div class="lt-our-work__wrap" id="lt-our-work-wrap">'
+            ~ '<div class="lt-our-work__feature">'
+              ~ '<div class="lt-our-work__slide is-active" data-our-work-slide>'
+                ~ '<img src="' ~ get_asset_url("../../images/our-work-1.png") ~ '" alt="Roof replacement project 1" loading="lazy">'
+              ~ '</div>'
+              ~ '<div class="lt-our-work__slide" data-our-work-slide>'
+                ~ '<img src="' ~ get_asset_url("../../images/our-work-2.jpg") ~ '" alt="Roof replacement project 2" loading="lazy">'
+              ~ '</div>'
+              ~ '<div class="lt-our-work__slide" data-our-work-slide>'
+                ~ '<img src="' ~ get_asset_url("../../images/our-work-3.jpg") ~ '" alt="Roof replacement project 3" loading="lazy">'
+              ~ '</div>'
+              ~ '<div class="lt-our-work__slide" data-our-work-slide>'
+                ~ '<img src="' ~ get_asset_url("../../images/our-work-4.jpg") ~ '" alt="Roof replacement project 4" loading="lazy">'
+              ~ '</div>'
+              ~ '<div class="lt-our-work__slide" data-our-work-slide>'
+                ~ '<img src="' ~ get_asset_url("../../images/our-work-5.jpg") ~ '" alt="Roof replacement project 5" loading="lazy">'
+              ~ '</div>'
+              ~ '<div class="lt-our-work__slide" data-our-work-slide>'
+                ~ '<img src="' ~ get_asset_url("../../images/our-work-6.jpg") ~ '" alt="Roof replacement project 6" loading="lazy">'
+              ~ '</div>'
+            ~ '</div>'
+
+            ~ '<div class="lt-our-work__nav">'
+              ~ '<button type="button" class="lt-our-work__arrow lt-our-work__arrow--prev" aria-label="Previous project" data-our-work-prev>'
+                ~ '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>'
+              ~ '</button>'
+
+              ~ '<div class="lt-our-work__thumbs">'
+                ~ '<button type="button" class="lt-our-work__thumb is-active" aria-label="Show project 1" data-our-work-thumb="0">'
+                  ~ '<img src="' ~ get_asset_url("../../images/our-work-1.png") ~ '" alt="" loading="lazy">'
+                ~ '</button>'
+                ~ '<button type="button" class="lt-our-work__thumb" aria-label="Show project 2" data-our-work-thumb="1">'
+                  ~ '<img src="' ~ get_asset_url("../../images/our-work-2.jpg") ~ '" alt="" loading="lazy">'
+                ~ '</button>'
+                ~ '<button type="button" class="lt-our-work__thumb" aria-label="Show project 3" data-our-work-thumb="2">'
+                  ~ '<img src="' ~ get_asset_url("../../images/our-work-3.jpg") ~ '" alt="" loading="lazy">'
+                ~ '</button>'
+                ~ '<button type="button" class="lt-our-work__thumb" aria-label="Show project 4" data-our-work-thumb="3">'
+                  ~ '<img src="' ~ get_asset_url("../../images/our-work-4.jpg") ~ '" alt="" loading="lazy">'
+                ~ '</button>'
+                ~ '<button type="button" class="lt-our-work__thumb" aria-label="Show project 5" data-our-work-thumb="4">'
+                  ~ '<img src="' ~ get_asset_url("../../images/our-work-5.jpg") ~ '" alt="" loading="lazy">'
+                ~ '</button>'
+                ~ '<button type="button" class="lt-our-work__thumb" aria-label="Show project 6" data-our-work-thumb="5">'
+                  ~ '<img src="' ~ get_asset_url("../../images/our-work-6.jpg") ~ '" alt="" loading="lazy">'
+                ~ '</button>'
+              ~ '</div>'
+
+              ~ '<button type="button" class="lt-our-work__arrow lt-our-work__arrow--next" aria-label="Next project" data-our-work-next>'
+                ~ '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>'
+              ~ '</button>'
+            ~ '</div>'
+          ~ '</div>'
+        }}
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+
+    {% dnd_row %}
+      {% dnd_module
+        path="@hubspot/rich_text",
+        html={{
+          '<div class="lt-our-work__cta"><a class="lt-our-work__cta-button" href="' ~ (context.cta_url or '#') ~ '">' ~ (context.cta_text or 'See Our Work') ~ '</a></div>'
+        }}
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}

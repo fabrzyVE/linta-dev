@@ -1,0 +1,19 @@
+{
+  "label": "Linta Header",
+  "host_template_types": ["PAGE"],
+  "is_available_for_new_content": true,
+  "fields": [
+    {
+      "name": "logo_link",
+      "label": "Logo link URL",
+      "type": "link",
+      "default": { "url": "#", "open_in_new_tab": false }
+    },
+    {
+      "name": "logo_image",
+      "label": "Logo image (optional - leave empty to use default SVG)",
+      "type": "image",
+      "required": false
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "label": "Linta Footer",
+  "host_template_types": ["PAGE"],
+  "is_available_for_new_content": true,
+  "fields": [
+    {
+      "name": "tagline",
+      "label": "Tagline",
+      "type": "textarea",
+      "default": "Third-generation family business serving the Carolinas since 1948. Licensed, insured, and committed to excellence."
+    },
+    {
+      "name": "logo_link",
+      "label": "Logo link",
+      "type": "link",
+      "default": { "url": "#" }
+    },
+    {
+      "name": "phone",
+      "label": "Phone",
+      "type": "text",
+      "default": "(843) 954-4852"
+    },
+    {
+      "name": "email",
+      "label": "Email",
+      "type": "text",
+      "default": "office@lintaroofing.com"
+    },
+    {
+      "name": "address",
+      "label": "Address",
+      "type": "textarea",
+      "default": "324 Highway 57 S, Little River, SC 29566"
+    },
+    {
+      "name": "facebook_url",
+      "label": "Facebook URL",
+      "type": "text",
+      "default": "#"
+    },
+    {
+      "name": "instagram_url",
+      "label": "Instagram URL",
+      "type": "text",
+      "default": "#"
+    },
+    {
+      "name": "youtube_url",
+      "label": "YouTube URL",
+      "type": "text",
+      "default": "#"
+    },
+    {
+      "name": "linkedin_url",
+      "label": "LinkedIn URL",
+      "type": "text",
+      "default": "#"
+    },
+    {
+      "name": "copyright",
+      "label": "Copyright text",
+      "type": "text",
+      "default": "© 2026 Linta Roofing. All rights reserved."
+    },
+    {
+      "name": "privacy_link",
+      "label": "Privacy Policy link",
+      "type": "link",
+      "default": { "url": "#" }
+    },
+    {
+      "name": "terms_link",
+      "label": "Terms & Conditions link",
+      "type": "link",
+      "default": { "url": "#" }
+    }
+  ]
+}

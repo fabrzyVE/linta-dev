@@ -1,0 +1,50 @@
+<!--
+  templateType: section
+  label: Service areas
+  isAvailableForNewContent: true
+  description: "Two-column section with Google Map on the left and Service Areas heading/copy on the right."
+-->
+{% dnd_section
+  class="lt-service-areas",
+  background_color="#ffffff",
+  padding={
+    "default": {
+      "top": 80,
+      "right": 20,
+      "bottom": 80,
+      "left": 20
+    },
+    "mobile": {
+      "top": 60,
+      "right": 20,
+      "bottom": 60,
+      "left": 20
+    }
+  },
+  vertical_alignment="MIDDLE"
+%}
+  {% dnd_column
+    offset=0,
+    width=12
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="@hubspot/rich_text",
+        html={{
+          context.body
+          or '<div class="lt-service-areas__grid">'
+            ~ '<div class="lt-service-areas__map">'
+              ~ (context.google_map_embed or '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d211897.42!2d-78.99!3d33.69!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2z' ~ (context.location_name or 'Myrtle Beach') ~ '!5e0!3m2!1sen!2sus!4v1700000000000" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>')
+            ~ '</div>'
+            ~ '<div class="lt-service-areas__content">'
+              ~ '<span class="lt-service-areas__eyebrow">Service Areas</span>'
+              ~ '<h2>' ~ (context.location_name or 'Myrtle Beach') ~ '&apos;s Most Trusted Roofers</h2>'
+              ~ '<p>' ~ (context.location_name or 'Myrtle Beach') ~ ' is our home, and Linta Roofing is dedicated to protecting it with superior craftsmanship and reliable service. We are deeply committed to the Grand Strand community, investing in local partnerships and ensuring our neighbors are prepared for coastal weather challenges. We take pride in serving ' ~ (context.location_name or 'Myrtle Beach') ~ ' and keeping South Carolina&apos;s coast standing strong.</p>'
+            ~ '</div>'
+          ~ '</div>'
+        }}
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}

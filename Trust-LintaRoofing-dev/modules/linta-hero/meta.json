@@ -1,0 +1,43 @@
+{
+  "label": "Linta Hero",
+  "host_template_types": ["PAGE"],
+  "is_available_for_new_content": true,
+  "fields": [
+    {
+      "name": "headline",
+      "label": "Headline",
+      "type": "text",
+      "default": "Myrtle Beach Roof Replacements Trusted for Over 40 Years by Over 15,000 Homeowners"
+    },
+    {
+      "name": "hero_text",
+      "label": "Hero text",
+      "type": "textarea",
+      "default": "With Linta Roofing you get complete transparency and homeowner education from a 3rd-generation family roofing business. We help you make informed decisions for your home with no pressure, no gimmicks, and a legacy of local accountability you can see."
+    },
+    {
+      "name": "google_rating",
+      "label": "Google rating (e.g. 5.0)",
+      "type": "text",
+      "default": "5.0"
+    },
+    {
+      "name": "review_count",
+      "label": "Review count text",
+      "type": "text",
+      "default": "459 reviews"
+    },
+    {
+      "name": "hero_image",
+      "label": "Hero background image",
+      "type": "image",
+      "required": false
+    },
+    {
+      "name": "form_id",
+      "label": "HubSpot form ID (optional - leave empty to hide form)",
+      "type": "text",
+      "required": false
+    }
+  ]
+}

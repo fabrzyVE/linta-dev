@@ -1,0 +1,129 @@
+<!--
+  templateType: section
+  label: All locations we serve
+  isAvailableForNewContent: true
+  description: "Two-column with collapsible county accordions on the left and a Google Map placeholder on the right."
+-->
+{% set service_label = context.service_name or dynamic_page_hubdb_row.service_name or "Roofing" %}
+{% set service_slug = context.service_path or service_label|lower|replace(" ", "-") %}
+{% if "insurance" in service_label|lower %}
+  {% set service_slug = "roof-insurance-claim" %}
+{% elif "storm" in service_label|lower %}
+  {% set service_slug = "storm-damage-repair" %}
+{% endif %}
+{% set current_path = request.path|default("", true) %}
+{% set service_location_base_path = context.service_location_base_path or "/service-location" %}
+{% if not context.service_location_base_path and "-beta" in current_path %}
+  {% set service_location_base_path = "/service-location-beta" %}
+{% endif %}
+
+{% dnd_section
+  class="sl-all-locations",
+  background_color={{ context.background_color or "#ffffff" }},
+  padding={
+    "default": {
+      "top": 80,
+      "right": 20,
+      "bottom": 80,
+      "left": 20
+    },
+    "mobile": {
+      "top": 60,
+      "right": 20,
+      "bottom": 60,
+      "left": 20
+    }
+  },
+  vertical_alignment="TOP"
+%}
+  {% dnd_column
+    offset=0,
+    width=12
+  %}
+    {% dnd_row %}
+      {% dnd_module path="@hubspot/rich_text" %}
+        {% module_attribute "html" %}
+          {% if context.heading and context.heading|trim != "" %}
+            {{ context.heading|safe }}
+          {% else %}
+            <div class="sl-all-locations__heading">
+              <h2>All Locations We Serve</h2>
+              <p>Linta Roofing provides expert {{ service_label|lower }} services across the Grand Strand, serving {{ context.location_name or "Myrtle Beach" }} and surrounding coastal communities in South Carolina and North Carolina.</p>
+            </div>
+          {% endif %}
+        {% end_module_attribute %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+
+    {% dnd_row %}
+      {% dnd_module path="@hubspot/rich_text" %}
+        {% module_attribute "html" %}
+          <div class="sl-all-locations__layout">
+            <div class="sl-all-locations__counties">
+              {% if context.counties and context.counties|trim != "" %}
+                {{ context.counties|safe }}
+              {% else %}
+                <details class="sl-all-locations__county" open>
+                  <summary>Horry County, SC<span class="sl-all-locations__chevron" aria-hidden="true">▾</span></summary>
+                  <ul>
+                    <li><a href="{{ service_location_base_path }}/{{ service_slug }}-myrtle-beach">Myrtle Beach</a></li>
+                    <li><a href="{{ service_location_base_path }}/{{ service_slug }}-carolina-forest">Carolina Forest</a></li>
+                    <li><a href="{{ service_location_base_path }}/{{ service_slug }}-north-myrtle-beach">North Myrtle Beach</a></li>
+                    <li><a href="{{ service_location_base_path }}/{{ service_slug }}-little-river">Little River</a></li>
+                    <li><a href="{{ service_location_base_path }}/{{ service_slug }}-conway">Conway</a></li>
+                    <li><a href="{{ service_location_base_path }}/{{ service_slug }}-surfside-beach">Surfside Beach</a></li>
+                  </ul>
+                </details>
+                <details class="sl-all-locations__county">
+                  <summary>Georgetown County, SC<span class="sl-all-locations__chevron" aria-hidden="true">▾</span></summary>
+                  <ul>
+                    <li><a href="{{ service_location_base_path }}/{{ service_slug }}-murrells-inlet">Murrells Inlet</a></li>
+                    <li><a href="{{ service_location_base_path }}/{{ service_slug }}-georgetown">Georgetown</a></li>
+                    <li><a href="{{ service_location_base_path }}/{{ service_slug }}-georgetown-county">Georgetown County</a></li>
+                  </ul>
+                </details>
+                <details class="sl-all-locations__county">
+                  <summary>Other SC Areas<span class="sl-all-locations__chevron" aria-hidden="true">▾</span></summary>
+                  <ul>
+                    <li><a href="{{ service_location_base_path }}/{{ service_slug }}-marion-county">Marion County</a></li>
+                  </ul>
+                </details>
+                <details class="sl-all-locations__county">
+                  <summary>Brunswick County, NC<span class="sl-all-locations__chevron" aria-hidden="true">▾</span></summary>
+                  <ul>
+                    <li><a href="{{ service_location_base_path }}/{{ service_slug }}-brunswick-county">Brunswick County</a></li>
+                    <li><a href="{{ service_location_base_path }}/{{ service_slug }}-oak-island">Oak Island</a></li>
+                    <li><a href="{{ service_location_base_path }}/{{ service_slug }}-ocean-isle-beach">Ocean Isle Beach</a></li>
+                    <li><a href="{{ service_location_base_path }}/{{ service_slug }}-holden-beach">Holden Beach</a></li>
+                    <li><a href="{{ service_location_base_path }}/{{ service_slug }}-sunset-beach">Sunset Beach</a></li>
+                    <li><a href="{{ service_location_base_path }}/{{ service_slug }}-caswell-beach">Caswell Beach</a></li>
+                    <li><a href="{{ service_location_base_path }}/{{ service_slug }}-long-beach">Long Beach</a></li>
+                  </ul>
+                </details>
+                <details class="sl-all-locations__county">
+                  <summary>Columbus County, NC<span class="sl-all-locations__chevron" aria-hidden="true">▾</span></summary>
+                  <ul>
+                    <li><a href="{{ service_location_base_path }}/{{ service_slug }}-columbus-county">Columbus County</a></li>
+                  </ul>
+                </details>
+              {% endif %}
+            </div>
+
+            <div class="sl-all-locations__map">
+              {% if context.map and context.map|trim != "" %}
+                {{ context.map|safe }}
+              {% elif context.google_map_embed and context.google_map_embed|trim != "" %}
+                {{ context.google_map_embed|safe }}
+              {% else %}
+                <div class="sl-all-locations__map-placeholder">
+                  <span class="sl-all-locations__map-pin" aria-hidden="true"></span>
+                  <span>Google Map of {{ context.location_name or "Myrtle Beach" }} Service Area</span>
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        {% end_module_attribute %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}

@@ -1,0 +1,182 @@
+<!--
+  templateType: page
+  isAvailableForNewContent: true
+  label: HubDB Service Page
+-->
+
+{% extends "./layouts/base.html" %}
+
+{% require_css %}
+  <link rel="stylesheet" href="{{ get_asset_url('../styles/service.css') }}">
+{% end_require_css %}
+
+{% require_js position="footer" %}
+  <script src="https://elfsightcdn.com/platform.js" defer></script>
+  {# ...your other scripts... #}
+{% end_require_js %}
+
+{% block body %}
+  {% if dynamic_page_hubdb_row %}
+    {% if dynamic_page_hubdb_row.meta_title %}
+      <script>
+        document.title = {{ dynamic_page_hubdb_row.meta_title|tojson }};
+      </script>
+    {% endif %}
+    {% dnd_area "dnd_area"
+      label="Main section",
+      class="body-container body-container--service"
+    %}
+      {% include_dnd_partial path="../sections/service-page/hero-banner.html"
+        context={
+          "service_name": dynamic_page_hubdb_row.service_name,
+          "hero_heading": dynamic_page_hubdb_row.hero_heading,
+          "hero_subheading": dynamic_page_hubdb_row.hero_subheading,
+          "hero_body": dynamic_page_hubdb_row.hero_body,
+        }
+      %}
+
+      {% include_dnd_partial path="../sections/service-page/service-areas.html"
+        context={
+          "service_name": dynamic_page_hubdb_row.service_name,
+          "service_path": dynamic_page_hubdb_row.hs_path,
+        }
+      %}
+
+      {% include_dnd_partial path="../sections/service-page/why-choose.html" %}
+      {% include_dnd_partial path="../sections/service-page/who-we-are.html" %}
+
+      {% include_dnd_partial path="../sections/service-page/signs.html"
+        context={
+          "service_name": dynamic_page_hubdb_row.service_name,
+        }
+      %}
+
+      {% include_dnd_partial path="../sections/service-page/right-contractor.html" %}
+      {% include_dnd_partial path="../sections/service-page/trust.html" %}
+      {% include_dnd_partial path="../sections/service-page/why-myrtle-beach.html" %}
+      {% include_dnd_partial path="../sections/location-page/reviews.html" %}
+      {% include_dnd_partial path="../sections/service-page/cost.html"
+        context={
+          "service_name": dynamic_page_hubdb_row.service_name,
+        }
+      %}
+
+      {% include_dnd_partial path="../sections/service-page/benefits.html" %}
+      {% include_dnd_partial path="../sections/location-page/faq.html" 
+        context={
+          "heading": "Frequently Asked Questions",
+        }
+      %}
+      {% include_dnd_partial path="../sections/service-page/steps.html" %}
+      {% include_dnd_partial path="../sections/service-page/final-cta.html" %}
+    {% end_dnd_area %}
+ <script>
+  (function () {
+    // Reviews carousel
+    function initReviews() {
+      var wrap = document.getElementById('lt-reviews-wrap');
+      if (!wrap) return;
+      var slides = wrap.querySelectorAll('[data-reviews-slide]');
+      var prevBtn = wrap.querySelector('[data-reviews-prev]');
+      var nextBtn = wrap.querySelector('[data-reviews-next]');
+      var dots = wrap.querySelectorAll('[data-reviews-dot]');
+      var current = 0;
+      var total = slides.length;
+      if (!total) return;
+      function update(index) {
+        if (index < 0) index = total - 1;
+        if (index >= total) index = 0;
+        current = index;
+        for (var i = 0; i < slides.length; i++) {
+          if (i === current) slides[i].classList.add('is-active');
+          else slides[i].classList.remove('is-active');
+        }
+        for (var j = 0; j < dots.length; j++) {
+          if (j === current) {
+            dots[j].classList.add('is-active');
+            dots[j].setAttribute('aria-current', 'true');
+          } else {
+            dots[j].classList.remove('is-active');
+            dots[j].setAttribute('aria-current', 'false');
+          }
+        }
+      }
+      if (prevBtn) prevBtn.addEventListener('click', function () { update(current - 1); });
+      if (nextBtn) nextBtn.addEventListener('click', function () { update(current + 1); });
+      for (var k = 0; k < dots.length; k++) {
+        (function (idx) {
+          dots[idx].addEventListener('click', function () { update(idx); });
+        })(k);
+      }
+    }
+
+    // Our Work carousel
+    function initOurWork() {
+      var wrap = document.getElementById('lt-our-work-wrap');
+      if (!wrap) return;
+      var slides = wrap.querySelectorAll('[data-our-work-slide]');
+      var prevBtn = wrap.querySelector('[data-our-work-prev]');
+      var nextBtn = wrap.querySelector('[data-our-work-next]');
+      var thumbs = wrap.querySelectorAll('[data-our-work-thumb]');
+      var current = 0;
+      var total = slides.length;
+      if (!total) return;
+      function update(index) {
+        if (index < 0) index = total - 1;
+        if (index >= total) index = 0;
+        current = index;
+        for (var i = 0; i < slides.length; i++) {
+          if (i === current) slides[i].classList.add('is-active');
+          else slides[i].classList.remove('is-active');
+        }
+        for (var j = 0; j < thumbs.length; j++) {
+          if (j === current) {
+            thumbs[j].classList.add('is-active');
+            thumbs[j].setAttribute('aria-current', 'true');
+          } else {
+            thumbs[j].classList.remove('is-active');
+            thumbs[j].setAttribute('aria-current', 'false');
+          }
+        }
+      }
+      if (prevBtn) prevBtn.addEventListener('click', function () { update(current - 1); });
+      if (nextBtn) nextBtn.addEventListener('click', function () { update(current + 1); });
+      for (var k = 0; k < thumbs.length; k++) {
+        (function (idx) {
+          thumbs[idx].addEventListener('click', function () { update(idx); });
+        })(k);
+      }
+    }
+
+    // FAQ accordion
+    function initFaq() {
+      var list = document.getElementById('lt-faq-list');
+      if (!list) return;
+      var items = list.querySelectorAll('[data-faq-item]');
+      for (var i = 0; i < items.length; i++) {
+        (function (item) {
+          var toggle = item.querySelector('[data-faq-toggle]');
+          if (!toggle) return;
+          toggle.addEventListener('click', function () {
+            var isOpen = item.classList.toggle('is-open');
+            toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+          });
+        })(items[i]);
+      }
+    }
+
+    function initAll() {
+      initReviews();
+      initOurWork();
+      initFaq();
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initAll);
+    } else {
+      initAll();
+    }
+  })();
+</script>
+  {% endif %}
+{% endblock body %}

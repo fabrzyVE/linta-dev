@@ -1,0 +1,31 @@
+{
+  "label": "Linta Financing",
+  "host_template_types": ["PAGE"],
+  "is_available_for_new_content": true,
+  "fields": [
+    {
+      "name": "heading",
+      "label": "Heading",
+      "type": "text",
+      "default": "Flexible"
+    },
+    {
+      "name": "body",
+      "label": "Body text",
+      "type": "textarea",
+      "default": "We offer flexible financing options through GreenSky to help make your roof replacement more manageable. During your estimate, we'll walk you through available plans, payment structures, and approval steps so you understand exactly what to expect. Our goal is to help you move forward confidently without unnecessary financial pressure."
+    },
+    {
+      "name": "button_text",
+      "label": "Button text",
+      "type": "text",
+      "default": "Explore Financing Options"
+    },
+    {
+      "name": "button_link",
+      "label": "Button link",
+      "type": "link",
+      "default": { "url": "#contact" }
+    }
+  ]
+}

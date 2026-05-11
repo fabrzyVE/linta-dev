@@ -1,0 +1,24 @@
+{
+  "label" : "Trust-LintaRoofing-dev",
+  "preview_path" : "./templates/homepage.html",
+  "screenshot_path" : "./images/template-screenshots/Trust-Theme-Homepage-V1.jpeg",
+  "enable_domain_stylesheets" : false,
+  "is_available_for_new_content" : true,
+  "extends" : "@marketplace/IMPACT/Trust",
+  "responsive_breakpoints" : [ {
+    "mediaQuery" : "@media (max-width: 768px)",
+    "messages" : { },
+    "name" : "mobile",
+    "previewWidth" : {
+      "units" : "px",
+      "value" : 768
+    }
+  } ],
+  "version" : "20",
+  "author" : {
+    "name" : "",
+    "email" : ""
+  },
+  "license" : "./license.txt",
+  "hide_all_default_modules" : false
+}

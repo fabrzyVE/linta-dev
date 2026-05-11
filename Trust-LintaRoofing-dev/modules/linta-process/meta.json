@@ -1,0 +1,25 @@
+{
+  "label": "Linta Process",
+  "host_template_types": ["PAGE"],
+  "is_available_for_new_content": true,
+  "fields": [
+    {
+      "name": "title_prefix",
+      "label": "Title (before highlight)",
+      "type": "text",
+      "default": "Our Proven"
+    },
+    {
+      "name": "title_highlight",
+      "label": "Title (highlighted part)",
+      "type": "text",
+      "default": "Roof Replacement Process"
+    },
+    {
+      "name": "subtitle",
+      "label": "Subtitle",
+      "type": "text",
+      "default": "Six simple steps to a beautiful, long-lasting roof you'll love."
+    }
+  ]
+}

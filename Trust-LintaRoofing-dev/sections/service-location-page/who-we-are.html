@@ -1,0 +1,47 @@
+<!--
+  templateType: section
+  label: Who We Are
+  isAvailableForNewContent: true
+  description: "Two-column section with a small trust bar above, then a heading and intro paragraph on the left and an image on the right."
+-->
+{% dnd_section
+  class="lt-who-we-are",
+  padding={
+    "default": {
+      "top": 80,
+      "right": 50,
+      "bottom": 80,
+      "left": 20
+    },
+    "mobile": {
+      "top": 56,
+      "right": 20,
+      "bottom": 56,
+      "left": 50
+    }
+  },
+  vertical_alignment="MIDDLE"
+%}
+  {% dnd_column
+    offset=0,
+    width=12
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="@hubspot/rich_text",
+        html={{
+          '<div class="lt-who-we-are__grid">'
+            ~ '<div class="lt-who-we-are__content">'
+              ~ '<h2>Who We Are?</h2>'
+              ~ '<p>Linta Roofing is a trusted roofing contractor serving ' ~ (context.location_name or 'Myrtle Beach') ~ ' homeowners with high-quality roof replacement, repair, inspections, and storm damage services. Our team understands coastal weather challenges and builds roofs that last.</p>'
+            ~ '</div>'
+            ~ '<div class="lt-who-we-are__image">'
+              ~ '<img src="' ~ get_asset_url("../../images/bg-image-2.jpg") ~ '" alt="Linta Roofing crew at work" loading="lazy">'
+            ~ '</div>'
+          ~ '</div>'
+        }}
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}

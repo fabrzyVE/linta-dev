@@ -1,0 +1,31 @@
+{
+  "label": "Linta Map Section",
+  "host_template_types": ["PAGE"],
+  "is_available_for_new_content": true,
+  "fields": [
+    {
+      "name": "title_line1",
+      "label": "Title line 1",
+      "type": "text",
+      "default": "Carolinas"
+    },
+    {
+      "name": "title_line2",
+      "label": "Title line 2",
+      "type": "text",
+      "default": "Trusted Roofer"
+    },
+    {
+      "name": "title_line3",
+      "label": "Title line 3 (accent part)",
+      "type": "text",
+      "default": "for Over 40 Years"
+    },
+    {
+      "name": "map_image",
+      "label": "Map or service area image",
+      "type": "image",
+      "required": false
+    }
+  ]
+}

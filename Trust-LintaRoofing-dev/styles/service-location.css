@@ -1,0 +1,2689 @@
+/* =====================================================================
+   Service-location page — section styles
+   Drop-in stylesheet for the 11 sections used on the home template:
+     hero, who-we-are, primary-services, other-services, why-choose,
+     process, all-locations, surrounding-areas, reviews, faq,
+     estimate-cta
+   ===================================================================== */
+
+/* =========================================================================
+   Service-location theme tokens
+   ========================================================================= */
+
+:root {
+  --sl-yellow: #FFD500;
+  --sl-yellow-hover: #e6c000;
+  --sl-yellow-soft: #fdf3c4;
+  --sl-text: #111;
+  --sl-muted: #6b7280;
+  --sl-border: #e5e7eb;
+  --sl-bg-soft: #f7f8fa;
+  --sl-card-bg: #ffffff;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+/* Header clearance — beats production.css / child.css overrides
+   AND HubSpot's inline padding from dnd_section's padding= parameter */
+html body .body-wrapper .body-container--service-location .lt-hero-banner,
+html body .body-wrapper .body-container--service .lt-hero-banner,
+html body .body-wrapper .body-container--home .lt-hero-banner,
+html body .body-wrapper .body-container--location .lt-hero-banner {
+  padding-top: 15rem !important;
+}
+
+@media (max-width: 1024px) {
+  html body .body-wrapper .body-container--service-location .lt-hero-banner,
+  html body .body-wrapper .body-container--service .lt-hero-banner,
+  html body .body-wrapper .body-container--home .lt-hero-banner,
+  html body .body-wrapper .body-container--location .lt-hero-banner {
+    padding-top: 9rem !important;
+  }
+}
+
+@media (max-width: 767px) {
+  html body .body-wrapper .body-container--service-location .lt-hero-banner,
+  html body .body-wrapper .body-container--service .lt-hero-banner,
+  html body .body-wrapper .body-container--home .lt-hero-banner,
+  html body .body-wrapper .body-container--location .lt-hero-banner {
+    padding-top: 7rem !important;
+  }
+}
+
+/* =========================================================================
+   Force Inter font on all body container variants
+   ========================================================================= */
+.body-container--location,
+.body-container--location *,
+.body-container--location *::before,
+.body-container--location *::after,
+.body-container--service,
+.body-container--service *,
+.body-container--service *::before,
+.body-container--service *::after,
+.body-container--service-location,
+.body-container--service-location *,
+.body-container--service-location *::before,
+.body-container--service-location *::after,
+.body-container--home,
+.body-container--home *,
+.body-container--home *::before,
+.body-container--home *::after {
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif !important;
+}
+
+/* =========================================================================
+   Defensive override — kill any 100vw full-bleed trick on every section
+   This forces every section back to 100% width (no scrollbar offset)
+   ========================================================================= */
+.lt-hero-banner,
+.lt-who-we-are,
+.lt-location-map,
+.lt-service-areas,
+.lt-roofing-process,
+.lt-service-areas-grid,
+.lt-roofing-services,
+.lt-why-choose-us,
+.lt-faq-section,
+.lt-faq,
+.lt-our-work,
+.lt-reviews,
+.lt-estimate-cta,
+.lt-bottom-strip,
+.sl-all-locations,
+.body-container--location > .row-fluid-wrapper,
+.body-container--location > .dnd-section,
+.body-container--service > .row-fluid-wrapper,
+.body-container--service > .dnd-section,
+.body-container--service-location > .row-fluid-wrapper,
+.body-container--service-location > .dnd-section,
+.body-container--home > .row-fluid-wrapper,
+.body-container--home > .dnd-section {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  left: auto !important;
+  right: auto !important;
+}
+
+/* =========================================================================
+   GLOBAL HubSpot wrapper override — kills negative margins on .row-fluid,
+   .span12, .dnd-column, etc. that cause content to overflow past viewport
+   ========================================================================= */
+.body-container--location .row-fluid,
+.body-container--location .row-fluid-wrapper,
+.body-container--location .span12,
+.body-container--location .widget-span,
+.body-container--location .dnd-column,
+.body-container--location .dnd-row,
+.body-container--service .row-fluid,
+.body-container--service .row-fluid-wrapper,
+.body-container--service .span12,
+.body-container--service .widget-span,
+.body-container--service .dnd-column,
+.body-container--service .dnd-row,
+.body-container--service-location .row-fluid,
+.body-container--service-location .row-fluid-wrapper,
+.body-container--service-location .span12,
+.body-container--service-location .widget-span,
+.body-container--service-location .dnd-column,
+.body-container--service-location .dnd-row,
+.body-container--home .row-fluid,
+.body-container--home .row-fluid-wrapper,
+.body-container--home .span12,
+.body-container--home .widget-span,
+.body-container--home .dnd-column,
+.body-container--home .dnd-row {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  float: none !important;
+}
+
+/* Also constrain images so they can't push the layout wider */
+.body-container--location img,
+.body-container--service img,
+.body-container--service-location img,
+.body-container--home img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* =========================================================================
+   Section gutters — apply to inner content wrappers only
+   This way full-bleed sections (hero, CTA, bottom strip) keep their
+   edge-to-edge backgrounds, but the CONTENT inside still has breathing room
+   ========================================================================= */
+.lt-hero-banner .dnd-column,
+.lt-who-we-are > .row-fluid,
+.lt-location-map > .row-fluid,
+.lt-service-areas > .row-fluid,
+.lt-roofing-process > .row-fluid,
+.lt-service-areas-grid > .row-fluid,
+.lt-roofing-services > .row-fluid,
+.lt-why-choose-us > .row-fluid,
+.lt-faq-section > .row-fluid,
+.lt-faq > .row-fluid,
+.lt-our-work > .row-fluid,
+.lt-reviews > .row-fluid,
+.sl-all-locations > .row-fluid,
+.lt-estimate-cta .lt-estimate-cta__inner,
+.lt-bottom-strip .lt-bottom-strip__content {
+  padding-left: 1.5rem !important;
+  padding-right: 1.5rem !important;
+  box-sizing: border-box !important;
+}
+
+@media (max-width: 767px) {
+  .lt-hero-banner .dnd-column,
+  .lt-who-we-are > .row-fluid,
+  .lt-location-map > .row-fluid,
+  .lt-service-areas > .row-fluid,
+  .lt-roofing-process > .row-fluid,
+  .lt-service-areas-grid > .row-fluid,
+  .lt-roofing-services > .row-fluid,
+  .lt-why-choose-us > .row-fluid,
+  .lt-faq-section > .row-fluid,
+  .lt-faq > .row-fluid,
+  .lt-our-work > .row-fluid,
+  .lt-reviews > .row-fluid,
+  .sl-all-locations > .row-fluid,
+  .lt-estimate-cta .lt-estimate-cta__inner,
+  .lt-bottom-strip .lt-bottom-strip__content {
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
+  }
+}
+
+/* Tighten headings */
+.body-container--location h1,
+.body-container--location h2,
+.body-container--location h3,
+.body-container--location h4,
+.body-container--location h5,
+.body-container--location h6,
+.body-container--service h1,
+.body-container--service h2,
+.body-container--service h3,
+.body-container--service h4,
+.body-container--service h5,
+.body-container--service h6,
+.body-container--service-location h1,
+.body-container--service-location h2,
+.body-container--service-location h3,
+.body-container--service-location h4,
+.body-container--service-location h5,
+.body-container--service-location h6,
+.body-container--home h1,
+.body-container--home h2,
+.body-container--home h3,
+.body-container--home h4,
+.body-container--home h5,
+.body-container--home h6 {
+  letter-spacing: -0.02em !important;
+}
+
+/* =========================================================================
+   Kill all spacing on parent wrappers — eliminates white gutters
+   ========================================================================= */
+body,
+.body-wrapper,
+.body-container,
+.body-container-wrapper,
+.body-container--location,
+.body-container--service,
+.body-container--service-location,
+.body-container--home,
+main#main-content,
+main {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+html,
+body,
+.body-wrapper,
+.body-container,
+.body-container-wrapper,
+main {
+  overflow-x: hidden !important;
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
+/* =========================================================================
+   Full-bleed sections — use 100% with no negative margin to avoid the
+   scrollbar offset that causes mobile right-shift
+   ========================================================================= */
+.lt-hero-banner,
+.lt-who-we-are,
+.lt-location-map,
+.lt-service-areas,
+.lt-roofing-process,
+.lt-service-areas-grid,
+.lt-roofing-services,
+.lt-why-choose-us,
+.lt-faq-section,
+.lt-faq,
+.lt-our-work,
+.lt-reviews,
+.lt-estimate-cta,
+.lt-bottom-strip,
+.sl-all-locations {
+  width: 100%;
+  max-width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  left: auto;
+  right: auto;
+  position: relative;
+}
+
+/* Eliminate margins between adjacent sections so they butt flush */
+.body-container--service-location > .row-fluid-wrapper,
+.body-container--service-location > .dnd-section,
+.body-container--home > .row-fluid-wrapper,
+.body-container--home > .dnd-section {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* ---------------------------------------------------------------------
+   Hero banner
+   --------------------------------------------------------------------- */
+.lt-hero-banner {
+  width: 100%;
+  max-width: 100%;
+  position: relative;
+}
+.lt-hero-banner:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.48);
+  z-index: 0;
+}
+.lt-hero-banner:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 4px;
+  background: #f4b400;
+  z-index: 2;
+}
+.lt-hero-banner > .row-fluid {
+  position: relative;
+  z-index: 1;
+  align-items: center;
+}
+.lt-hero-banner,
+.lt-hero-banner p,
+.lt-hero-banner li,
+.lt-hero-banner h1,
+.lt-hero-banner h2,
+.lt-hero-banner h3,
+.lt-hero-banner h4,
+.lt-hero-banner h5,
+.lt-hero-banner h6 {
+  color: #fff;
+}
+.lt-hero-banner h1 {
+  font-size: clamp(2.25rem, 3.5vw, 3.5rem);
+  line-height: 1.06;
+  margin: 0 0 1rem;
+}
+.lt-hero-banner .lt-hero-banner__logo,
+.lt-hero-banner .hs_cos_wrapper_type_linked_image {
+  margin-bottom: 1.25rem;
+}
+.lt-hero-banner .lt-hero-banner__logo img,
+.lt-hero-banner .hs_cos_wrapper_type_linked_image img {
+  height: auto;
+  max-width: 180px;
+}
+.lt-hero-banner .lt-hero-banner__content {
+  max-width: 40rem;
+}
+.lt-hero-banner .lt-hero-banner__trust {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+  margin-top: 1.25rem;
+}
+.lt-hero-banner .lt-hero-banner__trust-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  opacity: 0.95;
+}
+.lt-hero-banner .lt-hero-banner__trust-icon {
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  background: #f4b400;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 18px;
+}
+.lt-hero-banner .lt-hero-banner__trust-icon:before {
+  content: "✓";
+  font-size: 12px;
+  line-height: 1;
+  color: #111;
+}
+.lt-hero-banner .lt-hero-banner__card-intro {
+  background: #fff;
+  color: #111;
+  padding: 1.5rem 1.5rem 0.75rem;
+  border-radius: 10px 10px 0 0;
+}
+.lt-hero-banner .lt-hero-banner__card-intro h4 {
+  color: #111;
+  margin: 0 0 0.75rem;
+}
+.lt-hero-banner .lt-hero-banner__card-intro ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.lt-hero-banner .lt-hero-banner__card-intro li {
+  color: #111;
+  font-size: 0.9375rem;
+  margin: 0.35rem 0;
+}
+.lt-hero-banner .lt-hero-banner__card-intro li:before {
+  content: "✓";
+  color: #f4b400;
+  margin-right: 0.5rem;
+}
+.lt-hero-banner .lt-hero-banner__card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
+  margin-top: 2.25rem;
+  max-width: 360px;
+  overflow: hidden;
+}
+.lt-hero-banner .lt-hero-banner__card,
+.lt-hero-banner .lt-hero-banner__card p,
+.lt-hero-banner .lt-hero-banner__card li,
+.lt-hero-banner .lt-hero-banner__card h1,
+.lt-hero-banner .lt-hero-banner__card h2,
+.lt-hero-banner .lt-hero-banner__card h3,
+.lt-hero-banner .lt-hero-banner__card h4,
+.lt-hero-banner .lt-hero-banner__card h5,
+.lt-hero-banner .lt-hero-banner__card h6 {
+  color: #111;
+}
+.lt-hero-banner .lt-hero-banner__card-actions {
+  padding: 0 1.5rem 1.5rem;
+}
+.lt-hero-banner .lt-hero-banner__card-button {
+  align-items: center;
+  background: #f4b400;
+  border-radius: 8px; /* slight rounding instead of sharp 0 */
+  color: #111;
+  display: inline-flex;
+  font-weight: 700;
+  gap: 0.6rem;
+  justify-content: center;
+  padding: 0.95rem 1.5rem;
+  text-decoration: none;
+  width: auto;
+}
+
+.lt-hero-banner .lt-hero-banner__card-button:after {
+  content: none;
+}
+.lt-hero-banner .lt-hero-banner__card-button:hover,
+.lt-hero-banner .lt-hero-banner__card-button:focus {
+  background: #d99f00;
+  color: #111;
+}
+
+/* Section spacing — adjust the rem value to taste */
+.dnd-section:not(.lt-hero-banner):not(.row-depth-1.row-number-1) {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+@media (max-width: 767px) {
+  .lt-hero-banner h1 {
+    margin-bottom: 0.75rem;
+  }
+  .lt-hero-banner .lt-hero-banner__content {
+    max-width: none;
+  }
+  .lt-hero-banner .lt-hero-banner__card {
+    margin-top: 1.5rem;
+    max-width: none;
+  }
+}
+
+/* ---------------------------------------------------------------------
+   Bottom row: Inspection card + Google review badge side-by-side
+   --------------------------------------------------------------------- */
+.lt-hero-banner .lt-hero-banner__bottom-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 1.5rem;
+  margin-top: 2.25rem;
+}
+
+.lt-hero-banner .lt-hero-banner__bottom-row .lt-hero-banner__card {
+  margin-top: 0;
+  flex: 0 0 auto;
+  width: 100%;
+  max-width: 360px;
+}
+
+/* ---------------------------------------------------------------------
+   Google review badge
+   --------------------------------------------------------------------- */
+.lt-hero-banner .lt-hero-banner__google-badge {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  padding: 1.25rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  flex: 0 0 auto;
+  min-width: 180px;
+}
+
+.lt-hero-banner .lt-hero-banner__google-badge-logo svg {
+  display: block;
+  width: 40px;
+  height: 40px;
+}
+
+.lt-hero-banner .lt-hero-banner__google-badge-stars {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.lt-hero-banner .lt-hero-banner__google-badge-rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.lt-hero-banner .lt-hero-banner__google-badge-rating strong {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #4285f4;
+}
+
+.lt-hero-banner .lt-hero-banner__google-badge-stars-icons {
+  color: #fbbc04;
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+}
+
+.lt-hero-banner .lt-hero-banner__google-badge-stars small {
+  font-size: 0.85rem;
+  color: #4285f4;
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+@media (max-width: 767px) {
+  .lt-hero-banner .lt-hero-banner__bottom-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .lt-hero-banner .lt-hero-banner__bottom-row .lt-hero-banner__card {
+    width: 100%;
+    max-width: 320px;
+    box-sizing: border-box;
+  }
+  .lt-hero-banner .lt-hero-banner__google-badge {
+    display: flex;
+    width: 100%;
+    max-width: 320px;
+    min-width: 0;
+    box-sizing: border-box;
+    align-self: flex-start;
+  }
+}
+
+
+/* ---------------------------------------------------------------------
+   Hero — full-width, centered column with left-aligned content
+   --------------------------------------------------------------------- */
+
+
+/* Darker overlay to match the Figma */
+.lt-hero-banner:before {
+  background: rgba(0, 0, 0, 0.72);
+}
+
+/* Center the column on the page, but keep its content left-aligned */
+.lt-hero-banner .dnd-column {
+  max-width: 900px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  width: 100% !important;
+  text-align: left;
+}
+
+/* Reset any prior centering on inner pieces */
+.lt-hero-banner .lt-hero-banner__content {
+  text-align: left;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.lt-hero-banner .lt-hero-banner__trust {
+  justify-content: flex-start;
+}
+
+.lt-hero-banner .lt-hero-banner__bottom-row {
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+}
+/* ---------------------------------------------------------------------
+   Who We Are
+   --------------------------------------------------------------------- */
+.lt-who-we-are {
+  background: #fff;
+  color: #111;
+}
+
+/* Center the section content within a max-width container */
+.lt-who-we-are .row-fluid {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.lt-who-we-are .lt-who-we-are__trust-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.5rem 2.5rem;
+  margin-bottom: 4rem;
+}
+.lt-who-we-are .lt-who-we-are__trust-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9375rem;
+  color: #111;
+}
+.lt-who-we-are .lt-who-we-are__trust-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #111;
+  flex-shrink: 0;
+}
+.lt-who-we-are .lt-who-we-are__trust-icon--star {
+  color: #f4b400;
+  font-size: 1.1rem;
+}
+.lt-who-we-are .lt-who-we-are__trust-text strong {
+  font-weight: 700;
+  margin-right: 0.15rem;
+}
+
+/* Two-column grid for content + image */
+.lt-who-we-are .lt-who-we-are__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.lt-who-we-are .lt-who-we-are__content {
+  max-width: 32rem;
+}
+
+.lt-who-we-are .lt-who-we-are__content h2 {
+  font-size: clamp(2rem, 3vw, 2.75rem);
+  line-height: 1.1;
+  margin: 0 0 1.25rem;
+  color: #111;
+  font-weight: 700;
+}
+
+.lt-who-we-are .lt-who-we-are__content p {
+  font-size: 1rem;
+  line-height: 1.65;
+  color: #4b5563;
+  margin: 0;
+}
+
+/* Image with yellow accent frame */
+.lt-who-we-are .lt-who-we-are__image {
+  position: relative;
+  padding: 1.25rem 1.25rem 0 0;
+}
+
+.lt-who-we-are .lt-who-we-are__image::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 65%;
+  height: 50%;
+  border-top: 3px solid #f4b400;
+  border-right: 3px solid #f4b400;
+  border-top-right-radius: 8px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.lt-who-we-are .lt-who-we-are__image img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 767px) {
+  .lt-who-we-are .lt-who-we-are__trust-bar {
+    gap: 1rem 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .lt-who-we-are .lt-who-we-are__grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .lt-who-we-are .lt-who-we-are__content {
+    max-width: none;
+  }
+  .lt-who-we-are .lt-who-we-are__image {
+    padding: 1rem 1rem 0 0;
+  }
+  .lt-who-we-are .lt-who-we-are__image::before {
+    width: 60%;
+    height: 40%;
+  }
+}
+/* ---------------------------------------------------------------------
+   Location map + copy
+   --------------------------------------------------------------------- */
+
+.lt-location-map {
+  position: relative;
+}
+
+.lt-location-map,
+.lt-location-map p,
+.lt-location-map li,
+.lt-location-map h1,
+.lt-location-map h2,
+.lt-location-map h3,
+.lt-location-map h4,
+.lt-location-map h5,
+.lt-location-map h6 {
+  color: #111;
+}
+
+.lt-location-map .map-embed,
+.lt-location-map .lt-location-map__map {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.lt-location-map .lt-location-map__map iframe {
+  width: 100%;
+  height: 360px;
+  border: 0;
+  display: block;
+}
+
+.lt-location-map .lt-location-map__map > * {
+  max-width: 100%;
+}
+
+.lt-location-map .lt-location-map__map-placeholder {
+  background: #f3f4f6;
+  border: 1px dashed #d1d5db;
+  min-height: 360px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  text-align: center;
+  font-weight: 600;
+  color: #6b7280;
+}
+
+.lt-location-map .lt-location-map__content {
+  max-width: 34rem;
+}
+
+.lt-location-map .lt-location-map__eyebrow {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #6b7280;
+  margin: 0 0 0.75rem;
+}
+
+.lt-location-map .lt-location-map__content h2 {
+  font-size: clamp(2rem, 2.6vw, 2.75rem);
+  line-height: 1.15;
+  margin: 0 0 1rem;
+}
+
+.lt-location-map .lt-location-map__content p {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: #4b5563;
+  margin: 0;
+}
+
+@media (max-width: 1024px) {
+  .lt-location-map .lt-location-map__content {
+    max-width: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .lt-location-map .map-embed {
+    border-radius: 8px;
+  }
+}
+
+/* ---------------------------------------------------------------------
+   Service areas — 2-column with map + content
+   --------------------------------------------------------------------- */
+.lt-service-areas {
+  position: relative;
+  background: #ffffff;
+}
+.lt-service-areas,
+.lt-service-areas p,
+.lt-service-areas h1,
+.lt-service-areas h2,
+.lt-service-areas h3,
+.lt-service-areas h4,
+.lt-service-areas h5,
+.lt-service-areas h6 {
+  color: #111;
+}
+
+/* Center the inner content within the section */
+.lt-service-areas .row-fluid {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Two-column grid: map | content */
+.lt-service-areas .lt-service-areas__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Map column */
+.lt-service-areas .lt-service-areas__map {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 5 / 4;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  background: #e5e7eb;
+}
+
+.lt-service-areas .lt-service-areas__map iframe,
+.lt-service-areas .lt-service-areas__map img {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+/* Content column */
+.lt-service-areas .lt-service-areas__content {
+  max-width: 32rem;
+}
+
+.lt-service-areas .lt-service-areas__eyebrow {
+  display: inline-block;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #6b7280;
+  margin-bottom: 1rem;
+}
+
+.lt-service-areas .lt-service-areas__content h2 {
+  font-size: clamp(1.75rem, 2.75vw, 2.5rem);
+  line-height: 1.15;
+  margin: 0 0 1.25rem;
+  font-weight: 700;
+  color: #111;
+}
+
+.lt-service-areas .lt-service-areas__content p {
+  font-size: 1rem;
+  line-height: 1.65;
+  color: #4b5563;
+  margin: 0;
+}
+
+@media (max-width: 767px) {
+  .lt-service-areas .lt-service-areas__grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .lt-service-areas .lt-service-areas__content {
+    max-width: none;
+  }
+  .lt-service-areas .lt-service-areas__map {
+    aspect-ratio: 4 / 3;
+  }
+}
+/* ---------------------------------------------------------------------
+   How Do I (Our Roofing Process)
+   --------------------------------------------------------------------- */
+.lt-roofing-process {
+  position: relative;
+  background: #ffffff;
+}
+
+/* Force text colors with high specificity */
+.lt-roofing-process,
+.lt-roofing-process .lt-roofing-process__heading,
+.lt-roofing-process .lt-roofing-process__heading h2,
+.lt-roofing-process .lt-roofing-process__heading p,
+.lt-roofing-process .lt-roofing-process__card,
+.lt-roofing-process .lt-roofing-process__card h3 {
+  color: #111 !important;
+}
+
+.lt-roofing-process .lt-roofing-process__card p {
+  color: #4b5563 !important;
+}
+
+/* Center the inner content within the section */
+.lt-roofing-process .row-fluid {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Heading + subtitle */
+.lt-roofing-process .lt-roofing-process__heading {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+}
+.lt-roofing-process .lt-roofing-process__heading h2 {
+  font-size: clamp(1.75rem, 2.75vw, 2.5rem);
+  line-height: 1.15;
+  margin: 0 0 1rem;
+  text-align: center;
+  font-weight: 700;
+}
+.lt-roofing-process .lt-roofing-process__heading p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0;
+  text-align: center;
+}
+
+/* 3-column grid for steps */
+.lt-roofing-process .lt-roofing-process__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  width: 100%;
+  max-width: 1100px;
+  margin: 4rem auto 0;
+}
+
+/* Cards */
+.lt-roofing-process .lt-roofing-process__card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.lt-roofing-process .lt-roofing-process__card:hover {
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+/* Image at top of card */
+.lt-roofing-process .lt-roofing-process__image {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: #e5e7eb;
+}
+
+.lt-roofing-process .lt-roofing-process__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Body content below image */
+.lt-roofing-process .lt-roofing-process__body {
+  padding: 2rem 2rem 2.25rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.lt-roofing-process .lt-roofing-process__card h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0 0 1rem;
+  line-height: 1.3;
+  text-align: center;
+}
+
+.lt-roofing-process .lt-roofing-process__card p {
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  margin: 0;
+  text-align: center;
+}
+
+/* CTA button at the bottom of the section */
+.lt-roofing-process .lt-roofing-process__cta {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+}
+
+.lt-roofing-process .lt-roofing-process__cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffd900;
+  color: #111 !important;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 1rem 2.25rem;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.lt-roofing-process .lt-roofing-process__cta-button:hover,
+.lt-roofing-process .lt-roofing-process__cta-button:focus {
+  background: #f4b400;
+  color: #111 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(244, 180, 0, 0.35);
+}
+
+@media (max-width: 1024px) {
+  .lt-roofing-process .lt-roofing-process__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .lt-roofing-process .lt-roofing-process__grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  .lt-roofing-process .lt-roofing-process__card h3 {
+    font-size: 1.125rem;
+  }
+  .lt-roofing-process .lt-roofing-process__body {
+    padding: 1.5rem 1.25rem 1.75rem;
+  }
+}
+
+/* Force HubSpot's wrapper containers to be full-width and centered */
+.lt-roofing-process .row-fluid,
+.lt-roofing-process .row-fluid-wrapper,
+.lt-roofing-process .span12,
+.lt-roofing-process .widget-span,
+.lt-roofing-process .dnd-column,
+.lt-roofing-process .dnd-row {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  float: none !important;
+}
+
+/* Force-fill the space, but allow stacking on smaller screens */
+.lt-roofing-process .lt-roofing-process__grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 2rem;
+  width: 100%;
+  max-width: 1100px;
+  margin: 4rem auto 0 !important;
+}
+
+@media (max-width: 1024px) {
+  .lt-roofing-process .lt-roofing-process__grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .lt-roofing-process .lt-roofing-process__grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.25rem;
+    margin-top: 2.5rem !important;
+  }
+}
+/* ---------------------------------------------------------------------
+   Service areas grid (neighborhoods)
+   --------------------------------------------------------------------- */
+.lt-service-areas-grid {
+  position: relative;
+  background: #ffffff;
+}
+
+/* Force text colors */
+.lt-service-areas-grid,
+.lt-service-areas-grid .lt-service-areas-grid__heading,
+.lt-service-areas-grid .lt-service-areas-grid__heading h2,
+.lt-service-areas-grid .lt-service-areas-grid__heading p,
+.lt-service-areas-grid .lt-service-areas-grid__card,
+.lt-service-areas-grid .lt-service-areas-grid__body p {
+  color: #111 !important;
+}
+.lt-service-areas-grid .lt-service-areas-grid__body p {
+  color: #4b5563 !important;
+}
+
+/* Force HubSpot's wrapper containers to be full-width */
+.lt-service-areas-grid .row-fluid,
+.lt-service-areas-grid .row-fluid-wrapper,
+.lt-service-areas-grid .span12,
+.lt-service-areas-grid .widget-span,
+.lt-service-areas-grid .dnd-column,
+.lt-service-areas-grid .dnd-row {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  float: none !important;
+}
+
+/* Heading + subtitle */
+.lt-service-areas-grid .lt-service-areas-grid__heading {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+}
+.lt-service-areas-grid .lt-service-areas-grid__heading h2 {
+  font-size: clamp(1.75rem, 2.75vw, 2.5rem);
+  line-height: 1.15;
+  margin: 0 0 1rem;
+  text-align: center;
+  font-weight: 700;
+}
+.lt-service-areas-grid .lt-service-areas-grid__heading p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0;
+  text-align: center;
+}
+
+/* 2-column grid */
+.lt-service-areas-grid .lt-service-areas-grid__grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 2rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: 4rem auto 0 !important;
+}
+
+.lt-service-areas-grid .lt-service-areas-grid__card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.lt-service-areas-grid .lt-service-areas-grid__card:hover {
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+/* Image with overlaid title */
+.lt-service-areas-grid .lt-service-areas-grid__image {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #1f2937;
+}
+
+.lt-service-areas-grid .lt-service-areas-grid__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Dark overlay for title readability */
+.lt-service-areas-grid .lt-service-areas-grid__image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 35%,
+    rgba(0, 0, 0, 0.5) 80%,
+    rgba(0, 0, 0, 0.7) 100%
+  );
+  pointer-events: none;
+}
+
+.lt-service-areas-grid .lt-service-areas-grid__image h3 {
+  position: absolute;
+  left: 1.5rem;
+  bottom: 1.25rem;
+  margin: 0;
+  color: #fff !important;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  z-index: 1;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Body text below image */
+.lt-service-areas-grid .lt-service-areas-grid__body {
+  padding: 1.5rem 1.75rem 1.75rem;
+  flex-grow: 1;
+}
+
+.lt-service-areas-grid .lt-service-areas-grid__body p {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.65;
+}
+
+@media (max-width: 767px) {
+  .lt-service-areas-grid .lt-service-areas-grid__grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem;
+    margin-top: 2.5rem !important;
+  }
+  .lt-service-areas-grid .lt-service-areas-grid__image h3 {
+    font-size: 1.25rem;
+    left: 1.25rem;
+    bottom: 1rem;
+  }
+  .lt-service-areas-grid .lt-service-areas-grid__body {
+    padding: 1.25rem 1.5rem 1.5rem;
+  }
+}
+
+/* ---------------------------------------------------------------------
+   Our roofing services
+   --------------------------------------------------------------------- */
+.lt-roofing-services {
+  position: relative;
+  background: #ffffff;
+}
+.lt-roofing-services,
+.lt-roofing-services p,
+.lt-roofing-services li,
+.lt-roofing-services h1,
+.lt-roofing-services h2,
+.lt-roofing-services h3,
+.lt-roofing-services h4,
+.lt-roofing-services h5,
+.lt-roofing-services h6 {
+  color: #111;
+}
+
+/* Center the inner content within the section */
+.lt-roofing-services .row-fluid {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.lt-roofing-services .lt-roofing-services__heading {
+  max-width: 720px;
+  margin: 0 auto 3rem;
+  text-align: center;
+}
+.lt-roofing-services .lt-roofing-services__heading h2 {
+  font-size: clamp(2rem, 3vw, 2.75rem);
+  line-height: 1.1;
+  margin: 0 0 1rem;
+  text-align: center;
+  font-weight: 700;
+}
+.lt-roofing-services .lt-roofing-services__heading p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #4b5563;
+  margin: 0;
+  text-align: center;
+}
+
+/* 2-column grid */
+.lt-roofing-services .lt-roofing-services__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.lt-roofing-services .lt-roofing-services__card {
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+.lt-roofing-services .lt-roofing-services__card:hover {
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Image at top of card */
+.lt-roofing-services .lt-roofing-services__image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #e5e7eb;
+}
+.lt-roofing-services .lt-roofing-services__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Body content below image */
+.lt-roofing-services .lt-roofing-services__body {
+  padding: 2rem 2rem 1.75rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.lt-roofing-services .lt-roofing-services__card h3 {
+  font-size: 1.375rem;
+  font-weight: 700;
+  margin: 0 0 1rem;
+  text-align: center;
+}
+
+.lt-roofing-services .lt-roofing-services__card p {
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: #4b5563;
+  margin: 0 0 1.5rem;
+  text-align: center;
+  flex-grow: 1;
+}
+
+.lt-roofing-services .lt-roofing-services__link {
+  color: #1e3a8a;
+  font-weight: 700;
+  font-size: 0.9375rem;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  justify-content: center;
+  margin-top: auto;
+}
+.lt-roofing-services .lt-roofing-services__link span {
+  font-size: 1.1em;
+  transition: transform 0.2s ease;
+}
+.lt-roofing-services .lt-roofing-services__link:hover {
+  color: #f4b400;
+}
+.lt-roofing-services .lt-roofing-services__link:hover span {
+  transform: translateX(3px);
+}
+
+/* CTA button at the bottom of the section */
+.lt-roofing-services .lt-roofing-services__cta {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+}
+
+.lt-roofing-services .lt-roofing-services__cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffd900;
+  color: #111;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 1rem 2.25rem;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.lt-roofing-services .lt-roofing-services__cta-button:hover,
+.lt-roofing-services .lt-roofing-services__cta-button:focus {
+  background: #f4b400;
+  color: #111;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(244, 180, 0, 0.35);
+}
+
+@media (max-width: 767px) {
+  .lt-roofing-services .lt-roofing-services__grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .lt-roofing-services .lt-roofing-services__body {
+    padding: 1.5rem 1.5rem 1.25rem;
+  }
+  .lt-roofing-services .lt-roofing-services__card h3 {
+    font-size: 1.25rem;
+  }
+  .lt-roofing-services .lt-roofing-services__card p {
+    font-size: 0.875rem;
+  }
+}
+/* ---------------------------------------------------------------------
+   Why choose us
+   --------------------------------------------------------------------- */
+.lt-why-choose-us {
+  position: relative;
+  background: #ffffff;
+}
+.lt-why-choose-us,
+.lt-why-choose-us p,
+.lt-why-choose-us h1,
+.lt-why-choose-us h2,
+.lt-why-choose-us h3,
+.lt-why-choose-us h4,
+.lt-why-choose-us h5,
+.lt-why-choose-us h6 {
+  color: #111;
+}
+
+.lt-why-choose-us .row-fluid {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.lt-why-choose-us .lt-why-choose-us__heading {
+  max-width: 720px;
+  margin: 0 auto 3rem;
+  text-align: center;
+}
+.lt-why-choose-us .lt-why-choose-us__heading h2 {
+  font-size: clamp(1.75rem, 2.75vw, 2.5rem);
+  line-height: 1.15;
+  margin: 0 0 1rem;
+  text-align: center;
+  font-weight: 700;
+}
+.lt-why-choose-us .lt-why-choose-us__heading p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #4b5563;
+  margin: 0;
+  text-align: center;
+}
+
+.lt-why-choose-us .lt-why-choose-us__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.lt-why-choose-us .lt-why-choose-us__card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.lt-why-choose-us .lt-why-choose-us__card:hover {
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+.lt-why-choose-us .lt-why-choose-us__image {
+  position: relative;
+  width: 100%;
+  background: #1f2937;
+  overflow: hidden;
+}
+
+.lt-why-choose-us .lt-why-choose-us__image img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.lt-why-choose-us .lt-why-choose-us__body {
+  padding: 1.5rem 1.5rem 1.75rem;
+  flex-grow: 1;
+}
+
+.lt-why-choose-us .lt-why-choose-us__body p {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: #4b5563;
+}
+
+/* Responsive — stack cards on smaller screens */
+@media (max-width: 1024px) {
+  .lt-why-choose-us .lt-why-choose-us__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .lt-why-choose-us .lt-why-choose-us__grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .lt-why-choose-us .lt-why-choose-us__heading {
+    margin-bottom: 2rem;
+  }
+  .lt-why-choose-us .lt-why-choose-us__body {
+    padding: 1.25rem 1.25rem 1.5rem;
+  }
+}
+
+/* Force HubSpot's wrapper containers to be full-width and centered */
+.lt-why-choose-us .row-fluid,
+.lt-why-choose-us .row-fluid-wrapper,
+.lt-why-choose-us .span12,
+.lt-why-choose-us .widget-span,
+.lt-why-choose-us .dnd-column,
+.lt-why-choose-us .dnd-row {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  float: none !important;
+}
+/* ---------------------------------------------------------------------
+   Our roofing process (dark variant)
+   --------------------------------------------------------------------- */
+
+.lt-roofing-process {
+  position: relative;
+  background-color: #111;
+}
+
+.lt-roofing-process,
+.lt-roofing-process p,
+.lt-roofing-process li,
+.lt-roofing-process h1,
+.lt-roofing-process h2,
+.lt-roofing-process h3,
+.lt-roofing-process h4,
+.lt-roofing-process h5,
+.lt-roofing-process h6 {
+  color: #fff;
+}
+
+.lt-roofing-process .lt-roofing-process__heading {
+  text-align: center;
+  max-width: 52rem;
+  margin: 0 auto;
+}
+
+.lt-roofing-process .lt-roofing-process__heading h2 {
+  font-size: clamp(2rem, 2.6vw, 2.75rem);
+  line-height: 1.15;
+  margin: 0;
+}
+
+.lt-roofing-process .lt-roofing-process__heading p {
+  margin: 0.9rem auto 0;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.72);
+}
+
+.lt-roofing-process .lt-roofing-process__content {
+  margin-top: 3.5rem;
+}
+
+.lt-roofing-process .lt-roofing-process__grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 2.25rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.lt-roofing-process .lt-roofing-process__step {
+  text-align: left;
+}
+
+.lt-roofing-process .lt-roofing-process__icon {
+  color: #f4b400;
+  margin-bottom: 0.9rem;
+}
+
+.lt-roofing-process .lt-roofing-process__icon svg {
+  width: 22px;
+  height: 22px;
+  stroke: currentColor;
+}
+
+.lt-roofing-process .lt-roofing-process__step h3 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin: 0 0 0.55rem;
+}
+
+.lt-roofing-process .lt-roofing-process__step p {
+  font-size: 0.82rem;
+  line-height: 1.65;
+  margin: 0;
+  color: rgba(255,255,255,0.72);
+}
+
+.lt-roofing-process .lt-roofing-process__cta {
+  display: flex;
+  justify-content: center;
+  margin-top: 2.75rem;
+}
+
+.lt-roofing-process .lt-roofing-process__button {
+  background: #f4b400;
+  color: #111;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 0.85rem 1.35rem;
+  border-radius: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.lt-roofing-process .lt-roofing-process__button:after {
+  content: "→";
+  font-size: 0.95em;
+}
+
+.lt-roofing-process .lt-roofing-process__button:hover {
+  filter: brightness(0.95);
+}
+
+@media (max-width: 1100px) {
+  .lt-roofing-process .lt-roofing-process__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2.25rem 2rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .lt-roofing-process .lt-roofing-process__content {
+    margin-top: 2.5rem;
+  }
+
+  .lt-roofing-process .lt-roofing-process__grid {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+}
+
+
+/* ---------------------------------------------------------------------
+   FAQ
+   --------------------------------------------------------------------- */
+
+.lt-faq-section {
+  position: relative;
+}
+
+.lt-faq-section .lt-faq-section__heading {
+  text-align: center;
+  max-width: 56rem;
+  margin: 0 auto 2.5rem;
+}
+
+.lt-faq-section .lt-faq-section__heading h2 {
+  margin: 0;
+  font-size: clamp(2rem, 2.6vw, 3rem);
+  line-height: 1.1;
+}
+
+.lt-faq-section .lt-faq-section__heading p {
+  margin: 0.75rem 0 0;
+  color: #6b7280;
+  font-size: 0.95rem;
+}
+
+/* ---------------------------------------------------------------------
+   Estimate CTA — yellow full-width banner
+   --------------------------------------------------------------------- */
+.lt-estimate-cta {
+  position: relative;
+  background: #ffd900;
+}
+
+/* Force text colors */
+.lt-estimate-cta,
+.lt-estimate-cta .lt-estimate-cta__inner,
+.lt-estimate-cta .lt-estimate-cta__inner h2,
+.lt-estimate-cta .lt-estimate-cta__inner p {
+  color: #111 !important;
+}
+
+/* Force HubSpot's wrapper containers to be full-width */
+.lt-estimate-cta .row-fluid,
+.lt-estimate-cta .row-fluid-wrapper,
+.lt-estimate-cta .span12,
+.lt-estimate-cta .widget-span,
+.lt-estimate-cta .dnd-column,
+.lt-estimate-cta .dnd-row {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  float: none !important;
+}
+
+.lt-estimate-cta .lt-estimate-cta__inner {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.lt-estimate-cta .lt-estimate-cta__inner h2 {
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  line-height: 1.15;
+  margin: 0 0 1.25rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.lt-estimate-cta .lt-estimate-cta__inner p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0 0 2rem;
+  text-align: center;
+}
+
+.lt-estimate-cta .lt-estimate-cta__actions {
+  display: flex;
+  justify-content: center;
+}
+
+.lt-estimate-cta .lt-estimate-cta__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  background: #111;
+  color: #fff !important;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 1rem 2rem;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.lt-estimate-cta .lt-estimate-cta__button:hover,
+.lt-estimate-cta .lt-estimate-cta__button:focus {
+  background: #1f2937;
+  color: #fff !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.lt-estimate-cta .lt-estimate-cta__arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.lt-estimate-cta .lt-estimate-cta__button:hover .lt-estimate-cta__arrow,
+.lt-estimate-cta .lt-estimate-cta__button:focus .lt-estimate-cta__arrow {
+  transform: translateX(3px);
+}
+
+@media (max-width: 767px) {
+  .lt-estimate-cta .lt-estimate-cta__inner h2 {
+    font-size: 1.625rem;
+  }
+  .lt-estimate-cta .lt-estimate-cta__inner p {
+    font-size: 0.9375rem;
+    margin-bottom: 1.5rem;
+  }
+  .lt-estimate-cta .lt-estimate-cta__button {
+    padding: 0.875rem 1.5rem;
+    width: 100%;
+    max-width: 320px;
+  }
+}
+
+/* ---------------------------------------------------------------------
+   Bottom strip
+   --------------------------------------------------------------------- */
+.lt-bottom-strip {
+  position: relative;
+}
+
+/* Force HubSpot's wrapper containers to be full-width */
+.lt-bottom-strip .row-fluid,
+.lt-bottom-strip .row-fluid-wrapper,
+.lt-bottom-strip .span12,
+.lt-bottom-strip .widget-span,
+.lt-bottom-strip .dnd-column,
+.lt-bottom-strip .dnd-row {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  float: none !important;
+}
+
+.lt-bottom-strip .lt-bottom-strip__content {
+  text-align: center;
+}
+.lt-bottom-strip .lt-bottom-strip__content p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+/* ---------------------------------------------------------------------
+   Reviews carousel
+   --------------------------------------------------------------------- */
+.lt-reviews {
+  position: relative;
+  background: #f5f6f8;
+}
+
+/* Force text colors */
+.lt-reviews,
+.lt-reviews .lt-reviews__quote blockquote,
+.lt-reviews .lt-reviews__quote cite {
+  color: #111 !important;
+}
+
+/* Force HubSpot's wrapper containers to be full-width */
+.lt-reviews .row-fluid,
+.lt-reviews .row-fluid-wrapper,
+.lt-reviews .span12,
+.lt-reviews .widget-span,
+.lt-reviews .dnd-column,
+.lt-reviews .dnd-row {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  float: none !important;
+}
+
+/* Eyebrow label "Our Reviews" */
+.lt-reviews .lt-reviews__eyebrow {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.lt-reviews .lt-reviews__eyebrow span {
+  display: inline-block;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #1e3a8a;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #1e3a8a;
+}
+
+/* Carousel container */
+.lt-reviews .lt-reviews__carousel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Arrows */
+.lt-reviews .lt-reviews__arrow {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 0;
+  color: #6b7280;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.lt-reviews .lt-reviews__arrow:hover,
+.lt-reviews .lt-reviews__arrow:focus {
+  background: rgba(30, 58, 138, 0.08);
+  color: #1e3a8a;
+  outline: none;
+}
+
+/* Track holds the slides */
+.lt-reviews .lt-reviews__track {
+  position: relative;
+  flex-grow: 1;
+  min-height: 360px;
+}
+
+/* Each slide takes the same space; only the active one is visible */
+.lt-reviews .lt-reviews__slide {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.lt-reviews .lt-reviews__slide.is-active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  position: relative; /* lets the track size to the active slide on mobile */
+}
+
+/* Quote block (left side) */
+.lt-reviews .lt-reviews__quote blockquote {
+  font-size: clamp(1.125rem, 1.6vw, 1.5rem);
+  font-weight: 700;
+  line-height: 1.4;
+  margin: 0 0 1.25rem;
+  quotes: none;
+}
+
+.lt-reviews .lt-reviews__quote cite {
+  display: block;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  font-style: normal;
+  color: #6b7280 !important;
+}
+
+/* Image (right side) */
+.lt-reviews .lt-reviews__image {
+  width: 100%;
+}
+
+.lt-reviews .lt-reviews__image img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  display: block;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* Dots */
+.lt-reviews .lt-reviews__dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 2.5rem;
+}
+
+.lt-reviews .lt-reviews__dot {
+  width: 32px;
+  height: 3px;
+  background: #d1d5db;
+  border: 0;
+  border-radius: 2px;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s ease, width 0.2s ease;
+}
+
+.lt-reviews .lt-reviews__dot:hover {
+  background: #9ca3af;
+}
+
+.lt-reviews .lt-reviews__dot.is-active {
+  background: #1e3a8a;
+}
+
+/* CTA buttons wrapper */
+.lt-reviews .lt-reviews__cta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1.25rem;
+  margin-top: 3rem;
+}
+
+/* Shared button base */
+.lt-reviews .lt-reviews__cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 1.125rem 2.5rem;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Primary (yellow) — Get Instant Estimate */
+.lt-reviews .lt-reviews__cta-button--primary {
+  background: #ffd900 !important;
+  color: #111 !important;
+}
+
+.lt-reviews .lt-reviews__cta-button--primary:hover,
+.lt-reviews .lt-reviews__cta-button--primary:focus {
+  background: #f4b400 !important;
+  color: #111 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(244, 180, 0, 0.35);
+}
+
+/* Secondary (navy) — Schedule Inspection Online */
+.lt-reviews .lt-reviews__cta-button--secondary {
+  background: #1e3a8a !important;
+  color: #fff !important;
+}
+
+.lt-reviews .lt-reviews__cta-button--secondary:hover,
+.lt-reviews .lt-reviews__cta-button--secondary:focus {
+  background: #172e6d !important;
+  color: #fff !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(30, 58, 138, 0.35);
+}
+
+@media (max-width: 767px) {
+  .lt-reviews .lt-reviews__carousel {
+    gap: 0.25rem;
+  }
+  .lt-reviews .lt-reviews__track {
+    min-height: 0;
+  }
+  .lt-reviews .lt-reviews__slide {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .lt-reviews .lt-reviews__arrow {
+    width: 36px;
+    height: 36px;
+  }
+  .lt-reviews .lt-reviews__arrow svg {
+    width: 24px;
+    height: 24px;
+  }
+  .lt-reviews .lt-reviews__quote blockquote {
+    font-size: 1.0625rem;
+  }
+
+  /* Stack CTAs on mobile, matched fixed width */
+  .lt-reviews .lt-reviews__cta {
+    flex-direction: column;
+    align-items: center;   /* keep them centered in the column */
+    gap: 0.75rem;
+  }
+  .lt-reviews .lt-reviews__cta-button {
+    width: 260px;          /* fixed width — both buttons match */
+    max-width: 100%;       /* safety net for very narrow screens */
+    padding: 1rem 1.25rem;
+  }
+} 
+/* ---------------------------------------------------------------------
+   Our work — featured image with thumbnail navigation
+   --------------------------------------------------------------------- */
+.lt-our-work {
+  position: relative;
+  background: #ffffff;
+}
+
+/* Force text colors */
+.lt-our-work,
+.lt-our-work .lt-our-work__heading,
+.lt-our-work .lt-our-work__heading h2,
+.lt-our-work .lt-our-work__heading p {
+  color: #111 !important;
+}
+.lt-our-work .lt-our-work__heading p {
+  color: #4b5563 !important;
+}
+
+/* Force HubSpot's wrapper containers to be full-width */
+.lt-our-work .row-fluid,
+.lt-our-work .row-fluid-wrapper,
+.lt-our-work .span12,
+.lt-our-work .widget-span,
+.lt-our-work .dnd-column,
+.lt-our-work .dnd-row {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  float: none !important;
+}
+
+/* Heading + subtitle */
+.lt-our-work .lt-our-work__heading {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+}
+.lt-our-work .lt-our-work__heading h2 {
+  font-size: clamp(1.75rem, 2.75vw, 2.5rem);
+  line-height: 1.15;
+  margin: 0 0 1rem;
+  text-align: center;
+  font-weight: 700;
+}
+.lt-our-work .lt-our-work__heading p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0;
+  text-align: center;
+}
+
+/* Wrap holds the feature image + navigation */
+.lt-our-work .lt-our-work__wrap {
+  max-width: 1200px;
+  margin: 3rem auto 0;
+}
+
+/* Featured image area */
+.lt-our-work .lt-our-work__feature {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #e5e7eb;
+}
+
+.lt-our-work .lt-our-work__slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+}
+
+.lt-our-work .lt-our-work__slide.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lt-our-work .lt-our-work__slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Navigation row: arrows + thumbnails */
+.lt-our-work .lt-our-work__nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.lt-our-work .lt-our-work__arrow {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 0;
+  color: #6b7280;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.lt-our-work .lt-our-work__arrow:hover,
+.lt-our-work .lt-our-work__arrow:focus {
+  background: rgba(0, 0, 0, 0.05);
+  color: #111;
+  outline: none;
+}
+
+/* Thumbnails grid */
+.lt-our-work .lt-our-work__thumbs {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0.75rem;
+  flex-grow: 1;
+}
+
+.lt-our-work .lt-our-work__thumb {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: transparent;
+  border: 2px solid transparent;
+  border-radius: 6px;
+  padding: 0;
+  cursor: pointer;
+  overflow: hidden;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.lt-our-work .lt-our-work__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 4px;
+}
+
+.lt-our-work .lt-our-work__thumb:hover {
+  transform: translateY(-2px);
+}
+
+.lt-our-work .lt-our-work__thumb.is-active {
+  border-color: #ffd900;
+}
+
+/* CTA button */
+.lt-our-work .lt-our-work__cta {
+  display: flex;
+  justify-content: center;
+  margin-top: 2.5rem;
+}
+
+.lt-our-work .lt-our-work__cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffd900;
+  color: #111 !important;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 1rem 2.25rem;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.lt-our-work .lt-our-work__cta-button:hover,
+.lt-our-work .lt-our-work__cta-button:focus {
+  background: #f4b400;
+  color: #111 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(244, 180, 0, 0.35);
+}
+
+@media (max-width: 767px) {
+  .lt-our-work .lt-our-work__feature {
+    aspect-ratio: 4 / 3;
+  }
+  .lt-our-work .lt-our-work__thumbs {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+  }
+  .lt-our-work .lt-our-work__nav {
+    gap: 0.5rem;
+  }
+  .lt-our-work .lt-our-work__arrow {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+/* ---------------------------------------------------------------------
+   FAQ accordion
+   --------------------------------------------------------------------- */
+.lt-faq {
+  position: relative;
+  background: #ffffff;
+}
+
+/* Force text colors */
+.lt-faq,
+.lt-faq .lt-faq__heading,
+.lt-faq .lt-faq__heading h2,
+.lt-faq .lt-faq__heading p,
+.lt-faq .lt-faq__question,
+.lt-faq .lt-faq__question-text,
+.lt-faq .lt-faq__answer p {
+  color: #111 !important;
+}
+.lt-faq .lt-faq__heading p {
+  color: #4b5563 !important;
+}
+.lt-faq .lt-faq__answer p {
+  color: #4b5563 !important;
+}
+
+/* Force HubSpot's wrapper containers to be full-width */
+.lt-faq .row-fluid,
+.lt-faq .row-fluid-wrapper,
+.lt-faq .span12,
+.lt-faq .widget-span,
+.lt-faq .dnd-column,
+.lt-faq .dnd-row {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  float: none !important;
+}
+
+/* Heading + subtitle */
+.lt-faq .lt-faq__heading {
+  max-width: 720px;
+  margin: 0 auto 3rem;
+  text-align: center;
+}
+.lt-faq .lt-faq__heading h2 {
+  font-size: clamp(2rem, 3vw, 3rem);
+  line-height: 1.15;
+  margin: 0 0 1rem;
+  text-align: center;
+  font-weight: 700;
+}
+.lt-faq .lt-faq__heading p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0;
+  text-align: center;
+}
+
+/* List of FAQ items */
+.lt-faq .lt-faq__list {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.lt-faq .lt-faq__item {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.lt-faq .lt-faq__item:hover {
+  border-color: #d1d5db;
+}
+
+.lt-faq .lt-faq__item.is-open {
+  border-color: #d1d5db;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+/* Question button */
+.lt-faq .lt-faq__question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  background: transparent;
+  border: 0;
+  padding: 1.25rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.lt-faq .lt-faq__question:hover,
+.lt-faq .lt-faq__question:focus {
+  background: rgba(0, 0, 0, 0.02);
+  outline: none;
+}
+
+.lt-faq .lt-faq__question-text {
+  flex-grow: 1;
+  line-height: 1.4;
+}
+
+.lt-faq .lt-faq__icon {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #6b7280;
+  transition: transform 0.25s ease;
+}
+
+.lt-faq .lt-faq__item.is-open .lt-faq__icon {
+  transform: rotate(45deg);
+}
+
+/* Answer area — uses grid-template-rows trick for smooth animation */
+.lt-faq .lt-faq__answer {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s ease;
+}
+
+.lt-faq .lt-faq__item.is-open .lt-faq__answer {
+  grid-template-rows: 1fr;
+}
+
+.lt-faq .lt-faq__answer-inner {
+  overflow: hidden;
+}
+
+.lt-faq .lt-faq__answer-inner p {
+  margin: 0;
+  padding: 0 1.5rem 1.5rem;
+  font-size: 0.9375rem;
+  line-height: 1.65;
+}
+
+@media (max-width: 767px) {
+  .lt-faq .lt-faq__list {
+    gap: 0.75rem;
+  }
+  .lt-faq .lt-faq__question {
+    padding: 1rem 1.25rem;
+    font-size: 0.9375rem;
+  }
+  .lt-faq .lt-faq__answer-inner p {
+    padding: 0 1.25rem 1.25rem;
+  }
+}
+
+/* =========================================================================
+   All locations we serve — county accordions + Google map
+   ========================================================================= */
+.sl-all-locations {
+  position: relative;
+}
+
+/* Force HubSpot's wrapper containers to be full-width and centered */
+.sl-all-locations .row-fluid,
+.sl-all-locations .row-fluid-wrapper,
+.sl-all-locations .span12,
+.sl-all-locations .widget-span,
+.sl-all-locations .dnd-column,
+.sl-all-locations .dnd-row {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  float: none !important;
+}
+
+/* Heading */
+.sl-all-locations .sl-all-locations__heading {
+  text-align: center;
+  max-width: 56rem;
+  margin: 0 auto 3rem;
+}
+
+.sl-all-locations .sl-all-locations__heading h2 {
+  font-size: clamp(1.75rem, 2.5vw, 2.25rem);
+  line-height: 1.2;
+  margin: 0 0 1rem;
+  font-weight: 800;
+  color: var(--st-text, #111);
+}
+
+.sl-all-locations .sl-all-locations__heading p {
+  margin: 0 auto;
+  color: var(--st-muted, #6b7280);
+  font-size: 0.95rem;
+  line-height: 1.65;
+  max-width: 44rem;
+}
+
+/* Two-column grid container */
+.sl-all-locations .sl-all-locations__layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* County accordions stack */
+.sl-all-locations .sl-all-locations__counties {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* County accordion */
+.sl-all-locations .sl-all-locations__county {
+  background: #fff;
+  border: 1px solid var(--st-border, #e5e7eb);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: box-shadow 0.2s ease;
+}
+
+.sl-all-locations .sl-all-locations__county[open] {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.sl-all-locations .sl-all-locations__county summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  font-weight: 700;
+  font-size: 0.875rem;
+  color: var(--st-text, #111);
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+
+.sl-all-locations .sl-all-locations__county summary::-webkit-details-marker {
+  display: none;
+}
+
+.sl-all-locations .sl-all-locations__county summary::marker {
+  display: none;
+  content: "";
+}
+
+.sl-all-locations .sl-all-locations__chevron {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  color: var(--st-muted, #6b7280);
+  font-size: 0.7rem;
+  transition: transform 0.25s ease;
+}
+
+.sl-all-locations .sl-all-locations__county[open] .sl-all-locations__chevron {
+  transform: rotate(180deg);
+}
+
+.sl-all-locations .sl-all-locations__county summary:hover {
+  background: rgba(0, 0, 0, 0.015);
+}
+
+.sl-all-locations .sl-all-locations__county ul {
+  list-style: none;
+  margin: 0;
+  padding: 1rem 1.25rem 1.25rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem 1rem;
+  border-top: 1px solid var(--st-border, #e5e7eb);
+}
+
+.sl-all-locations .sl-all-locations__county ul li {
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.sl-all-locations .sl-all-locations__county ul li a {
+  color: var(--st-muted, #6b7280);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.sl-all-locations .sl-all-locations__county ul li a:hover {
+  color: var(--st-text, #111);
+  text-decoration: underline;
+}
+
+/* Map column */
+.sl-all-locations .sl-all-locations__map {
+  width: 100%;
+  height: 100%;
+  min-height: 360px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #f3f4f6;
+  position: relative;
+}
+
+.sl-all-locations .sl-all-locations__map iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 360px;
+  border: 0;
+  display: block;
+}
+
+/* Map placeholder */
+.sl-all-locations .sl-all-locations__map-placeholder {
+  width: 100%;
+  height: 100%;
+  min-height: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  background: #f3f4f6;
+  color: var(--st-muted, #6b7280);
+  font-size: 0.875rem;
+  text-align: center;
+  padding: 2rem;
+}
+
+.sl-all-locations .sl-all-locations__map-pin {
+  width: 36px;
+  height: 36px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239ca3af' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><path d='M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z'/><circle cx='12' cy='10' r='3'/></svg>");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  display: inline-block;
+}
+
+@media (max-width: 900px) {
+  .sl-all-locations .sl-all-locations__layout {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .sl-all-locations .sl-all-locations__county ul {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* CTA button row */
+.lt-service-areas-grid .lt-service-areas-grid__cta {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+}
+
+.lt-service-areas-grid .lt-service-areas-grid__cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffd900;
+  color: #111 !important;
+  font-weight: 700;
+  font-size: 0.9375rem;
+  padding: 1rem 2.25rem;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.lt-service-areas-grid .lt-service-areas-grid__cta-button:hover,
+.lt-service-areas-grid .lt-service-areas-grid__cta-button:focus {
+  background: #f4b400;
+  color: #111 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(244, 180, 0, 0.35);
+}
+
+
+
