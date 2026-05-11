@@ -1,0 +1,396 @@
+<!--
+  templateType: "none"
+  isAvailableForNewContent: false
+-->
+<style>
+  :root {
+    --lf-bg: #f3f4f6;
+    --lf-text: #111827;
+    --lf-muted: #6b7280;
+    --lf-line: rgba(17, 24, 39, 0.12);
+    --lf-card: #ffffff;
+    --lf-accent: #f4c400;
+    --lf-max: 1200px;
+  }
+
+  .lf-footer {
+    background: var(--lf-bg);
+    color: var(--lf-text);
+  }
+
+  .lf-container {
+    max-width: var(--lf-max);
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
+
+  .lf-top {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr 1.1fr;
+    gap: 36px;
+  }
+
+  .lf-col-title {
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 800;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    margin: 0 0 12px;
+  }
+
+  .lf-col-rule {
+    height: 1px;
+    background: var(--lf-line);
+    margin: 0 0 14px;
+  }
+
+  .lf-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 10px;
+  }
+
+  .lf-item {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 500;
+    font-size: 13px;
+    color: var(--lf-muted);
+    line-height: 1.35;
+  }
+
+  .lf-item a {
+    color: var(--lf-muted);
+    text-decoration: none;
+  }
+
+  .lf-item a:hover {
+    color: var(--lf-text);
+    text-decoration: underline;
+  }
+
+  .lf-icon {
+    width: 16px;
+    height: 16px;
+    margin-top: 2px;
+    flex: 0 0 auto;
+    color: #374151;
+    opacity: 0.85;
+  }
+
+  .lf-link-list a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--lf-muted);
+    text-decoration: none;
+  }
+
+  .lf-link-list .lf-link-static {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--lf-muted);
+    text-decoration: none;
+  }
+
+  .lf-link-list a:hover {
+    color: var(--lf-text);
+    text-decoration: underline;
+  }
+
+  .lf-divider {
+    height: 1px;
+    background: var(--lf-line);
+    margin: 34px 0;
+  }
+
+  .lf-bottom {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr 1fr;
+    gap: 20px;
+    align-items: start;
+  }
+
+  .lf-small {
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    color: var(--lf-muted);
+    line-height: 1.35;
+  }
+
+  .lf-review {
+    text-align: center;
+    padding: 0 10px;
+  }
+
+  .lf-stars {
+    display: inline-flex;
+    gap: 4px;
+    margin-bottom: 10px;
+  }
+
+  .lf-star {
+    width: 14px;
+    height: 14px;
+    color: var(--lf-accent);
+  }
+
+  .lf-quote {
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    color: #374151;
+    line-height: 1.5;
+    margin: 0 0 10px;
+  }
+
+  .lf-byline {
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    color: var(--lf-muted);
+    margin: 0;
+  }
+
+  .lf-legal {
+    display: grid;
+    gap: 8px;
+    justify-items: end;
+  }
+
+  .lf-legal a {
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    color: var(--lf-muted);
+    text-decoration: none;
+  }
+
+  .lf-legal a:hover {
+    color: var(--lf-text);
+    text-decoration: underline;
+  }
+
+  .lf-social-bar {
+    background: #0b0f19;
+  }
+
+  .lf-social {
+    max-width: var(--lf-max);
+    margin: 0 auto;
+    padding: 14px 20px;
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+  }
+
+  .lf-social a {
+    width: 34px;
+    height: 34px;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+  }
+
+  .lf-social a:hover {
+    background: rgba(244, 196, 0, 0.18);
+    border-color: rgba(244, 196, 0, 0.35);
+  }
+
+  .lf-social svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  @media (max-width: 1024px) {
+    .lf-top {
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+
+    .lf-bottom {
+      grid-template-columns: 1fr;
+      gap: 18px;
+      text-align: center;
+    }
+
+    .lf-legal {
+      justify-items: center;
+    }
+
+    .lf-review {
+      order: 1;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .lf-container {
+      padding: 34px 16px;
+    }
+
+    .lf-top {
+      grid-template-columns: 1fr;
+      gap: 22px;
+    }
+
+    .lf-divider {
+      margin: 26px 0;
+    }
+  }
+</style>
+
+<footer class="lf-footer" role="contentinfo">
+  <div class="lf-container">
+    <div class="lf-top">
+      <div>
+        <h3 class="lf-col-title">Linta Roofing</h3>
+        <div class="lf-col-rule"></div>
+        <ul class="lf-list">
+          <li class="lf-item">
+            <svg class="lf-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M12 21s7-4.6 7-11a7 7 0 1 0-14 0c0 6.4 7 11 7 11Z" stroke="currentColor" stroke-width="2"/>
+              <path d="M12 12.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" stroke="currentColor" stroke-width="2"/>
+            </svg>
+            <div>
+              <div>324 State Highway 57 S</div>
+              <div>Little River, SC 29566</div>
+            </div>
+          </li>
+          <li class="lf-item">
+            <svg class="lf-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M5.5 4.5h3l2 5-2 1.5c1.3 2.6 3.4 4.7 6 6L16 15l5 2v3c0 1-1 2-2 2C10.6 22 2 13.4 2 3c0-1 1-2 2-2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+            </svg>
+            <div>
+              <span>Phone: </span><a href="tel:8439164541">(843) 916 4541</a>
+            </div>
+          </li>
+          <li class="lf-item">
+            <svg class="lf-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M4 6h16v12H4V6Z" stroke="currentColor" stroke-width="2"/>
+              <path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <div>
+              <span>Email: </span><a href="mailto:office@lintaroofing.com">office@lintaroofing.com</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="lf-col-title">Services</h3>
+        <div class="lf-col-rule"></div>
+        <ul class="lf-list lf-link-list">
+          <li><a href="https://lintaroofing.com/roof-replacement-linta-roofing">Roof Replacement</a></li>
+          <li><a href="https://lintaroofing.com/roof-repair-myrtle-beach">Roof Repair</a></li>
+          <li><a href="https://lintaroofing.com/roof-maintenance-myrtle-beach">Roof Maintenance</a></li>
+          <li><a href="https://lintaroofing.com/storm-damage-assistance-myrtle-beach">Storm Damage</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="lf-col-title">Company</h3>
+        <div class="lf-col-rule"></div>
+        <ul class="lf-list lf-link-list">
+          <li><a href="https://lintaroofing.com/about/">About</a></li>
+          <li><a href="https://lintaroofing.com/contact/">Contact</a></li>
+          <li><a href="https://lintaroofing.com/careers">Careers</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="lf-col-title">Areas of Service</h3>
+        <div class="lf-col-rule"></div>
+        <ul class="lf-list lf-link-list">
+          <li><span class="lf-link-static">Horry County, SC</span></li>
+          <li><span class="lf-link-static">Georgetown County, SC</span></li>
+          <li><span class="lf-link-static">Brunswick County, NC</span></li>
+          <li><span class="lf-link-static">Columbus County, NC</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="lf-divider" role="separator" aria-hidden="true"></div>
+
+    <div class="lf-bottom">
+      <div class="lf-small">
+        <div>© <span data-lf-year>2026</span> Linta Roofing</div>
+        <div>All Rights Reserved.</div>
+      </div>
+
+      <div class="lf-review" aria-label="Customer review">
+        <div class="lf-stars" aria-hidden="true">
+          <svg class="lf-star" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.77 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2Z"/></svg>
+          <svg class="lf-star" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.77 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2Z"/></svg>
+          <svg class="lf-star" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.77 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2Z"/></svg>
+          <svg class="lf-star" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.77 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2Z"/></svg>
+          <svg class="lf-star" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.77 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2Z"/></svg>
+        </div>
+        <p class="lf-quote">“Y’all need more stars!! I had a new roof installed. The entire process was seamless. Every member of the team was so hardworking and professional. I was kept up to date every step of the way. And the cleanup was impeccabley done. Also, a big shout out to Ms. Barbara. She was my first contact. She was amazing as well. Thanks to the entire Linta team! I love my new roof.”</p>
+        <p class="lf-byline">- Carol G.</p>
+      </div>
+
+      <div class="lf-legal" aria-label="Legal links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms &amp; Conditions</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="lf-social-bar" aria-label="Social links">
+    <div class="lf-social">
+      <a href="https://www.facebook.com/LintaRoofing/" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v3H7v3h3v6h3v-6h3l1-3h-4v-3c0-.6.4-1 1-1Z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/linta_roofing/" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Z" stroke="currentColor" stroke-width="2"/>
+          <path d="M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" stroke="currentColor" stroke-width="2"/>
+          <path d="M17.5 6.5h.01" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+      </a>
+      <a href="https://www.youtube.com/channel/UCu89W77DU23jMdTq8G6A7TA" aria-label="YouTube">
+        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M21.6 7.2a3 3 0 0 0-2.1-2.1C17.7 4.6 12 4.6 12 4.6s-5.7 0-7.5.5A3 3 0 0 0 2.4 7.2 31 31 0 0 0 2 12a31 31 0 0 0 .4 4.8 3 3 0 0 0 2.1 2.1c1.8.5 7.5.5 7.5.5s5.7 0 7.5-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 22 12a31 31 0 0 0-.4-4.8ZM10 15.5v-7l6 3.5-6 3.5Z"/></svg>
+      </a>
+      <a href="https://www.linkedin.com/company/linta-roofing/" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5ZM0.4 23.5h4.2V7.9H0.4v15.6ZM8.1 7.9h4v2.1h.06c.56-1.06 1.93-2.18 3.98-2.18 4.25 0 5.04 2.8 5.04 6.44v9.24h-4.2v-8.2c0-1.96-.04-4.48-2.73-4.48-2.73 0-3.15 2.13-3.15 4.34v8.34H8.1V7.9Z"/>
+        </svg>
+      </a>
+      <a href="mailto:office@lintaroofing.com" aria-label="Email">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M4 6h16v12H4V6Z" stroke="currentColor" stroke-width="2"/>
+          <path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var root = document.currentScript && document.currentScript.parentElement;
+    if (!root) root = document;
+    var yearEls = root.querySelectorAll('[data-lf-year]');
+    var y = String(new Date().getFullYear());
+    yearEls.forEach(function (el) {
+      el.textContent = y;
+    });
+  })();
+</script>

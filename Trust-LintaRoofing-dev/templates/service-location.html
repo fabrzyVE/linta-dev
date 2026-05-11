@@ -3,8 +3,10 @@
   isAvailableForNewContent: true
   label: HubDB Service Location Page
 -->
-
-{% extends "./layouts/base.html" %}
+<!doctype html>
+<html lang="{{ html_lang }}" {{ html_lang_dir }}>
+  <head>
+    <meta charset="utf-8">
 
 {% require_css %}
   <link rel="stylesheet" href="{{ get_asset_url('../styles/service-location.css') }}">
@@ -14,8 +16,13 @@
   <script src="https://elfsightcdn.com/platform.js" defer></script>
 {% end_require_js %}
 
-{% block body %}
-  {% if dynamic_page_hubdb_row %}
+    {{ standard_header_includes }}
+  </head>
+
+  <body>
+    {% include "../sections/header.html" %}
+    <main id="main-content">
+      {% if dynamic_page_hubdb_row %}
     {% if dynamic_page_hubdb_row.meta_title %}
       <script>
         document.title = {{ dynamic_page_hubdb_row.meta_title|tojson }};
@@ -202,5 +209,9 @@
     }
   })();
 </script>
-  {% endif %}
-{% endblock body %}
+      {% endif %}
+    </main>
+    {% include "../sections/footer.html" %}
+    {{ standard_footer_includes }}
+  </body>
+</html>

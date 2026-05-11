@@ -3,7 +3,10 @@
   isAvailableForNewContent: true
   label: HubDB Location / Service-Location Page (multi-level)
 -->
-{% extends "./layouts/base.html" %}
+<!doctype html>
+<html lang="{{ html_lang }}" {{ html_lang_dir }}>
+  <head>
+    <meta charset="utf-8">
 
 {% require_css %}
   {% if dynamic_page_route_level == 2 %}
@@ -20,8 +23,13 @@
   {% endif %}
 {% end_require_js %}
 
-{% block body %}
-  {% if dynamic_page_hubdb_row %}
+    {{ standard_header_includes }}
+  </head>
+
+  <body>
+    {% include "../sections/header.html" %}
+    <main id="main-content">
+      {% if dynamic_page_hubdb_row %}
     {% if dynamic_page_hubdb_row.meta_title %}
       <script>
         document.title = {{ dynamic_page_hubdb_row.meta_title|tojson }};
@@ -265,5 +273,9 @@
       }
     })();
     </script>
-  {% endif %}
-{% endblock body %}
+      {% endif %}
+    </main>
+    {% include "../sections/footer.html" %}
+    {{ standard_footer_includes }}
+  </body>
+</html>

@@ -1,0 +1,843 @@
+<!--
+  templateType: "none"
+  isAvailableForNewContent: false
+-->
+<style>
+  :root {
+    --lh-bg: #ffffff;
+    --lh-text: #1f2937;
+    --lh-muted: #6b7280;
+    --lh-border: rgba(31, 41, 55, 0.12);
+    --lh-hover: #4f46e5;
+    --lh-accent: #f4c400;
+    --lh-accent-hover: #e2b400;
+    --lh-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    --lh-radius: 999px;
+    --lh-max: 1200px;
+    --lh-header-h: 96px;
+    --lh-topbar-h: 34px;
+    --lh-logo-w: 200px;
+    --lh-logo-h: 80px;
+  }
+
+  .lh-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: var(--lh-bg);
+    border-bottom: 1px solid var(--lh-border);
+  }
+
+  .lh-topbar {
+    background: transparent;
+    border-bottom: 0;
+  }
+
+  .lh-topbar .lh-container {
+    height: var(--lh-topbar-h);
+  }
+
+  .lh-topbar-content {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--lh-muted);
+  }
+
+  .lh-topbar-content a {
+    display: inline-flex;
+    align-items: center;
+    background: #f3f4f6;
+    padding: 10px 18px;
+    border-radius: 999px;
+    color: #111827;
+    text-decoration: none;
+  }
+
+  html.lh-no-scroll,
+  body.lh-no-scroll {
+    overflow: hidden;
+  }
+
+  .lh-container {
+    max-width: var(--lh-max);
+    margin: 0 auto;
+    padding: 0 20px;
+    height: var(--lh-header-h);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .lh-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--lh-text);
+    flex: 0 0 auto;
+  }
+
+  .lh-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .lh-logo-mark {
+    width: var(--lh-logo-w);
+    height: var(--lh-logo-h);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: #fff;
+  }
+
+  .lh-logo-img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: contain;
+  }
+
+  .lh-logo-type {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+  }
+
+  .lh-logo-type strong {
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    font-size: 18px;
+  }
+
+  .lh-logo-type span {
+    margin-top: 4px;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    font-size: 11px;
+    color: #b68900;
+  }
+
+  .lh-nav {
+    flex: 1 1 auto;
+    display: flex;
+    justify-content: center;
+    min-width: 0;
+  }
+
+  .lh-nav-list {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    white-space: nowrap;
+  }
+
+  .lh-nav-item {
+    position: relative;
+  }
+
+  .lh-dropdown::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    height: 12px;
+  }
+
+  .lh-nav-link,
+  .lh-nav-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 2px;
+    color: var(--lh-text);
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .lh-nav .lh-nav-link,
+  .lh-nav .lh-nav-button {
+    font-weight: 700;
+    color: var(--lh-muted);
+  }
+
+  .lh-nav-link::after,
+  .lh-nav-button::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 6px;
+    height: 2px;
+    background: var(--lh-hover);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 160ms ease;
+  }
+
+  .lh-nav-link:hover,
+  .lh-nav-button:hover,
+  .lh-dropdown:hover > .lh-nav-button,
+  .lh-dropdown:focus-within > .lh-nav-button {
+    color: var(--lh-hover);
+  }
+
+  .lh-nav-link:hover::after,
+  .lh-nav-button:hover::after,
+  .lh-dropdown:hover > .lh-nav-button::after,
+  .lh-dropdown:focus-within > .lh-nav-button::after {
+    transform: scaleX(1);
+  }
+
+  .lh-chevron {
+    width: 14px;
+    height: 14px;
+    opacity: 0.8;
+  }
+
+  .lh-dropdown-menu {
+    position: absolute;
+    top: calc(100% + 12px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: #fff;
+    border: 1px solid var(--lh-border);
+    border-radius: 14px;
+    box-shadow: var(--lh-shadow);
+    padding: 10px;
+    min-width: 220px;
+    display: none;
+  }
+
+  .lh-subdropdown {
+    position: relative;
+  }
+
+  .lh-subtrigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .lh-subchevron {
+    width: 14px;
+    height: 14px;
+    opacity: 0.8;
+    flex: 0 0 auto;
+  }
+
+  .lh-subdropdown::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 100%;
+    width: 14px;
+  }
+
+  .lh-submenu {
+    position: absolute;
+    top: -10px;
+    left: calc(100% + 12px);
+    background: #fff;
+    border: 1px solid var(--lh-border);
+    border-radius: 14px;
+    box-shadow: var(--lh-shadow);
+    padding: 10px;
+    min-width: 260px;
+    display: none;
+  }
+
+  .lh-subdropdown:hover .lh-submenu,
+  .lh-subdropdown:focus-within .lh-submenu {
+    display: block;
+  }
+
+  .lh-dropdown:hover .lh-dropdown-menu,
+  .lh-dropdown:focus-within .lh-dropdown-menu {
+    display: block;
+  }
+
+  .lh-dropdown.is-open .lh-dropdown-menu {
+    display: block;
+  }
+
+  .lh-dropdown-menu a {
+    display: block;
+    padding: 10px 12px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: var(--lh-text);
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  .lh-dropdown-menu a:hover {
+    background: rgba(244, 196, 0, 0.12);
+  }
+
+  .lh-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 0 0 auto;
+  }
+
+  .lh-icon-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    background: transparent;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--lh-text);
+  }
+
+  .lh-icon-btn:hover {
+    background: rgba(31, 41, 55, 0.06);
+  }
+
+  .lh-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .lh-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 60px;
+    padding: 0 34px;
+    border-radius: var(--lh-radius);
+    background: var(--lh-accent);
+    color: #111827;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 800;
+    font-size: 17px;
+    text-decoration: none;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  .lh-cta:hover {
+    background: var(--lh-accent-hover);
+  }
+
+  .lh-mobile-toggle {
+    display: none;
+  }
+
+  .lh-mobile-panel {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: #fff;
+    z-index: 3000;
+    overflow: auto;
+  }
+
+  .lh-mobile-panel .lh-container {
+    height: auto;
+    padding: 28px 20px 40px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 18px;
+  }
+
+  .lh-mobile-overlay-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .lh-mobile-close {
+    width: 44px;
+    height: 44px;
+  }
+
+  .lh-mobile-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .lh-mobile-nav > a:not(.lh-cta),
+  .lh-mobile-nav > .lh-dropdown > button {
+    border-bottom: 1px solid rgba(31, 41, 55, 0.12);
+    border-radius: 0;
+    padding: 18px 0;
+    font-size: 16px;
+    font-weight: 500;
+    color: #111827;
+  }
+
+  .lh-mobile-nav > .lh-dropdown {
+    border-bottom: 1px solid rgba(31, 41, 55, 0.12);
+  }
+
+  .lh-mobile-nav > .lh-dropdown > button {
+    border-bottom: 0;
+  }
+
+  .lh-mobile-nav .lh-dropdown-menu {
+    padding: 10px 0 16px;
+    margin-top: 0;
+  }
+
+  .lh-mobile-panel .lh-dropdown-menu {
+    display: none;
+  }
+
+  .lh-mobile-panel .lh-dropdown.is-open > .lh-dropdown-menu {
+    display: block;
+  }
+
+  .lh-mobile-phone {
+    display: block;
+    padding: 18px 0;
+    border-bottom: 1px solid rgba(31, 41, 55, 0.12);
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: #111827;
+    text-decoration: none;
+  }
+
+  .lh-mobile-cta {
+    align-self: flex-start;
+    margin-top: 10px;
+    border-bottom: 0;
+    border-radius: var(--lh-radius);
+    padding: 0 34px;
+  }
+
+  .lh-mobile-nav > a.lh-cta {
+    width: auto;
+    padding: 0 34px;
+  }
+
+  .lh-mobile-panel .lh-nav-link::after,
+  .lh-mobile-panel .lh-nav-button::after {
+    display: none;
+  }
+
+  .lh-mobile-panel .lh-nav-link:hover,
+  .lh-mobile-panel .lh-nav-button:hover {
+    color: var(--lh-accent);
+  }
+
+  .lh-mobile-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .lh-mobile-nav a:not(.lh-cta),
+  .lh-mobile-nav button {
+    width: 100%;
+    justify-content: space-between;
+    background: transparent;
+  }
+
+  .lh-mobile-nav a.lh-cta {
+    background: var(--lh-accent);
+    color: #111827;
+  }
+
+  .lh-mobile-nav .lh-dropdown-menu {
+    position: static;
+    transform: none;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .lh-mobile-sublist {
+    display: grid;
+    gap: 6px;
+    padding: 4px 8px 8px 18px;
+  }
+
+  .lh-mobile-sublist a {
+    font-size: 13px;
+    font-weight: 600;
+    padding: 10px 10px;
+  }
+
+  .lh-mobile-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  @media (max-width: 1200px) {
+    .lh-topbar {
+      display: none;
+    }
+
+    .lh-dropdown:hover .lh-dropdown-menu,
+    .lh-dropdown:focus-within .lh-dropdown-menu {
+      display: none;
+    }
+
+    .lh-dropdown.is-open > .lh-dropdown-menu {
+      display: block;
+    }
+
+    .lh-dropdown::after,
+    .lh-subdropdown::after {
+      display: none;
+    }
+
+    .lh-submenu {
+      display: none;
+    }
+
+    .lh-nav {
+      display: none;
+    }
+
+    .lh-mobile-toggle {
+      display: inline-flex;
+    }
+
+    .lh-actions .lh-cta {
+      display: none;
+    }
+
+    .lh-mobile-panel.is-open {
+      display: block;
+    }
+  }
+</style>
+
+<header class="lh-header" role="banner">
+  <div class="lh-topbar" aria-label="Contact bar">
+    <div class="lh-container">
+      <div class="lh-topbar-content">
+        <a href="tel:8439544852" aria-label="Call (843) 954-4852">(843) 954-4852</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="lh-container">
+    <a class="lh-brand" href="/" aria-label="Home">
+      <span class="lh-logo">
+        <span class="lh-logo-mark" aria-hidden="true">
+          <img class="lh-logo-img" src="{{ get_asset_url('../images/linta-logo-black.png') }}" alt="Linta Roofing" width="200" height="80" loading="eager">
+        </span>
+      </span>
+    </a>
+
+    <nav class="lh-nav" aria-label="Primary">
+      <ul class="lh-nav-list">
+        <li class="lh-nav-item lh-dropdown">
+          <button class="lh-nav-button" type="button" aria-haspopup="true" aria-expanded="false">
+            Services
+            <svg class="lh-chevron" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="lh-dropdown-menu" role="menu">
+            <div class="lh-subdropdown">
+              <a class="lh-subtrigger" role="menuitem" href="https://lintaroofing.com/roof-replacement-linta-roofing">
+                Roof Replacement
+                <svg class="lh-subchevron" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+              <div class="lh-submenu" role="menu" aria-label="Roof Replacement">
+                <a role="menuitem" href="https://lintaroofing.com/roofing-101">Roof Replacement Guide</a>
+                <a role="menuitem" href="https://lintaroofing.com/asphalt-shingle-roof">Asphalt Shingle Roofing</a>
+                <a role="menuitem" href="https://lintaroofing.com/metal-roofing">Metal Roofing</a>
+                <a role="menuitem" href="https://lintaroofing.com/tile-roofing-myrtle-beach">Tile Roofing</a>
+                <a role="menuitem" href="https://lintaroofing.com/cedar-roofing-myrtle-beach">Cedar Roofing</a>
+                <a role="menuitem" href="https://lintaroofing.com/flat-roofing-myrtle-beach">Flat Roofing</a>
+              </div>
+            </div>
+            <a role="menuitem" href="https://lintaroofing.com/roof-repair-myrtle-beach">Roof Repair</a>
+            <a role="menuitem" href="https://lintaroofing.com/roof-maintenance-myrtle-beach">Roof Maintenance</a>
+            <a role="menuitem" href="https://lintaroofing.com/storm-damage-assistance-myrtle-beach">Insurance Claim Assistance</a>
+          </div>
+        </li>
+        <li class="lh-nav-item"><a class="lh-nav-link" href="https://lintaroofing.com/linta-roofing-our-work">Our Work</a></li>
+        <li class="lh-nav-item"><a class="lh-nav-link" href="https://lintaroofing.com/areas-we-service-linta-roofing">Service Area</a></li>
+        <li class="lh-nav-item lh-dropdown">
+          <button class="lh-nav-button" type="button" aria-haspopup="true" aria-expanded="false">
+            Pricing
+            <svg class="lh-chevron" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="lh-dropdown-menu" role="menu">
+            <a role="menuitem" href="https://lintaroofing.com/roof-repair-replacement-pricing">Pricing</a>
+            <a role="menuitem" href="https://www.enhancify.com/jeff-linta-roofing-financing-offers">Financing</a>
+          </div>
+        </li>
+        <li class="lh-nav-item lh-dropdown">
+          <button class="lh-nav-button" type="button" aria-haspopup="true" aria-expanded="false">
+            Learning Center
+            <svg class="lh-chevron" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="lh-dropdown-menu" role="menu">
+            <a role="menuitem" href="https://lintaroofing.com/learning-center/">Learning Center</a>
+            <a role="menuitem" href="https://lintaroofing.com/roofing-faq-myrtle-beach">FAQs</a>
+            <a role="menuitem" href="https://lintaroofing.com/roofing-estimate-quiz">Roof Estimate Integrity Quiz</a>
+            <a role="menuitem" href="https://lintaroofing.com/roof-insurance-claim-quiz">Insurance Claim Qualification Quiz</a>
+            <a role="menuitem" href="https://lintaroofing.com/roof-repair-or-replacement-quiz">Roof Repair or Replacement Quiz</a>
+          </div>
+        </li>
+        <li class="lh-nav-item lh-dropdown">
+          <button class="lh-nav-button" type="button" aria-haspopup="true" aria-expanded="false">
+            Company
+            <svg class="lh-chevron" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="lh-dropdown-menu" role="menu">
+            <a role="menuitem" href="https://lintaroofing.com/about/">About Us</a>
+            <a role="menuitem" href="https://lintaroofing.com/reviews/">Our Reviews</a>
+            <a role="menuitem" href="https://lintaroofing.com/our-team-linta-roofing">Our Team</a>
+            <a role="menuitem" href="https://lintaroofing.com/careers">Careers</a>
+            <a role="menuitem" href="https://lintaroofing.com/contact/">Schedule Inspection</a>
+          </div>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="lh-actions">
+      <button class="lh-icon-btn" type="button" aria-label="Search">
+        <svg class="lh-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z" stroke="currentColor" stroke-width="2"/>
+          <path d="M21 21l-4.3-4.3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+
+      <a class="lh-cta" href="https://lintaroofing.com/instant-estimate/">Get Instant Estimate</a>
+
+      <button class="lh-icon-btn lh-mobile-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+        <svg class="lh-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="lh-mobile-panel" data-lh-mobile-panel>
+    <div class="lh-container">
+      <div class="lh-mobile-overlay-top">
+        <a class="lh-brand" href="/" aria-label="Home">
+          <span class="lh-logo">
+            <span class="lh-logo-mark" aria-hidden="true">
+              <img class="lh-logo-img" src="{{ get_asset_url('../images/linta-logo-black.png') }}" alt="Linta Roofing" width="200" height="80" loading="eager">
+            </span>
+          </span>
+        </a>
+
+        <button class="lh-icon-btn lh-mobile-close" type="button" aria-label="Close menu">
+          <svg class="lh-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <nav class="lh-mobile-nav" aria-label="Mobile">
+        <div class="lh-dropdown">
+          <button class="lh-nav-button" type="button" aria-haspopup="true" aria-expanded="false">
+            Services
+            <svg class="lh-chevron" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="lh-dropdown-menu" role="menu">
+            <a role="menuitem" href="https://lintaroofing.com/roof-replacement-linta-roofing">Roof Replacement</a>
+            <div class="lh-mobile-sublist" aria-label="Roof Replacement">
+              <a role="menuitem" href="https://lintaroofing.com/roof-replacement-linta-roofing">Roof Replacement</a>
+              <a role="menuitem" href="https://lintaroofing.com/roof-repair-myrtle-beach">Roof Repair</a>
+              <a role="menuitem" href="https://lintaroofing.com/roof-maintenance-myrtle-beach">Roof Maintenance</a>
+              <a role="menuitem" href="https://lintaroofing.com/storm-damage-assistance-myrtle-beach">Insurance Claim Assistance</a>
+            </div>
+            <a role="menuitem" href="https://lintaroofing.com/roof-repair-myrtle-beach">Roof Repair</a>
+            <a role="menuitem" href="https://lintaroofing.com/roof-maintenance-myrtle-beach">Roof Maintenance</a>
+            <a role="menuitem" href="https://lintaroofing.com/storm-damage-assistance-myrtle-beach">Insurance Claim Assistance</a>
+          </div>
+        </div>
+
+        <a class="lh-nav-link" href="https://lintaroofing.com/linta-roofing-our-work">Our Work</a>
+        <a class="lh-nav-link" href="https://lintaroofing.com/areas-we-service-linta-roofing">Service Area</a>
+
+        <div class="lh-dropdown">
+          <button class="lh-nav-button" type="button" aria-haspopup="true" aria-expanded="false">
+            Pricing
+            <svg class="lh-chevron" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="lh-dropdown-menu" role="menu">
+            <a role="menuitem" href="https://lintaroofing.com/roof-repair-replacement-pricing">Pricing</a>
+            <a role="menuitem" href="https://www.enhancify.com/jeff-linta-roofing-financing-offers">Financing</a>
+          </div>
+        </div>
+
+        <div class="lh-dropdown">
+          <button class="lh-nav-button" type="button" aria-haspopup="true" aria-expanded="false">
+            Learning Center
+            <svg class="lh-chevron" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="lh-dropdown-menu" role="menu">
+            <a role="menuitem" href="https://lintaroofing.com/learning-center/">Learning Center</a>
+            <a role="menuitem" href="https://lintaroofing.com/roofing-faq-myrtle-beach">FAQs</a>
+            <a role="menuitem" href="https://lintaroofing.com/roofing-estimate-quiz">Roof Estimate Integrity Quiz</a>
+            <a role="menuitem" href="https://lintaroofing.com/roof-insurance-claim-quiz">Insurance Claim Qualification Quiz</a>
+            <a role="menuitem" href="https://lintaroofing.com/roof-repair-or-replacement-quiz">Roof Repair or Replacement Quiz</a>
+          </div>
+        </div>
+
+        <div class="lh-dropdown">
+          <button class="lh-nav-button" type="button" aria-haspopup="true" aria-expanded="false">
+            Company
+            <svg class="lh-chevron" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="lh-dropdown-menu" role="menu">
+            <a role="menuitem" href="https://lintaroofing.com/about/">About Us</a>
+            <a role="menuitem" href="https://lintaroofing.com/reviews/">Our Reviews</a>
+            <a role="menuitem" href="https://lintaroofing.com/our-team-linta-roofing">Our Team</a>
+            <a role="menuitem" href="https://lintaroofing.com/careers">Careers</a>
+            <a role="menuitem" href="https://lintaroofing.com/contact/">Schedule Inspection</a>
+          </div>
+        </div>
+
+        <a class="lh-mobile-phone" href="tel:8439544852" aria-label="Call (843) 954-4852">(843) 954-4852</a>
+
+        <a class="lh-cta lh-mobile-cta" href="https://lintaroofing.com/instant-estimate/">Get Instant Estimate</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<script>
+  (function () {
+    var root = document.currentScript && document.currentScript.parentElement;
+    if (!root) {
+      root = document;
+    }
+
+    var header = root.querySelector('.lh-header');
+    if (!header) {
+      return;
+    }
+
+    var mobileToggle = header.querySelector('.lh-mobile-toggle');
+    var mobilePanel = header.querySelector('[data-lh-mobile-panel]');
+
+    function closeAllDropdowns(scope) {
+      var dropdowns = (scope || header).querySelectorAll('.lh-dropdown.is-open');
+      dropdowns.forEach(function (d) {
+        d.classList.remove('is-open');
+        var btn = d.querySelector('button[aria-expanded]');
+        if (btn) btn.setAttribute('aria-expanded', 'false');
+      });
+    }
+
+    if (mobileToggle && mobilePanel) {
+      mobileToggle.addEventListener('click', function () {
+        var isOpen = mobilePanel.classList.toggle('is-open');
+        mobileToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        document.documentElement.classList.toggle('lh-no-scroll', isOpen);
+        document.body.classList.toggle('lh-no-scroll', isOpen);
+        if (!isOpen) {
+          closeAllDropdowns(mobilePanel);
+        }
+      });
+    }
+
+    var mobileClose = header.querySelector('.lh-mobile-close');
+    if (mobileClose && mobilePanel && mobileToggle) {
+      mobileClose.addEventListener('click', function () {
+        mobilePanel.classList.remove('is-open');
+        mobileToggle.setAttribute('aria-expanded', 'false');
+        document.documentElement.classList.remove('lh-no-scroll');
+        document.body.classList.remove('lh-no-scroll');
+        closeAllDropdowns(mobilePanel);
+      });
+    }
+
+    header.querySelectorAll('.lh-dropdown > button').forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        var dropdown = btn.parentElement;
+        if (!dropdown) return;
+
+        var isDesktop = window.matchMedia('(min-width: 1201px)').matches;
+        if (isDesktop) {
+          return;
+        }
+
+        e.preventDefault();
+        var nextOpen = !dropdown.classList.contains('is-open');
+
+        var container = dropdown.parentElement;
+        if (container) {
+          container.querySelectorAll('.lh-dropdown.is-open').forEach(function (d) {
+            if (d !== dropdown) {
+              d.classList.remove('is-open');
+              var b = d.querySelector('button[aria-expanded]');
+              if (b) b.setAttribute('aria-expanded', 'false');
+            }
+          });
+        }
+
+        dropdown.classList.toggle('is-open', nextOpen);
+        btn.setAttribute('aria-expanded', nextOpen ? 'true' : 'false');
+      });
+    });
+
+    document.addEventListener('click', function (e) {
+      if (!header.contains(e.target)) {
+        closeAllDropdowns(header);
+      }
+    });
+
+    window.addEventListener('resize', function () {
+      var isDesktop = window.matchMedia('(min-width: 1201px)').matches;
+      if (isDesktop && mobilePanel) {
+        mobilePanel.classList.remove('is-open');
+        if (mobileToggle) mobileToggle.setAttribute('aria-expanded', 'false');
+        document.documentElement.classList.remove('lh-no-scroll');
+        document.body.classList.remove('lh-no-scroll');
+        closeAllDropdowns(header);
+      }
+    });
+  })();
+</script>
